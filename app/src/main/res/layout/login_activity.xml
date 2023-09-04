@@ -10,13 +10,13 @@
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/img_launcher"
-        android:layout_width="100dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="50dp"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
-        android:src="@mipmap/ic_launcher"
+        android:src="@drawable/world"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -26,7 +26,7 @@
         android:id="@+id/txt_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="60dp"
         android:text="@string/login"
         android:textColor="@color/black"
         android:textSize="24sp"
@@ -37,6 +37,7 @@
         app:layout_constraintTop_toBottomOf="@+id/img_launcher" />
 
     <LinearLayout
+        android:id="@+id/first_linear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -60,7 +61,7 @@
             android:gravity="center_vertical">
 
             <EditText
-                android:id="@+id/phone_numer_edit"
+                android:id="@+id/edt_phone_number"
                 android:layout_width="0dp"
                 android:layout_height="46dp"
                 android:layout_gravity="center_vertical"
@@ -69,10 +70,11 @@
                 android:autofillHints=""
                 android:background="@null"
                 android:digits="@string/digits_password"
-                android:hint="09 443 0543 922"
+                android:hint="09"
                 android:inputType="number"
                 android:padding="2dp"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                tools:ignore="TextFields" />
 
             <View
                 android:layout_width="0.5dip"
@@ -88,6 +90,51 @@
                 android:text="+86"
                 android:textSize="13sp"
                 app:drawableLeftCompat="@drawable/popup_arrow_down_green" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/second_linear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/first_linear">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/digits_password"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/background_for_login_register_input"
+            android:gravity="center_vertical">
+
+            <EditText
+                android:id="@+id/edt_password"
+                android:layout_width="0dp"
+                android:layout_height="46dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="20dp"
+                android:layout_weight="1"
+                android:autofillHints=""
+                android:hint="****"
+                android:background="@null"
+                android:digits="@string/digits_password"
+                android:inputType="textPassword"
+                android:padding="2dp"
+                android:textSize="14sp" />
 
         </LinearLayout>
 

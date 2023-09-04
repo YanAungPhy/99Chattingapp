@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">nineninechatapp</string>
+    <string name="login">Login</string>
+    <string name="phone_number">Phone number</string>
+    <string name="digits_password">Password</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
