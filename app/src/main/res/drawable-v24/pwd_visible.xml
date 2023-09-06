@@ -1,0 +1,12 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24"
+    android:tint="#007AFF"> <!-- Change to the color you desire -->
+
+    <!-- Eye icon for visible password -->
+    <path
+        android:fillColor="#000000"
+    android:pathData="M12,2c-1.22,0 -2.39,0.21 -3.49,0.6C8.71,2.22 8.36,2 8,2c-2.76,0 -5,2.24 -5,5s2.24,5 5,5c0.36,0 0.71,-0.22 0.51,-0.6l-1.82,-3.64c-0.19,-0.37 -0.69,-0.37 -0.88,0l-1.82,3.64c-0.2,0.38 0.15,0.68 0.51,0.68h0.04c0.36,0 0.71,-0.3 0.51,-0.68l-1.82,-3.64c-0.19,-0.37 -0.69,-0.37 -0.88,0l-1.82,3.64c-0.2,0.38 0.15,0.68 0.51,0.68h0.04c0.36,0 0.71,-0.3 0.51,-0.68l-1.82,-3.64c-0.19,-0.37 -0.69,-0.37 -0.88,0l-1.82,3.64c-0.2,0.38 0.15,0.68 0.51,0.68h0.04c0.36,0 0.71,-0.3 0.51,-0.68l-1.82,-3.64c"/>
+</vector>

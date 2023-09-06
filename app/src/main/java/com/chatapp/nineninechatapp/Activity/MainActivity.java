@@ -1,4 +1,4 @@
-package com.chatapp.nineninechatapp;
+package com.chatapp.nineninechatapp.Activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +13,7 @@ import com.chatapp.nineninechatapp.Fragment.DiscoveryFrag;
 import com.chatapp.nineninechatapp.Fragment.FeedFrag;
 import com.chatapp.nineninechatapp.Fragment.HomeFrag;
 import com.chatapp.nineninechatapp.Fragment.SearchFrag;
+import com.chatapp.nineninechatapp.R;
 import com.chatapp.nineninechatapp.Utils.CustomViewPager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
