@@ -1,4 +1,4 @@
-package com.chatapp.nineninechatapp.activities;
+package com.chatapp.nineninechatapp.Activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;

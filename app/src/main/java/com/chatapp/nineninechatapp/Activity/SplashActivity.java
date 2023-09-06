@@ -11,10 +11,8 @@ import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.chatapp.nineninechatapp.MainActivity;
 import com.chatapp.nineninechatapp.R;
 import com.chatapp.nineninechatapp.Utils.NetworkServiceProvider;
-import com.chatapp.nineninechatapp.Utils.Utility;
 
 public class SplashActivity extends AppCompatActivity {
     Handler handler=new Handler();
@@ -31,7 +29,7 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void run() {
 
-                startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                startActivity(new Intent(SplashActivity.this, LoginActivity.class));
 
             }
         },2000);

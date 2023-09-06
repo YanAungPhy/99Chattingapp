@@ -30,8 +30,9 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
-        <activity android:name=".MainActivity"/>
+        <activity android:name=".Activity.MainActivity"/>
+        <activity android:name=".Activity.RegisterActivity"/>
+        <activity android:name=".Activity.LoginActivity"/>
     </application>
 
 </manifest>
