@@ -15,13 +15,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.chatapp.nineninechatapp.Activity.ChatActivity;
 import com.chatapp.nineninechatapp.Adapter.ChatListAdapter;
 import com.chatapp.nineninechatapp.R;
-<<<<<<< HEAD
 import com.chatapp.nineninechatapp.Utils.Utility;
-=======
 import com.chatapp.nineninechatapp.model.ChatModel;
 
 import java.util.ArrayList;
->>>>>>> origin/master
 
 public class HomeFrag extends Fragment {
 
@@ -33,11 +30,9 @@ public class HomeFrag extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-<<<<<<< HEAD
-        View view=inflater.inflate(R.layout.home,container,false);
-        Utility.darkMode(getActivity());
-=======
         View view=inflater.inflate(R.layout.fragment_home,container,false);
+        Utility.darkMode(getActivity());
+
 
         recyclerView = view.findViewById(R.id.chat_RecyclerView);
         chatList = new ArrayList<>();
@@ -46,7 +41,6 @@ public class HomeFrag extends Fragment {
         chatList.add(new ChatModel("Ko Kyaw Latt"));
         chatList.add(new ChatModel("Testing"));
         chatList.add(new ChatModel("Yan Aung Phyo"));
->>>>>>> origin/master
 
         adapter = new ChatListAdapter(chatList, context);
         recyclerView.setAdapter(adapter);

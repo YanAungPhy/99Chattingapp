@@ -37,16 +37,11 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-<<<<<<< HEAD
         <activity android:name=".Activity.MainActivity"/>
         <activity android:name=".Activity.RegisterActivity"/>
         <activity android:name=".Activity.LoginActivity"/>
         <activity android:name=".Activity.SettingActivity"/>
-=======
-        <activity android:name=".Activity.MainActivity" />
-        <activity android:name=".Activity.RegisterActivity" />
-        <activity android:name=".Activity.LoginActivity" />
->>>>>>> origin/master
+
     </application>
 
 </manifest>
