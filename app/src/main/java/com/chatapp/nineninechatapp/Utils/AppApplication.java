@@ -8,7 +8,6 @@ import androidx.annotation.NonNull;
 
 import java.util.Locale;
 
-
 public class AppApplication extends Application  {
 
 
@@ -16,10 +15,7 @@ public class AppApplication extends Application  {
     public void onCreate() {
         super.onCreate();
 
-
-
     }
-
 
 }
 

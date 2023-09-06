@@ -20,5 +20,6 @@
     <string name="please_enter_your_phone_number">Please enter your phone number</string>
     <string name="have_an_account">Have an account</string>
     <string name="sign_in">Sign in</string>
+    <string name="chat">Chat</string>
 
 </resources>

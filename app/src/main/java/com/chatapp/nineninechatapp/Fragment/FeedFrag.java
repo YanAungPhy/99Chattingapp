@@ -15,7 +15,7 @@ public class FeedFrag extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.feed,container,false);
+        View view=inflater.inflate(R.layout.fragment_feed,container,false);
 
 
         return view;
