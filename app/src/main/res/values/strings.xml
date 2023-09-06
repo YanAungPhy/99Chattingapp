@@ -20,8 +20,12 @@
     <string name="please_enter_your_phone_number">Please enter your phone number</string>
     <string name="have_an_account">Have an account</string>
     <string name="sign_in">Sign in</string>
+<<<<<<< HEAD
     <string name="check_internet">Please Check Internet</string>
     <string name="setting">Setting</string>
     <string name="dark_mode">Dark Mode</string>
+=======
+    <string name="chat">Chat</string>
+>>>>>>> origin/master
 
 </resources>

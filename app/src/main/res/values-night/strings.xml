@@ -6,5 +6,6 @@
     <string name="discovery">Discovery</string>
     <string name="account">Account</string>
     <string name="video">video</string>
+    <string name="chat">Chat</string>
 
 </resources>

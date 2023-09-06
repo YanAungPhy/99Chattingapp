@@ -16,8 +16,12 @@ public class FeedFrag extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+<<<<<<< HEAD
         View view=inflater.inflate(R.layout.feed,container,false);
         Utility.darkMode(getActivity());
+=======
+        View view=inflater.inflate(R.layout.fragment_feed,container,false);
+>>>>>>> origin/master
 
 
         return view;

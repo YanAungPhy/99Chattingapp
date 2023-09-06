@@ -27,9 +27,12 @@ public class AccountFrag extends Fragment implements View.OnClickListener {
 
         setting=view.findViewById(R.id.img_setting);
 
+<<<<<<< HEAD
 
         setting.setOnClickListener(this);
 
+=======
+>>>>>>> origin/master
         return view;
     }
 
