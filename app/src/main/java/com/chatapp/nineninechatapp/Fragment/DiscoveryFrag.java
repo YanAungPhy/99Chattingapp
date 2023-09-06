@@ -14,6 +14,7 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import com.chatapp.nineninechatapp.R;
+import com.chatapp.nineninechatapp.Utils.Utility;
 
 public class DiscoveryFrag extends Fragment {
 
@@ -25,6 +26,7 @@ public class DiscoveryFrag extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.discovery,container,false);
+        Utility.darkMode(getActivity());
 
         postVisibleState = view.findViewById(R.id.postVisibleState);
         btnImg = view.findViewById(R.id.btn_img);

@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.chatapp.nineninechatapp.R;
 import com.chatapp.nineninechatapp.Utils.NetworkServiceProvider;
+import com.chatapp.nineninechatapp.Utils.Utility;
 
 public class SplashActivity extends AppCompatActivity {
     Handler handler=new Handler();
@@ -22,6 +23,7 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+        Utility.darkMode(this);
 
         full();
 

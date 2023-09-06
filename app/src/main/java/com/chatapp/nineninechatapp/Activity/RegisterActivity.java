@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.chatapp.nineninechatapp.R;
+import com.chatapp.nineninechatapp.Utils.Utility;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -18,6 +19,7 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+
         initView();
         initEvent();
     }
@@ -27,6 +29,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void initEvent() {
+        Utility.darkMode(this);
         txtSingIn.setOnClickListener(v -> {
             startActivity(new Intent(getApplicationContext(),LoginActivity.class));
         });

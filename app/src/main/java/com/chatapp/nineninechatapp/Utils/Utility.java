@@ -8,6 +8,11 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.net.ConnectivityManager;
 import android.net.Uri;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatDelegate;
+
+import com.chatapp.nineninechatapp.Activity.LoginActivity;
 
 
 public class Utility {
@@ -25,8 +30,18 @@ public class Utility {
         context.startActivity(new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phoneNumber, null)));
     }
 
+    public static void showToast (Context context, String message) {
+        Toast.makeText(context, message, Toast.LENGTH_LONG).show();
+    }
 
 
+    public static void darkMode(Context context){
+        if (AppStorePreferences.getBoolean(context,"dark_mode")){
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        }else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
+    }
 
 
 }

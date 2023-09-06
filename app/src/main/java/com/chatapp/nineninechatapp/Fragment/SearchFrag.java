@@ -9,6 +9,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.chatapp.nineninechatapp.R;
+import com.chatapp.nineninechatapp.Utils.Utility;
 
 public class SearchFrag extends Fragment {
 
@@ -16,6 +17,7 @@ public class SearchFrag extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.search,container,false);
+        Utility.darkMode(getActivity());
 
 
         return view;

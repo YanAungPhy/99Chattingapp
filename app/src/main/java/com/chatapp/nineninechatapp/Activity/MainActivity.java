@@ -15,6 +15,7 @@ import com.chatapp.nineninechatapp.Fragment.HomeFrag;
 import com.chatapp.nineninechatapp.Fragment.SearchFrag;
 import com.chatapp.nineninechatapp.R;
 import com.chatapp.nineninechatapp.Utils.CustomViewPager;
+import com.chatapp.nineninechatapp.Utils.Utility;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Utility.darkMode(this);
 
         viewPager=findViewById(R.id.viewpager_container);
 
@@ -41,7 +43,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         intiUI();
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
     }
-
 
     private void intiUI() {
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
