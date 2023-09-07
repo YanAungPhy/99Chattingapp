@@ -31,14 +31,12 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void run() {
 
-                startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+                startActivity(new Intent(SplashActivity.this, AdSliderActivity.class));
 
             }
         },2000);
 
     }
-
-
 
     public static void setWindowFlag(AppCompatActivity activity, final int bits, boolean on) {
         Window win = activity.getWindow();
