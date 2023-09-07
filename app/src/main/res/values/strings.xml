@@ -1,8 +1,28 @@
 <resources>
     <string name="app_name">nineninechatapp</string>
+
+    <string name="home">Home</string>
+    <string name="search">Search</string>
+    <string name="discovery">Discovery</string>
+    <string name="account">Account</string>
+    <string name="video">video</string>
+    <string name="password">Password</string>
     <string name="login">Login</string>
-    <string name="phone_number">Phone number</string>
-    <string name="digits_password">Password</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="what_on_your_mine">What is on your minds?</string>
+    <string name="profile">Profile</string>
+    <string name="sample_phone_number"> 09 ***</string>
+    <string name="sign">Sign</string>
+    <string name="create_new_account">Create new account</string>
+    <string name="sign_up">Sing up</string>
+    <string name="register">Register</string>
+    <string name="get_otp">Get Otp</string>
+    <string name="please_enter_your_phone_number">Please enter your phone number</string>
+    <string name="have_an_account">Have an account</string>
+    <string name="sign_in">Sign in</string>
+    <string name="check_internet">Please Check Internet</string>
+    <string name="setting">Setting</string>
+    <string name="dark_mode">Dark Mode</string>
+    <string name="chat">Chat</string>
+
 </resources>
