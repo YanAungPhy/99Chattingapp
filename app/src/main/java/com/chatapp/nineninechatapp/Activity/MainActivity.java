@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.chatapp.nineninechatapp.Adapter.ViewPagerAdapter;
@@ -13,6 +14,7 @@ import com.chatapp.nineninechatapp.Fragment.DiscoveryFrag;
 import com.chatapp.nineninechatapp.Fragment.FeedFrag;
 import com.chatapp.nineninechatapp.Fragment.HomeFrag;
 import com.chatapp.nineninechatapp.Fragment.SearchFrag;
+import com.chatapp.nineninechatapp.Model.Login.UserObj;
 import com.chatapp.nineninechatapp.R;
 import com.chatapp.nineninechatapp.Utils.CustomViewPager;
 import com.chatapp.nineninechatapp.Utils.Utility;
@@ -29,12 +31,15 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     HomeFrag homeFrag;
     SearchFrag searchFrag;
     MenuItem prevMenuItem;
+    UserObj userObj;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Utility.darkMode(this);
+        userObj=Utility.query_UserProfile(this);
+        Log.e("mtt_userObj>>>",userObj.getNickname());
 
         viewPager=findViewById(R.id.viewpager_container);
 

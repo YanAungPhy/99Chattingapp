@@ -13,6 +13,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatDelegate;
 
 import com.chatapp.nineninechatapp.Activity.LoginActivity;
+import com.chatapp.nineninechatapp.Model.Login.UserObj;
+import com.google.gson.Gson;
 
 
 public class Utility {
@@ -41,6 +43,31 @@ public class Utility {
         }else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
+    }
+
+
+    public static void delete_UserProfile(Context context){
+        SharedPreferences pref=context.getSharedPreferences(Constant.SharePref, Context.MODE_PRIVATE);
+        pref.edit().remove("userobj").commit();
+
+    }
+
+    public static void Save_UserProfile(Context context, UserObj userObj){
+        SharedPreferences pref=context.getSharedPreferences(Constant.SharePref, Context.MODE_PRIVATE);
+        Gson gson = new Gson();
+        String jsonobject = gson.toJson(userObj);
+        pref.edit().putString("userobj",jsonobject).apply();
+
+    }
+
+    public static UserObj query_UserProfile(Context context){
+        UserObj userObj = new UserObj();
+        SharedPreferences pref=context.getSharedPreferences(Constant.SharePref, Context.MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = pref.getString("userobj", "");
+        userObj = gson.fromJson(json, UserObj.class);
+        return userObj;
+
     }
 
 

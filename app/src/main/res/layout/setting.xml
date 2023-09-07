@@ -30,4 +30,11 @@
     </LinearLayout>
 
 
+    <Button
+        android:id="@+id/btn_logout"
+        android:layout_gravity="bottom"
+        android:text="@string/logout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
 </LinearLayout>

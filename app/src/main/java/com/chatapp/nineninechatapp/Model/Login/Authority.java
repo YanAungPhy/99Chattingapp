@@ -3,7 +3,9 @@ package com.chatapp.nineninechatapp.Model.Login;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Authority {
+import java.io.Serializable;
+
+public class Authority implements Serializable {
     @SerializedName("authority")
     @Expose
     private String authority;

@@ -20,6 +20,7 @@ import com.chatapp.nineninechatapp.Model.Login.LoginModel;
 import com.chatapp.nineninechatapp.Model.Login.LoginObj;
 import com.chatapp.nineninechatapp.R;
 import com.chatapp.nineninechatapp.Utils.APIURL;
+import com.chatapp.nineninechatapp.Utils.AppENUM;
 import com.chatapp.nineninechatapp.Utils.AppStorePreferences;
 import com.chatapp.nineninechatapp.Utils.NetworkServiceProvider;
 import com.chatapp.nineninechatapp.Utils.Utility;
@@ -57,16 +58,18 @@ public class LoginActivity extends AppCompatActivity {
         progressBar=findViewById(R.id.progressBar);
 
         Utility.darkMode(this);
+        edtphone.setText("095310432");
+        edtPassword.setText("123456");
     }
 
     private void initEvent() {
         btnLogin.setOnClickListener(v -> {
-            startActivity(new Intent(getApplicationContext(),MainActivity.class));
+           // startActivity(new Intent(getApplicationContext(),MainActivity.class));
 
-           /* LoginObj loginObj=new LoginObj();
+            LoginObj loginObj=new LoginObj();
             loginObj.setTelephone(edtphone.getText().toString());
             loginObj.setPassword(edtPassword.getText().toString());
-            CallLogin(loginObj);*/
+            CallLogin(loginObj);
 
         });
 
@@ -87,7 +90,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void CallLogin(LoginObj authObj) {
-
         if (Utility.isOnline(this)){
             progressBar.setVisibility(View.VISIBLE);
             serviceProvider.Login(APIURL.DomainName+APIURL.login,authObj).enqueue(new Callback<LoginModel>() {
@@ -95,11 +97,12 @@ public class LoginActivity extends AppCompatActivity {
                 public void onResponse(Call<LoginModel> call, Response<LoginModel> response) {
                     progressBar.setVisibility(View.GONE);
 
-                    Log.e("mtt_userData>>>", String.valueOf(response.body().getTimestamp()));
-                    Log.e("mtt>>>",response.body().getMsg());
                     if (response.body().getCode()==1){
 
-                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                        Utility.Save_UserProfile(LoginActivity.this,response.body().getData().getData());
+                        AppStorePreferences.putInt(LoginActivity.this, AppENUM.LOGIN_CON,1);
+                        startActivity(new Intent(LoginActivity.this,MainActivity.class));
+                        finish();
 
                     }else if (response.body().getCode()==0){
 
@@ -109,7 +112,6 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 @Override
                 public void onFailure(Call<LoginModel> call, Throwable t) {
-                    Log.e("mtt_error>>>>",t.getLocalizedMessage());
                     progressBar.setVisibility(View.GONE);
 
                 }

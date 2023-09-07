@@ -1,6 +1,8 @@
 package com.chatapp.nineninechatapp.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.Switch;
@@ -10,18 +12,23 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
 import com.chatapp.nineninechatapp.R;
+import com.chatapp.nineninechatapp.Utils.AppENUM;
 import com.chatapp.nineninechatapp.Utils.AppStorePreferences;
+import com.chatapp.nineninechatapp.Utils.Utility;
 
 public class SettingActivity extends AppCompatActivity implements View.OnClickListener {
 
     TextView toolbar;
     ImageView back;
     Switch aSwitch;
+    Button btnLogout;
+
     @Override
     protected void onCreate (Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.setting);
 
+        btnLogout=findViewById(R.id.btn_logout);
         back=findViewById(R.id.back);
         toolbar=findViewById(R.id.toolbar_com);
         aSwitch=findViewById(R.id.btn_switch);
@@ -50,6 +57,7 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
         });
 
         back.setOnClickListener(this);
+        btnLogout.setOnClickListener(this);
     }
 
     @Override
@@ -58,6 +66,14 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
             case R.id.back:
 
                 finish();
+
+                break;
+            case R.id.btn_logout:
+
+                Utility.delete_UserProfile(this);
+                AppStorePreferences.putInt(SettingActivity.this, AppENUM.LOGIN_CON,0);
+                startActivity(new Intent(SettingActivity.this,LoginActivity.class));
+                finishAffinity();
 
                 break;
         }

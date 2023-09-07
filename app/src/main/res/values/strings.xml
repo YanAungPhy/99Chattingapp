@@ -24,5 +24,6 @@
     <string name="setting">Setting</string>
     <string name="dark_mode">Dark Mode</string>
     <string name="chat">Chat</string>
+    <string name="logout">Logout</string>
 
 </resources>

@@ -12,6 +12,8 @@ import android.view.WindowManager;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.chatapp.nineninechatapp.R;
+import com.chatapp.nineninechatapp.Utils.AppENUM;
+import com.chatapp.nineninechatapp.Utils.AppStorePreferences;
 import com.chatapp.nineninechatapp.Utils.NetworkServiceProvider;
 import com.chatapp.nineninechatapp.Utils.Utility;
 
@@ -31,8 +33,16 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void run() {
 
-                startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+                if (AppStorePreferences.getInt(SplashActivity.this, AppENUM.LOGIN_CON)==1){
 
+                    startActivity(new Intent(SplashActivity.this, MainActivity.class));
+
+                }else {
+
+                    startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+
+                }
+                finish();
             }
         },2000);
 
