@@ -49,7 +49,6 @@ public class SplashActivity extends AppCompatActivity {
     }
 
 
-
     public static void setWindowFlag(AppCompatActivity activity, final int bits, boolean on) {
         Window win = activity.getWindow();
         WindowManager.LayoutParams winParams = win.getAttributes();

@@ -4,39 +4,143 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">>
+    android:layout_height="match_parent">
 
-    <RelativeLayout
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <com.chatapp.nineninechatapp.Utils.CustomViewPager
+            android:layout_weight="1"
             android:id="@+id/viewpager_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@id/navigation"
+            android:layout_above="@id/nav"
             android:visibility="visible"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/navigation"
+        <View
+            android:layout_marginBottom="10dp"
+            android:background="@color/grey"
             android:layout_width="match_parent"
-            android:layout_height="65dp"
-            android:layout_alignParentBottom="true"
-            app:itemBackground="@color/white"
-            app:itemIconSize="30dp"
-            app:itemIconTint="@color/navigation_item"
-            app:itemTextAppearanceActive="@style/BottomNavigationView"
-            app:itemTextColor="@color/navigation_item"
-            app:labelVisibilityMode="labeled"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:menu="@menu/navigation" />
+            android:layout_height="0.5dp"/>
 
-    </RelativeLayout>
+        <LinearLayout
+            android:layout_alignParentBottom="true"
+            android:id="@+id/nav"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="55dp">
+
+            <LinearLayout
+                android:id="@+id/home"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/img_home"
+                    android:layout_gravity="center"
+                    android:src="@drawable/home"
+                    android:layout_width="22dp"
+                    android:layout_height="25dp"/>
+                <TextView
+                    android:layout_gravity="center"
+                    android:textSize="13dp"
+                    android:text="@string/home"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/search"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/img_search"
+                    android:layout_gravity="center"
+                    android:src="@drawable/search"
+                    android:layout_width="22dp"
+                    android:layout_height="25dp"/>
+                <TextView
+                    android:layout_gravity="center"
+                    android:textSize="13dp"
+                    android:text="@string/search"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/video"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/img_video"
+                    android:layout_width="60dp"
+                    android:layout_height="50dp"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/res" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/discovery"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/img_discovery"
+                    android:layout_gravity="center"
+                    android:src="@drawable/dis"
+                    android:layout_width="22dp"
+                    android:layout_height="25dp"/>
+                <TextView
+                    android:layout_gravity="center"
+                    android:textSize="13dp"
+                    android:text="@string/discovery"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/account"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/img_account"
+                    android:layout_gravity="center"
+                    android:src="@drawable/account"
+                    android:layout_width="22dp"
+                    android:layout_height="25dp"/>
+                <TextView
+                    android:layout_gravity="center"
+                    android:textSize="13dp"
+                    android:text="@string/account"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
