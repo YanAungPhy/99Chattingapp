@@ -8,12 +8,20 @@
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/white</item>
         <item name="colorSecondaryVariant">@color/white</item>
+<<<<<<< HEAD
         <item name="colorOnSecondary">@color/white</item>
+=======
+        <item name="colorOnSecondary">@color/black</item>
+>>>>>>> YAP
         <!-- Status bar color. -->
         <!-- Customize your theme here. -->
     </style>
 
+<<<<<<< HEAD
     <style name="BottomNavigationView" parent="Theme.AppCompat.DayNight.NoActionBar">
+=======
+    <style name="BottomNavigationView" parent="@style/TextAppearance.AppCompat.Caption">
+>>>>>>> YAP
         <item name="android:textSize">13sp</item>
     </style>
 

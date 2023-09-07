@@ -158,4 +158,9 @@
     <color name="edt_input_color">#B0F5F5F5</color>
     <color name="show_all_comment_item">#F5F4FF</color>
 
+<<<<<<< HEAD
+=======
+    <color name="primary_color">#007AFF</color>
+
+>>>>>>> YAP
 </resources>

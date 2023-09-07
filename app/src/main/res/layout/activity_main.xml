@@ -6,21 +6,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+<<<<<<< HEAD
     <LinearLayout
         android:orientation="vertical"
+=======
+
+    <RelativeLayout
+>>>>>>> YAP
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <com.chatapp.nineninechatapp.Utils.CustomViewPager
+<<<<<<< HEAD
             android:layout_weight="1"
             android:id="@+id/viewpager_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_above="@id/nav"
+=======
+            android:id="@+id/viewpager_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/navigation"
+>>>>>>> YAP
             android:visibility="visible"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+<<<<<<< HEAD
         <View
             android:layout_marginBottom="10dp"
             android:background="@color/grey"
@@ -141,6 +154,26 @@
         </LinearLayout>
 
     </LinearLayout>
+=======
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/navigation"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:layout_alignParentBottom="true"
+            app:itemBackground="@color/white"
+            app:itemIconSize="30dp"
+            app:itemIconTint="@color/navigation_item"
+            app:itemTextAppearanceActive="@style/BottomNavigationView"
+            app:itemTextColor="@color/navigation_item"
+            app:labelVisibilityMode="labeled"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:menu="@menu/navigation" />
+
+    </RelativeLayout>
+>>>>>>> YAP
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

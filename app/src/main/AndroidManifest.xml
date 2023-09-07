@@ -24,7 +24,11 @@
         android:theme="@style/Theme.Nineninechatapp"
         tools:targetApi="31">
         <activity
+<<<<<<< HEAD
             android:name=".Activity.ChatActivity"
+=======
+            android:name=".Activity.AdSliderActivity"
+>>>>>>> YAP
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -43,11 +47,18 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+<<<<<<< HEAD
         <activity android:name=".Activity.MainActivity"/>
         <activity android:name=".Activity.RegisterActivity"/>
         <activity android:name=".Activity.LoginActivity"/>
         <activity android:name=".Activity.SettingActivity"/>
 
+=======
+        <activity android:name=".Activity.MainActivity" />
+        <activity android:name=".Activity.ChatActivity" />
+        <activity android:name=".Activity.SettingActivity" />
+        <activity android:name=".Activity.RegisterActivity" />
+>>>>>>> YAP
     </application>
 
 </manifest>

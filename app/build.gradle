@@ -46,8 +46,25 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.8'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     implementation 'org.greenrobot:eventbus:3.2.0'
+<<<<<<< HEAD
    // implementation 'myatminsoe.mdetect.android:mdetect-android:3.2'
     implementation 'com.github.bumptech.glide:glide:4.12.0'
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 
+=======
+    // implementation 'myatminsoe.mdetect.android:mdetect-android:3.2'
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
+
+    //CircleImageView
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+<<<<<<< Updated upstream
+    //viewPager2
+    implementation 'androidx.viewpager2:viewpager2:1.0.0'
+    //implementation 'com.google.android.material:material:1.11.0-alpha02'
+
+=======
+>>>>>>> Stashed changes
+>>>>>>> YAP
 }

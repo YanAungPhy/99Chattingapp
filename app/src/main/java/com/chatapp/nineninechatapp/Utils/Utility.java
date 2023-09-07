@@ -13,8 +13,11 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatDelegate;
 
 import com.chatapp.nineninechatapp.Activity.LoginActivity;
+<<<<<<< HEAD
 import com.chatapp.nineninechatapp.Model.Login.UserObj;
 import com.google.gson.Gson;
+=======
+>>>>>>> YAP
 
 
 public class Utility {
@@ -46,6 +49,7 @@ public class Utility {
     }
 
 
+<<<<<<< HEAD
     public static void delete_UserProfile(Context context){
         SharedPreferences pref=context.getSharedPreferences(Constant.SharePref, Context.MODE_PRIVATE);
         pref.edit().remove("userobj").commit();
@@ -71,5 +75,7 @@ public class Utility {
     }
 
 
+=======
+>>>>>>> YAP
 }
 
