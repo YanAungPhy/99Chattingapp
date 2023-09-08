@@ -24,9 +24,7 @@
     <string name="setting">Setting</string>
     <string name="dark_mode">Dark Mode</string>
     <string name="chat">Chat</string>
-<<<<<<< HEAD
     <string name="logout">Logout</string>
-=======
     <string name="no_one_know_your_privacy">No one know your privacy</string>
     <string name="the_choice_for_smart_and_safety">The choice for smart and safety</string>
     <string name="next">Next</string>
@@ -34,6 +32,5 @@
     <string name="connecting_people_bridging_worlds">Connecting People, Bridging Worlds</string>
     <string name="unbelievable_ux">Unbelievable  UX</string>
     <string name="the_world_is_your_neighbourhood_now">The world is your neighbourhood now</string>
->>>>>>> YAP
 
 </resources>

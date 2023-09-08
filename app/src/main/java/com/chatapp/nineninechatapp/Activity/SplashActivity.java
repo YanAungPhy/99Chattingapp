@@ -12,11 +12,9 @@ import android.view.WindowManager;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.chatapp.nineninechatapp.R;
-<<<<<<< HEAD
 import com.chatapp.nineninechatapp.Utils.AppENUM;
 import com.chatapp.nineninechatapp.Utils.AppStorePreferences;
-=======
->>>>>>> YAP
+
 import com.chatapp.nineninechatapp.Utils.NetworkServiceProvider;
 import com.chatapp.nineninechatapp.Utils.Utility;
 
@@ -36,7 +34,6 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void run() {
 
-<<<<<<< HEAD
                 if (AppStorePreferences.getInt(SplashActivity.this, AppENUM.LOGIN_CON)==1){
 
                     startActivity(new Intent(SplashActivity.this, MainActivity.class));
@@ -47,19 +44,13 @@ public class SplashActivity extends AppCompatActivity {
 
                 }
                 finish();
-=======
                 startActivity(new Intent(SplashActivity.this, AdSliderActivity.class));
 
->>>>>>> YAP
             }
         },2000);
 
     }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> YAP
     public static void setWindowFlag(AppCompatActivity activity, final int bits, boolean on) {
         Window win = activity.getWindow();
         WindowManager.LayoutParams winParams = win.getAttributes();

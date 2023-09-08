@@ -41,11 +41,8 @@ public class RetrofitFactory {
 
             Retrofit.Builder builder = new Retrofit.Builder();
             builder.client(client);
-<<<<<<< HEAD
             builder.baseUrl("https://543f-69-160-2-214.ngrok-free.app/");
-=======
             builder.baseUrl("https://b79c-69-160-8-44.ngrok-free.app/");
->>>>>>> YAP
             builder.addConverterFactory(GsonConverterFactory.create());
 
           //  builder.addConverterFactory(JacksonConverterFactory.create());

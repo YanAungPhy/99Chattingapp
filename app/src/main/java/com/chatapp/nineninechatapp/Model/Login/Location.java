@@ -3,16 +3,10 @@ package com.chatapp.nineninechatapp.Model.Login;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-<<<<<<< HEAD
 import java.io.Serializable;
 import java.util.List;
 
 public class Location implements Serializable {
-=======
-import java.util.List;
-
-public class Location {
->>>>>>> YAP
     @SerializedName("x")
     @Expose
     private Double x;

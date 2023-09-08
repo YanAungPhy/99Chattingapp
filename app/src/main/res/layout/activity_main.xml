@@ -6,34 +6,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-<<<<<<< HEAD
-    <LinearLayout
-        android:orientation="vertical"
-=======
-
     <RelativeLayout
->>>>>>> YAP
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <com.chatapp.nineninechatapp.Utils.CustomViewPager
-<<<<<<< HEAD
             android:layout_weight="1"
             android:id="@+id/viewpager_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_above="@id/nav"
-=======
-            android:id="@+id/viewpager_container"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_above="@id/navigation"
->>>>>>> YAP
             android:visibility="visible"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-<<<<<<< HEAD
         <View
             android:layout_marginBottom="10dp"
             android:background="@color/grey"
@@ -153,8 +139,6 @@
 
         </LinearLayout>
 
-    </LinearLayout>
-=======
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/navigation"
@@ -173,7 +157,6 @@
             app:menu="@menu/navigation" />
 
     </RelativeLayout>
->>>>>>> YAP
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
