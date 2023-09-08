@@ -48,8 +48,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Utility.darkMode(this);
-        userObj=Utility.query_UserProfile(this);
-        Log.e("mtt_userObj>>>",userObj.getNickname());
+      //  userObj=Utility.query_UserProfile(this);
 
         intiUI();
 
@@ -85,15 +84,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    @Override
-    protected void onResume() {
-
-        super.onResume();
-
-        viewPager=findViewById(R.id.viewpager_container);
-
-        intiUI();
-    }
 
     private void setupViewPager(ViewPager viewPager) {
 

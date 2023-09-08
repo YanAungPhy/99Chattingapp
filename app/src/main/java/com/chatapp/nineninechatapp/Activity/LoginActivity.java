@@ -62,18 +62,13 @@ public class LoginActivity extends AppCompatActivity {
 
     private void initEvent() {
         btnLogin.setOnClickListener(v -> {
-            // startActivity(new Intent(getApplicationContext(),MainActivity.class));
 
-            LoginObj loginObj = new LoginObj();
-            loginObj.setTelephone(edtphone.getText().toString());
-            loginObj.setPassword(edtPassword.getText().toString());
-            CallLogin(loginObj);
-            startActivity(new Intent(getApplicationContext(), MainActivity.class));
-
-           /* LoginObj loginObj=new LoginObj();
+           /* LoginObj loginObj = new LoginObj();
             loginObj.setTelephone(edtphone.getText().toString());
             loginObj.setPassword(edtPassword.getText().toString());
             CallLogin(loginObj);*/
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+
 
         });
 

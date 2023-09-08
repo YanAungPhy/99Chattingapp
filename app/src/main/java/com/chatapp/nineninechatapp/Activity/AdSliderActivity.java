@@ -8,12 +8,14 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.chatapp.nineninechatapp.Adapter.OnboardingAdapter;
 import com.chatapp.nineninechatapp.Model.OnboardingItem;
@@ -26,6 +28,7 @@ public class AdSliderActivity extends AppCompatActivity {
 
     OnboardingAdapter onboardingAdapter;
     LinearLayout layoutOnboardingIndicator;
+    TextView tvNext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,13 +37,13 @@ public class AdSliderActivity extends AppCompatActivity {
         FullScreen();
 
         layoutOnboardingIndicator = findViewById(R.id.layoutOnboardingIndicators);
+        tvNext=findViewById(R.id.txtNext);
         setUpOnBoardingItems();
         ViewPager2 onBoardingViewPager = findViewById(R.id.onBoardingViewPager);
         onBoardingViewPager.setAdapter(onboardingAdapter);
 
         setupOnboardingIndicator();
         setCurrentOnboardingIndicator(0);
-
 
         onBoardingViewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
@@ -50,10 +53,10 @@ public class AdSliderActivity extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.txtNext).setOnClickListener(new View.OnClickListener() {
+        tvNext.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),LoginActivity.class));
+            public void onClick(View view) {
+                startActivity(new Intent(AdSliderActivity.this,LoginActivity.class));
             }
         });
     }
