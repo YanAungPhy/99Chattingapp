@@ -1,22 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    android:padding="15dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <RelativeLayout
+        android:layout_marginTop="15dp"
+        android:padding="15dp"
+        android:background="@drawable/search_bg"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp">
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/search"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/search"
+            android:layout_width="20dp"
+            android:layout_height="20dp"/>
+
+        <EditText
+            android:layout_centerVertical="true"
+            android:textColor="@color/black"
+            android:id="@+id/ed_search"
+            android:textColorHint="@color/black"
+            android:layout_marginLeft="15dp"
+            android:hint="@string/search"
+            android:background="#F1F1F1"
+            android:layout_toRightOf="@id/search"
+            android:layout_toLeftOf="@id/img_cancel"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"/>
+
+
+        <ImageView
+            android:id="@+id/img_cancel"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/baseline_cancel_24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/txt_discover"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/search"
+            android:text="@string/search_result"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"

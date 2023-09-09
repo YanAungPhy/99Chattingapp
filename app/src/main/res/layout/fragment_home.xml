@@ -22,7 +22,9 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+
         <ImageView
+            android:id="@+id/noti"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_alignParentEnd="true"
@@ -30,6 +32,8 @@
             android:src="@drawable/noti"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView

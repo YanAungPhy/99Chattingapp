@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.Uri;
+import android.view.animation.CycleInterpolator;
+import android.view.animation.TranslateAnimation;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatDelegate;
@@ -64,6 +66,13 @@ public class Utility {
 
     }
 
+
+    public static TranslateAnimation shakeError() {
+        TranslateAnimation shake = new TranslateAnimation(0, 10, 0, 0);
+        shake.setDuration(500);
+        shake.setInterpolator(new CycleInterpolator(7));
+        return shake;
+    }
 
 }
 

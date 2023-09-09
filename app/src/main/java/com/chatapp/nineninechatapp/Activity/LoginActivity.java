@@ -41,12 +41,12 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        serviceProvider = new NetworkServiceProvider(this);
         initView();
         initEvent();
     }
 
     public void initView() {
+        serviceProvider = new NetworkServiceProvider(this);
         btnLogin = findViewById(R.id.btn_login);
         edtphone = findViewById(R.id.edt_phone);
         btnShowImageHide = findViewById(R.id.btn_showImageHide);
@@ -63,12 +63,17 @@ public class LoginActivity extends AppCompatActivity {
     private void initEvent() {
         btnLogin.setOnClickListener(v -> {
 
-           /* LoginObj loginObj = new LoginObj();
-            loginObj.setTelephone(edtphone.getText().toString());
-            loginObj.setPassword(edtPassword.getText().toString());
-            CallLogin(loginObj);*/
+            /*if (edtphone.getText().toString().equalsIgnoreCase("")){
+                edtphone.startAnimation(Utility.shakeError());
+            }else if (edtPassword.getText().toString().equalsIgnoreCase("")){
+                edtPassword.startAnimation(Utility.shakeError());
+            }else {
+                LoginObj loginObj = new LoginObj();
+                loginObj.setTelephone(edtphone.getText().toString());
+                loginObj.setPassword(edtPassword.getText().toString());
+                CallLogin(loginObj);
+            }*/
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
-
 
         });
 
@@ -102,8 +107,6 @@ public class LoginActivity extends AppCompatActivity {
                         AppStorePreferences.putInt(LoginActivity.this, AppENUM.LOGIN_CON,1);
                         startActivity(new Intent(LoginActivity.this,MainActivity.class));
                         finish();
-                        Log.e("mtt_userData>>>", String.valueOf(response.body().getTimestamp()));
-                        Log.e("mtt>>>",response.body().getMsg());
                         if (response.body().getCode()==1){
 
                             startActivity(new Intent(getApplicationContext(),MainActivity.class));
@@ -118,7 +121,6 @@ public class LoginActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailure(Call<LoginModel> call, Throwable t) {
-                    Log.e("mtt_error>>>>",t.getLocalizedMessage());
                     progressBar.setVisibility(View.GONE);
                 }
             });
