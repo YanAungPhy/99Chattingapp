@@ -5,7 +5,10 @@ import android.content.Context;
 
 import com.chatapp.nineninechatapp.Model.Login.LoginModel;
 import com.chatapp.nineninechatapp.Model.Login.LoginObj;
-import com.chatapp.nineninechatapp.Utils.NetworkSync.LoginSync;
+import com.chatapp.nineninechatapp.Model.Register.OTP_Model;
+import com.chatapp.nineninechatapp.Model.Register.OTP_Obj;
+import com.chatapp.nineninechatapp.Model.Register.VerifyOTP.VerifyModel;
+import com.chatapp.nineninechatapp.Model.Register.VerifyOTP.VerifyObj;
 
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -21,9 +24,21 @@ public class NetworkServiceProvider {
     }
 
     public Call<LoginModel> Login (String url, LoginObj obj) {
-        LoginSync sync=retrofit.create(LoginSync.class);
+        NetworkSync.LoginSync sync=retrofit.create(NetworkSync.LoginSync.class);
         return sync.getSync(url,obj);
     }
+
+
+    public Call<OTP_Model> GetOTP (String url, OTP_Obj obj) {
+        NetworkSync.OTPSync sync=retrofit.create(NetworkSync.OTPSync.class);
+        return sync.getSync(url,obj);
+    }
+
+    public Call<VerifyModel> VerifyOTP (String url, VerifyObj obj) {
+        NetworkSync.VerifyOTPSync sync=retrofit.create(NetworkSync.VerifyOTPSync.class);
+        return sync.getSync(url,obj);
+    }
+
 
 
 }

@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.RegisterActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -45,61 +42,70 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txt_login">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/phone_number"
-                android:textSize="16sp" />
 
-            <LinearLayout
-                android:orientation="horizontal"
-                android:padding="2dp"
-                android:layout_centerInParent="true"
+            <EditText
+                android:hint="******"
                 android:background="@drawable/edittext_rounded_bg"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <com.rilixtech.widget.countrycodepicker.CountryCodePicker
-                    android:layout_marginLeft="5dp"
-                    android:id="@+id/ccp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    app:ccp_hideNameCode="true"
-                    app:ccp_hidePhoneCode="false"
-                    app:ccp_keyboardAutoPopOnSearch="false"
-                    app:ccp_showFullName="false" />
-
-                <EditText
-                    android:layout_gravity="center"
-                    android:id="@+id/edt_phone"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:autofillHints="no"
-                    android:paddingStart="20dp"
-                    android:textColor="@color/black"
-                    android:background="@color/grey_two"
-                    android:hint="@string/sample_phone_number"
-                    android:inputType="number"
-                    android:padding="13dp"
-                    android:textColorHint="@color/gray"
-                    android:textCursorDrawable="@drawable/custom_cursor" />
-
-            </LinearLayout>
-
-            <Button
-                android:textColor="@color/white"
-                android:id="@+id/btn_getOTP"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:id="@+id/edt_otp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="40dp"
+                android:autofillHints="no"
+                android:paddingStart="20dp"
+                android:textColor="@color/black"
+                android:inputType="number"
+                android:padding="13dp"
+                android:textColorHint="@color/gray"
+                android:textCursorDrawable="@drawable/custom_cursor" />
+
+
+            <RelativeLayout
+                android:id="@+id/btn_getOTP"
                 android:background="@drawable/rounded_button_bg"
-                android:text="@string/get_otp"
-                android:textAllCaps="false" />
+                android:layout_marginTop="40dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <TextView
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@id/timer"
+                    android:textSize="15dp"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:text="@string/ok"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:layout_marginLeft="5dp"
+                    android:layout_centerInParent="true"
+                    android:id="@+id/timer"
+                    android:textSize="12dp"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:text=""
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </RelativeLayout>
+
+            <TextView
+                android:textColor="@color/gray"
+                android:clickable="false"
+                android:id="@+id/resend_otp"
+                android:layout_gravity="right"
+                android:layout_marginTop="4dp"
+                android:textSize="14dp"
+                android:textAllCaps="false"
+                android:text="@string/resend_otp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
         </LinearLayout>
-
 
         <RelativeLayout
             android:layout_width="match_parent"

@@ -27,7 +27,6 @@ import com.chatapp.nineninechatapp.Utils.Utility;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-
     ViewPagerAdapter viewPagerAdapter;
     CustomViewPager viewPager;
     AccountFrag accountFrag;
@@ -39,9 +38,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     RelativeLayout video;
     UserObj userObj;
     ImageView imgVideo,imgHome,imgSearch,imgDisc,imgAccount;
-
     MenuItem prevMenuItem;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +48,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
       //  userObj=Utility.query_UserProfile(this);
 
         intiUI();
-
     }
 
     private void intiUI() {
@@ -81,9 +77,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         video.setOnClickListener(this);
         disc.setOnClickListener(this);
         account.setOnClickListener(this);
-
     }
-
 
     private void setupViewPager(ViewPager viewPager) {
 
@@ -125,8 +119,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.home:
 
                 position_0();
-                break;
 
+                break;
             case R.id.search:
 
                 viewPager.setCurrentItem(1);
@@ -146,6 +140,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.video:
 
                 viewPager.setCurrentItem(2);
+                imgAccount.setImageDrawable(getResources().getDrawable(R.drawable.account));
+                imgHome.setImageDrawable(getResources().getDrawable(R.drawable.home));
+                imgSearch.setImageDrawable(getResources().getDrawable(R.drawable.search));
+                imgDisc.setImageDrawable(getResources().getDrawable(R.drawable.dis));
 
                 break;
             case R.id.discovery:
@@ -178,7 +176,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     imgSearch.setImageDrawable(getResources().getDrawable(R.drawable.search));
                     imgDisc.setImageDrawable(getResources().getDrawable(R.drawable.dis));
                 }
-
 
                 break;
         }

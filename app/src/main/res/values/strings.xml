@@ -14,7 +14,7 @@
     <string name="sample_phone_number"> 09 ***</string>
     <string name="sign">Sign</string>
     <string name="create_new_account">Create new account</string>
-    <string name="sign_up">Sing up</string>
+    <string name="sign_up">Sign up</string>
     <string name="register">Register</string>
     <string name="get_otp">Get Otp</string>
     <string name="please_enter_your_phone_number">Please enter your phone number</string>
@@ -32,6 +32,12 @@
     <string name="connecting_people_bridging_worlds">Connecting People, Bridging Worlds</string>
     <string name="unbelievable_ux">Unbelievable  UX</string>
     <string name="the_world_is_your_neighbourhood_now">The world is your neighbourhood now</string>
+<<<<<<< HEAD
     <string name="message">Message...</string>
+=======
+    <string name="search_result">Search results</string>
+    <string name="resend_otp">Resend OTP code</string>
+    <string name="ok">OK</string>
+>>>>>>> 99Chat/master
 
 </resources>

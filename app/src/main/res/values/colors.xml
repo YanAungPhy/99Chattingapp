@@ -93,6 +93,7 @@
     <color name="Grey_800">#424242</color>
     <color name="button_text">#ff556b95</color>
     <color name="trill_comment_bg">#FFFFFE</color>
+    <color name="grey_two">#F5F5F5</color>
     <!--#90000000-->
     <color name="alpha_translucent">#dd000000</color>
     <color name="alpha_filter">#a4919191</color>
