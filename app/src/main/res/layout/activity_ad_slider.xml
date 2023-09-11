@@ -41,7 +41,8 @@
             android:text="@string/next"
             android:textAllCaps="false"
             android:textColor="@color/primary_color"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            tools:ignore="RelativeOverlap" />
 
 
     </RelativeLayout>

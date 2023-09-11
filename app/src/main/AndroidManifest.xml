@@ -42,6 +42,8 @@
         <activity android:name=".Activity.LoginActivity"/>
         <activity android:name=".Activity.SettingActivity"/>
         <activity android:name=".Activity.AdSliderActivity"/>
+        <activity android:name=".Activity.ChatActivity"
+            android:windowSoftInputMode="adjustResize"/>
 
     </application>
 
