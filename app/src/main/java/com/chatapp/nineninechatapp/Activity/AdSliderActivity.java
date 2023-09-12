@@ -20,6 +20,8 @@ import android.widget.TextView;
 import com.chatapp.nineninechatapp.Adapter.OnboardingAdapter;
 import com.chatapp.nineninechatapp.Model.OnboardingItem;
 import com.chatapp.nineninechatapp.R;
+import com.chatapp.nineninechatapp.Utils.AppStorePreferences;
+import com.chatapp.nineninechatapp.Utils.Utility;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +37,7 @@ public class AdSliderActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ad_slider);
         FullScreen();
+        Utility.loadLocale(AdSliderActivity.this);
 
         layoutOnboardingIndicator = findViewById(R.id.layoutOnboardingIndicators);
         tvNext=findViewById(R.id.txtNext);
@@ -60,6 +63,7 @@ public class AdSliderActivity extends AppCompatActivity {
             }
         });
     }
+
 
     private  void setUpOnBoardingItems(){
         List<OnboardingItem> onboardingItem = new ArrayList<>();

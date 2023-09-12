@@ -1,8 +1,13 @@
 package com.chatapp.nineninechatapp.Utils;
 
+
+
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.view.animation.CycleInterpolator;
@@ -13,6 +18,8 @@ import androidx.appcompat.app.AppCompatDelegate;
 
 import com.chatapp.nineninechatapp.Model.Login.UserObj;
 import com.google.gson.Gson;
+
+import java.util.Locale;
 
 public class Utility {
 
@@ -73,6 +80,24 @@ public class Utility {
         shake.setInterpolator(new CycleInterpolator(7));
         return shake;
     }
+    public static void setLocale(String langCode,Activity activity) {
+        Locale locale = new Locale(langCode);
+        Locale.setDefault(locale);
+        Resources resources = activity.getResources();
+        Configuration config = new Configuration(resources.getConfiguration());
+        config.setLocale(locale);
+        resources.updateConfiguration(config, resources.getDisplayMetrics());
+
+        // Save the selected language in SharedPreferences
+        AppStorePreferences.putString(activity, "selected_language", langCode);
+    }
+    public static void loadLocale(Activity activity){
+        String langCode = AppStorePreferences.getString(activity, "selected_language", "");
+        if (!langCode.isEmpty()){
+            setLocale(langCode,activity);
+        }
+    }
+
 
 }
 

@@ -5,13 +5,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.viewpager.widget.ViewPager;
 
+import android.app.Activity;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 
 import com.chatapp.nineninechatapp.Adapter.ViewPagerAdapter;
 import com.chatapp.nineninechatapp.Fragment.AccountFrag;
@@ -19,12 +25,15 @@ import com.chatapp.nineninechatapp.Fragment.DiscoveryFrag;
 import com.chatapp.nineninechatapp.Fragment.FeedFrag;
 import com.chatapp.nineninechatapp.Fragment.HomeFrag;
 import com.chatapp.nineninechatapp.Fragment.SearchFrag;
+
 import com.chatapp.nineninechatapp.Model.Login.UserObj;
 import com.chatapp.nineninechatapp.R;
 import com.chatapp.nineninechatapp.Utils.AppStorePreferences;
 import com.chatapp.nineninechatapp.Utils.CustomViewPager;
 import com.chatapp.nineninechatapp.Utils.Utility;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     ViewPagerAdapter viewPagerAdapter;
@@ -40,6 +49,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ImageView imgVideo,imgHome,imgSearch,imgDisc,imgAccount;
     MenuItem prevMenuItem;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +59,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
       //  userObj=Utility.query_UserProfile(this);
 
         intiUI();
+
     }
+
+
 
     private void intiUI() {
         viewPager=findViewById(R.id.viewpager_container);
@@ -179,5 +193,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 break;
         }
+
     }
 }

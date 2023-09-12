@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">nineninechatapp</string>
+
+    <string name="home">အိမ်</string>
+    <string name="search">ရှာရန်</string>
+    <string name="discovery">ရှာဖွေတွေ့ရှိမှု</string>
+    <string name="account">အကောင့်</string>
+    <string name="video">ဗီဒီယို</string>
+    <string name="password">စကားဝှက်</string>
+    <string name="login">လော့ဂ်အင်</string>
+    <string name="phone_number">ဖုန်းနံပါတ်</string>
+    <string name="what_on_your_mine">မင်းစိတ်ထဲမှာ ဘာရှိလဲ။</string>
+    <string name="profile">ကိုယ်ရေးအကျဉ်း</string>
+    <string name="sample_phone_number"> 09 ***</string>
+    <string name="sign">လက္ခဏာ</string>
+    <string name="create_new_account">အကောင့်အသစ်ဖန်တီးပါ။</string>
+    <string name="sign_up">အကောင့်အသစ်ပြုလုပ်ရန်။</string>
+    <string name="register">မှတ်ပုံတင်ပါ။</string>
+    <string name="get_otp">Otp ရယူပါ။</string>
+    <string name="please_enter_your_phone_number">သင့်ဖုန်းနံပါတ်ကို ထည့်ပါ။</string>
+    <string name="have_an_account">အကောင့်တစ်ခုရှိသည်။</string>
+    <string name="sign_in">အကောင့်ထဲဝင်ပါ။</string>
+    <string name="check_internet">ကျေးဇူးပြု၍ အင်တာနက်ကို စစ်ဆေးပါ။</string>
+    <string name="setting">ဆက်တင်</string>
+    <string name="dark_mode">အမှောင်မုဒ်</string>
+    <string name="chat">စကားစမြည်ပြောရန်။</string>
+    <string name="logout">အကောင့်ထွက်ပါ။</string>
+    <string name="no_one_know_your_privacy">မင်းရဲ့ ကိုယ်ရေးကိုယ်တာ ကို ဘယ်သူမှ မသိကြဘူး။</string>
+    <string name="the_choice_for_smart_and_safety">စမတ်ကျပြီး ဘေးကင်းမှုအတွက် ရွေးချယ်မှု</string>
+    <string name="next">နောက်တစ်ခု</string>
+    <string name="boundless_chat">အကန့်အသတ်မရှိ စကားစမြည်ပြောရန်။</string>
+    <string name="connecting_people_bridging_worlds">လူများကို ချိတ်ဆက်ခြင်း၊ ကမ္ဘာများကို ပေါင်းကူးခြင်း။</string>
+    <string name="unbelievable_ux">မယုံနိုင်စရာ အသုံးပြုသူအတွေ့အကြုံ</string>
+    <string name="the_world_is_your_neighbourhood_now">ကမ္ဘာကြီးက အခုမင်းရဲ့ပတ်ဝန်းကျင်ပါ။</string>
+    <string name="search_result">ရှာဖွေမှုရလဒ်များ</string>
+    <string name="resend_otp">OTP ကုဒ်ကို ပြန်ပို့ပါ။</string>
+    <string name="ok">အိုကေ</string>
+
+</resources>
