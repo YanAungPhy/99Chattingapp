@@ -1,4 +1,4 @@
-package com.chatapp.nineninechatapp.model;
+package com.chatapp.nineninechatapp.Model;
 
 public class ChatModel {
     private String name;

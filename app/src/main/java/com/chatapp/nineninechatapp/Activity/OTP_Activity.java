@@ -1,11 +1,8 @@
 package com.chatapp.nineninechatapp.Activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -13,7 +10,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager2.widget.ViewPager2;
 
 import com.chatapp.nineninechatapp.Model.Register.OTP_Model;
 import com.chatapp.nineninechatapp.Model.Register.OTP_Obj;
@@ -45,6 +41,7 @@ public class OTP_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.otp);
         Utility.darkMode(this);
+        Utility.FullScreen(this);
 
         initView();
     }

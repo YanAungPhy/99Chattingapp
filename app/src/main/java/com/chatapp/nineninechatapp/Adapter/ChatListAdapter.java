@@ -7,14 +7,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.chatapp.nineninechatapp.Activity.ChatActivity;
+import com.chatapp.nineninechatapp.Model.ChatModel;
 import com.chatapp.nineninechatapp.R;
-import com.chatapp.nineninechatapp.model.ChatModel;
 
 import java.util.ArrayList;
 
@@ -39,7 +38,6 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         ChatModel item = itemList.get(position);
         holder.textViewName.setText(item.getName());
-        holder.txtNotification.setBackgroundColor(R.drawable.ellipse);
     }
 
     @Override
@@ -48,9 +46,9 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.ViewHo
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView textViewName;
-        private TextView txtNotification;
-        private LinearLayout clickLayout;
+        private final TextView textViewName;
+        private final   TextView txtNotification;
+        private final  LinearLayout clickLayout;
 
         public ViewHolder(View itemView) {
             super(itemView);

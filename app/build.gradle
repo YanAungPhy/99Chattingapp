@@ -47,7 +47,7 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.8'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     implementation 'org.greenrobot:eventbus:3.2.0'
-   // implementation 'myatminsoe.mdetect.android:mdetect-android:3.2'
+    // implementation 'myatminsoe.mdetect.android:mdetect-android:3.2'
     implementation 'com.github.bumptech.glide:glide:4.12.0'
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 

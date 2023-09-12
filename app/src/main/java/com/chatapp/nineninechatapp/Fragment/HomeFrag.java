@@ -2,21 +2,21 @@ package com.chatapp.nineninechatapp.Fragment;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.chatapp.nineninechatapp.Activity.ChatActivity;
 import com.chatapp.nineninechatapp.Adapter.ChatListAdapter;
+import com.chatapp.nineninechatapp.Model.ChatModel;
 import com.chatapp.nineninechatapp.R;
+import com.chatapp.nineninechatapp.Utils.AppStorePreferences;
 import com.chatapp.nineninechatapp.Utils.Utility;
-import com.chatapp.nineninechatapp.model.ChatModel;
 
 import java.util.ArrayList;
 
@@ -26,6 +26,7 @@ public class HomeFrag extends Fragment {
     private ArrayList<ChatModel> chatList;
     private ChatListAdapter adapter;
     private Context context;
+    private ImageView imgNoti;
 
     @Nullable
     @Override
@@ -35,6 +36,7 @@ public class HomeFrag extends Fragment {
 
 
         recyclerView = view.findViewById(R.id.chat_RecyclerView);
+        imgNoti = view.findViewById(R.id.noti);
         chatList = new ArrayList<>();
         chatList.add(new ChatModel("Sai Sai"));
         chatList.add(new ChatModel("Ko Thant"));
@@ -51,6 +53,15 @@ public class HomeFrag extends Fragment {
     }
 
     private void initView() {
+        checkDartModeView();
+    }
 
+
+    private void checkDartModeView(){
+        if (AppStorePreferences.getBoolean(getContext(),"dark_mode")){
+            imgNoti.setImageResource(R.drawable.white_noti);
+        }else {
+            imgNoti.setImageResource(R.drawable.noti);
+        }
     }
 }

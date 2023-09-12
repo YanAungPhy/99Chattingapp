@@ -33,6 +33,7 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
         toolbar=findViewById(R.id.toolbar_com);
         aSwitch=findViewById(R.id.btn_switch);
         toolbar.setText(R.string.setting);
+        Utility.FullScreen(this);
 
 
         if (AppStorePreferences.getBoolean(SettingActivity.this,"dark_mode")){

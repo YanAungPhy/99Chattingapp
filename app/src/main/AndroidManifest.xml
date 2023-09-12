@@ -42,7 +42,10 @@
         <activity android:name=".Activity.LoginActivity"/>
         <activity android:name=".Activity.SettingActivity"/>
         <activity android:name=".Activity.AdSliderActivity"/>
+        <activity android:name=".Activity.ChatActivity"
+            android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".Activity.OTP_Activity"/>
+<<<<<<< HEAD
         <activity android:name=".Activity.RegisterUserActivity"/>
 
         <activity
@@ -50,6 +53,8 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Design.NoActionBar" />
 
+=======
+>>>>>>> origin/master
     </application>
 
 </manifest>
