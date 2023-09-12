@@ -1,18 +1,17 @@
 package com.chatapp.nineninechatapp.Activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.chatapp.nineninechatapp.Model.Login.LoginModel;
 import com.chatapp.nineninechatapp.Model.Login.LoginObj;
@@ -27,7 +26,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
 
     Button btnLogin;
     ImageView btnShowImageHide;
@@ -42,7 +41,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         initView();
-        initEvent();
+        Utility.FullScreen(this);
     }
 
     public void initView() {
@@ -56,14 +55,42 @@ public class LoginActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar);
 
         Utility.darkMode(this);
+        btnLogin.setOnClickListener(this);
+        btnShowImageHide.setOnClickListener(this);
+        txtSingUp.setOnClickListener(this);
+
         edtphone.setText("095310432");
         edtPassword.setText("123456");
     }
 
-    private void initEvent() {
-        btnLogin.setOnClickListener(v -> {
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.btn_login:
+                login();
+                break;
+            case R.id.btn_showImageHide:
+                passwordVisibleState();
+                break;
+            case R.id.txt_SingUp:
+                startActivity(new Intent(getApplicationContext(), RegisterActivity.class));
+                break;
+        }
 
-            /*if (edtphone.getText().toString().equalsIgnoreCase("")){
+    }
+
+    private void passwordVisibleState() {
+        if (edtPassword.getTransformationMethod().equals(HideReturnsTransformationMethod.getInstance())) {
+            edtPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+            btnShowImageHide.setImageResource(R.drawable.visibility_off);
+        } else {
+            edtPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+            btnShowImageHide.setImageResource(R.drawable.visibility_fill);
+        }
+    }
+
+    private void login(){
+         /*if (edtphone.getText().toString().equalsIgnoreCase("")){
                 edtphone.startAnimation(Utility.shakeError());
             }else if (edtPassword.getText().toString().equalsIgnoreCase("")){
                 edtPassword.startAnimation(Utility.shakeError());
@@ -73,26 +100,9 @@ public class LoginActivity extends AppCompatActivity {
                 loginObj.setPassword(edtPassword.getText().toString());
                 CallLogin(loginObj);
             }*/
-            startActivity(new Intent(getApplicationContext(), MainActivity.class));
-
-        });
-
-        btnShowImageHide.setOnClickListener(v -> {
-            if (edtPassword.getTransformationMethod().equals(HideReturnsTransformationMethod.getInstance())) {
-                edtPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                btnShowImageHide.setImageResource(R.drawable.visibility_off);
-            } else {
-                edtPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                btnShowImageHide.setImageResource(R.drawable.visibility_fill);
-            }
-        });
-
-        txtSingUp.setOnClickListener(v -> {
-            startActivity(new Intent(getApplicationContext(), RegisterActivity.class));
-        });
-
+        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+        finish();
     }
-
     private void CallLogin(LoginObj authObj) {
         if (Utility.isOnline(this)){
             progressBar.setVisibility(View.VISIBLE);
@@ -128,5 +138,7 @@ public class LoginActivity extends AppCompatActivity {
             Utility.showToast(this,getString(R.string.check_internet));
         }
     }
+
+
 }
 

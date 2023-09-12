@@ -1,24 +1,20 @@
 package com.chatapp.nineninechatapp.Activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.chatapp.nineninechatapp.Model.Login.LoginModel;
-import com.chatapp.nineninechatapp.Model.Login.LoginObj;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.chatapp.nineninechatapp.Model.Register.OTP_Model;
 import com.chatapp.nineninechatapp.Model.Register.OTP_Obj;
 import com.chatapp.nineninechatapp.R;
 import com.chatapp.nineninechatapp.Utils.APIURL;
-import com.chatapp.nineninechatapp.Utils.AppENUM;
-import com.chatapp.nineninechatapp.Utils.AppStorePreferences;
 import com.chatapp.nineninechatapp.Utils.NetworkServiceProvider;
 import com.chatapp.nineninechatapp.Utils.Utility;
 import com.rilixtech.widget.countrycodepicker.CountryCodePicker;
@@ -27,7 +23,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class RegisterActivity extends AppCompatActivity {
+public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
     Button btnOTP;
     TextView txtSingIn;
@@ -41,41 +37,48 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         Utility.darkMode(this);
+        Utility.FullScreen(this);
         initView();
-        initEvent();
     }
 
     private void initView() {
+        Utility.darkMode(this);
+
         serviceProvider=new NetworkServiceProvider(this);
         txtSingIn = findViewById(R.id.txt_SignIn);
         edtPhone=findViewById(R.id.edt_phone);
         btnOTP=findViewById(R.id.btn_getOTP);
         progressBar=findViewById(R.id.progressBar);
         countryCodePicker=findViewById(R.id.ccp);
+
+        txtSingIn.setOnClickListener(this);
+        btnOTP.setOnClickListener(this);
     }
 
-    private void initEvent() {
-        Utility.darkMode(this);
-        txtSingIn.setOnClickListener(v -> {
-            startActivity(new Intent(getApplicationContext(),LoginActivity.class));
-        });
-        btnOTP.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String ph=edtPhone.getText().toString();
-                if (ph.equalsIgnoreCase("")){
-                    edtPhone.startAnimation(Utility.shakeError());
-                }else {
-                    OTP_Obj otpObj=new OTP_Obj();
-                    otpObj.setAreaCode(countryCodePicker.getSelectedCountryCodeWithPlus());
-                    otpObj.setTelephone(edtPhone.getText().toString());
-                    CallOTP(otpObj);
-                }
 
-               // startActivity(new Intent(RegisterActivity.this,OTP_Activity.class));
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.txt_SignIn:
+                startActivity(new Intent(getApplicationContext(),LoginActivity.class));
+                break;
+            case R.id.btn_getOTP:
+                getOtpCode();
 
-            }
-        });
+
+        }
+    }
+
+    private void getOtpCode() {
+        String ph=edtPhone.getText().toString();
+        if (ph.equalsIgnoreCase("")){
+            edtPhone.startAnimation(Utility.shakeError());
+        }else {
+            OTP_Obj otpObj=new OTP_Obj();
+            otpObj.setAreaCode(countryCodePicker.getSelectedCountryCodeWithPlus());
+            otpObj.setTelephone(edtPhone.getText().toString());
+            CallOTP(otpObj);
+        }
     }
 
     private void CallOTP(OTP_Obj otpObj) {
@@ -101,6 +104,7 @@ public class RegisterActivity extends AppCompatActivity {
                 }
                 @Override
                 public void onFailure(Call<OTP_Model> call, Throwable t) {
+                    Toast.makeText(getApplicationContext(),t.toString(),Toast.LENGTH_SHORT).show();
                     progressBar.setVisibility(View.GONE);
                 }
             });
@@ -108,4 +112,5 @@ public class RegisterActivity extends AppCompatActivity {
             Utility.showToast(this,getString(R.string.check_internet));
         }
     }
+
 }

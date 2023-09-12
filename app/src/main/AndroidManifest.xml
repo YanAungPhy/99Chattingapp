@@ -42,13 +42,9 @@
         <activity android:name=".Activity.LoginActivity"/>
         <activity android:name=".Activity.SettingActivity"/>
         <activity android:name=".Activity.AdSliderActivity"/>
-<<<<<<< HEAD
         <activity android:name=".Activity.ChatActivity"
             android:windowSoftInputMode="adjustResize"/>
-=======
         <activity android:name=".Activity.OTP_Activity"/>
->>>>>>> 99Chat/master
-
     </application>
 
 </manifest>

@@ -1,17 +1,15 @@
 package com.chatapp.nineninechatapp.Activity;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
-import androidx.viewpager.widget.ViewPager;
-
 import android.os.Bundle;
-import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
 
 import com.chatapp.nineninechatapp.Adapter.ViewPagerAdapter;
 import com.chatapp.nineninechatapp.Fragment.AccountFrag;
@@ -19,12 +17,10 @@ import com.chatapp.nineninechatapp.Fragment.DiscoveryFrag;
 import com.chatapp.nineninechatapp.Fragment.FeedFrag;
 import com.chatapp.nineninechatapp.Fragment.HomeFrag;
 import com.chatapp.nineninechatapp.Fragment.SearchFrag;
-import com.chatapp.nineninechatapp.Model.Login.UserObj;
 import com.chatapp.nineninechatapp.R;
 import com.chatapp.nineninechatapp.Utils.AppStorePreferences;
 import com.chatapp.nineninechatapp.Utils.CustomViewPager;
 import com.chatapp.nineninechatapp.Utils.Utility;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     ViewPagerAdapter viewPagerAdapter;
@@ -36,18 +32,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     SearchFrag searchFrag;
     LinearLayout home,search,disc,account;
     RelativeLayout video;
-    UserObj userObj;
     ImageView imgVideo,imgHome,imgSearch,imgDisc,imgAccount;
-    MenuItem prevMenuItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Utility.darkMode(this);
-      //  userObj=Utility.query_UserProfile(this);
 
         intiUI();
+        Utility.FullScreen(this);
     }
 
     private void intiUI() {
@@ -67,9 +61,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         position_0();
 
         if (AppStorePreferences.getBoolean(MainActivity.this,"dark_mode")){
-            imgVideo.setImageDrawable(getResources().getDrawable(R.drawable.res_white));
+            imgVideo.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.res_white));
         }else {
-            imgVideo.setImageDrawable(getResources().getDrawable(R.drawable.res));
+            imgVideo.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.res));
         }
 
         home.setOnClickListener(this);
@@ -101,15 +95,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void position_0(){
         viewPager.setCurrentItem(0);
         if (AppStorePreferences.getBoolean(MainActivity.this,"dark_mode")){
-            imgAccount.setImageDrawable(getResources().getDrawable(R.drawable.account));
-            imgHome.setImageDrawable(getResources().getDrawable(R.drawable.home_w));
-            imgSearch.setImageDrawable(getResources().getDrawable(R.drawable.search));
-            imgDisc.setImageDrawable(getResources().getDrawable(R.drawable.dis));
+            imgAccount.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.account));
+            imgHome.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.home_w));
+            imgSearch.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.search));
+            imgDisc.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.dis));
         }else {
-            imgAccount.setImageDrawable(getResources().getDrawable(R.drawable.account));
-            imgHome.setImageDrawable(getResources().getDrawable(R.drawable.home_d));
-            imgSearch.setImageDrawable(getResources().getDrawable(R.drawable.search));
-            imgDisc.setImageDrawable(getResources().getDrawable(R.drawable.dis));
+            imgAccount.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.account));
+            imgHome.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.home_d));
+            imgSearch.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.search));
+            imgDisc.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.dis));
         }
     }
 
@@ -117,67 +111,78 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.home:
-
                 position_0();
+                replaceFragment(homeFrag);
 
                 break;
             case R.id.search:
 
                 viewPager.setCurrentItem(1);
                 if (AppStorePreferences.getBoolean(MainActivity.this, "dark_mode")) {
-                    imgAccount.setImageDrawable(getResources().getDrawable(R.drawable.account));
-                    imgHome.setImageDrawable(getResources().getDrawable(R.drawable.home));
-                    imgSearch.setImageDrawable(getResources().getDrawable(R.drawable.search_w));
-                    imgDisc.setImageDrawable(getResources().getDrawable(R.drawable.dis));
+                    imgAccount.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.account));
+                    imgHome.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.home));
+                    imgSearch.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.search_w));
+                    imgDisc.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.dis));
                 } else {
-                    imgAccount.setImageDrawable(getResources().getDrawable(R.drawable.account));
-                    imgHome.setImageDrawable(getResources().getDrawable(R.drawable.home));
-                    imgSearch.setImageDrawable(getResources().getDrawable(R.drawable.search_d));
-                    imgDisc.setImageDrawable(getResources().getDrawable(R.drawable.dis));
+                    imgAccount.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.account));
+                    imgHome.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.home));
+                    imgSearch.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.search_d));
+                    imgDisc.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.dis));
                 }
+                replaceFragment(searchFrag);
 
                 break;
             case R.id.video:
 
                 viewPager.setCurrentItem(2);
-                imgAccount.setImageDrawable(getResources().getDrawable(R.drawable.account));
-                imgHome.setImageDrawable(getResources().getDrawable(R.drawable.home));
-                imgSearch.setImageDrawable(getResources().getDrawable(R.drawable.search));
-                imgDisc.setImageDrawable(getResources().getDrawable(R.drawable.dis));
+                imgAccount.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.account));
+                imgHome.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.home));
+                imgSearch.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.search));
+                imgDisc.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.dis));
+
+                replaceFragment(feedFrag);
 
                 break;
             case R.id.discovery:
 
                 viewPager.setCurrentItem(3);
                 if (AppStorePreferences.getBoolean(MainActivity.this, "dark_mode")) {
-                    imgAccount.setImageDrawable(getResources().getDrawable(R.drawable.account));
-                    imgHome.setImageDrawable(getResources().getDrawable(R.drawable.home));
-                    imgSearch.setImageDrawable(getResources().getDrawable(R.drawable.search));
-                    imgDisc.setImageDrawable(getResources().getDrawable(R.drawable.dis_w));
+                    imgAccount.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.account));
+                    imgHome.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.home));
+                    imgSearch.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.search));
+                    imgDisc.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.dis_w));
                 } else {
-                    imgAccount.setImageDrawable(getResources().getDrawable(R.drawable.account));
-                    imgHome.setImageDrawable(getResources().getDrawable(R.drawable.home));
-                    imgSearch.setImageDrawable(getResources().getDrawable(R.drawable.search));
-                    imgDisc.setImageDrawable(getResources().getDrawable(R.drawable.dis_d));
+                    imgAccount.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.account));
+                    imgHome.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.home));
+                    imgSearch.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.search));
+                    imgDisc.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.dis_d));
                 }
+                replaceFragment(discoveryFrag);
 
                 break;
             case R.id.account:
 
                 viewPager.setCurrentItem(4);
                 if (AppStorePreferences.getBoolean(MainActivity.this, "dark_mode")) {
-                    imgAccount.setImageDrawable(getResources().getDrawable(R.drawable.account_w));
-                    imgHome.setImageDrawable(getResources().getDrawable(R.drawable.home));
-                    imgSearch.setImageDrawable(getResources().getDrawable(R.drawable.search));
-                    imgDisc.setImageDrawable(getResources().getDrawable(R.drawable.dis));
+                    imgAccount.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.account_w));
+                    imgHome.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.home));
+                    imgSearch.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.search));
+                    imgDisc.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.dis));
                 } else {
-                    imgAccount.setImageDrawable(getResources().getDrawable(R.drawable.account_d));
-                    imgHome.setImageDrawable(getResources().getDrawable(R.drawable.home));
-                    imgSearch.setImageDrawable(getResources().getDrawable(R.drawable.search));
-                    imgDisc.setImageDrawable(getResources().getDrawable(R.drawable.dis));
+                    imgAccount.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.account_d));
+                    imgHome.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.home));
+                    imgSearch.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.search));
+                    imgDisc.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.dis));
                 }
-
+                replaceFragment(accountFrag);
                 break;
         }
     }
+
+    private void replaceFragment(Fragment fragment) {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.viewpager_container, fragment)
+                .commit();
+    }
+
 }

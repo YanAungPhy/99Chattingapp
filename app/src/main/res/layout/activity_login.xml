@@ -1,162 +1,158 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/img_launcher"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="120dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        android:src="@drawable/world"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/img_launcher"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="50dp"
-            android:adjustViewBounds="true"
-            android:scaleType="fitCenter"
-            android:src="@drawable/world"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/txt_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/login"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_launcher" />
+
+    <LinearLayout
+        android:id="@+id/linear_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="20dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_login">
 
         <TextView
-            android:id="@+id/txt_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="20dp"
-            android:text="@string/login"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/img_launcher" />
+            android:text="@string/phone_number"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
 
-        <LinearLayout
-            android:id="@+id/linear_container"
+        <EditText
+            android:id="@+id/edt_phone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginTop="40dp"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txt_login">
+            android:layout_marginTop="7dp"
+            android:autofillHints="no"
+            android:background="@drawable/edittext_rounded_bg"
+            android:hint="@string/sample_phone_number"
+            android:inputType="number"
+            android:padding="13dp"
+            android:paddingStart="20dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray"
+            android:textCursorDrawable="@drawable/custom_cursor" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/phone_number"
-                android:textColor="@color/black"
-                android:textSize="16sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="@string/password"
+            android:textSize="16sp" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
             <EditText
-                android:id="@+id/edt_phone"
+                android:id="@+id/edt_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="7dp"
-                android:paddingStart="20dp"
                 android:autofillHints="no"
-                android:textColor="@color/black"
                 android:background="@drawable/edittext_rounded_bg"
-                android:hint="@string/sample_phone_number"
-                android:inputType="number"
+                android:hint="******"
+                android:inputType="textPassword"
                 android:padding="13dp"
+                android:paddingStart="20dp"
+                android:textColor="@color/black"
                 android:textColorHint="@color/gray"
                 android:textCursorDrawable="@drawable/custom_cursor" />
 
-            <TextView
+            <ImageView
+                android:id="@+id/btn_showImageHide"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:text="@string/password"
-                android:textSize="16sp" />
+                android:layout_gravity="end|center_vertical"
+                android:contentDescription="@string/app_name"
+                android:paddingEnd="20dp"
+                android:src="@drawable/visibility_off" />
 
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+        </FrameLayout>
 
-                <EditText
-                    android:id="@+id/edt_password"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="7dp"
-                    android:autofillHints="no"
-                    android:paddingStart="20dp"
-                    android:background="@drawable/edittext_rounded_bg"
-                    android:hint="******"
-                    android:textColor="@color/black"
-                    android:inputType="textPassword"
-                    android:padding="13dp"
-                    android:textColorHint="@color/gray"
-                    android:textCursorDrawable="@drawable/custom_cursor" />
-
-                <ImageView
-                    android:id="@+id/btn_showImageHide"
-                    android:layout_gravity="end|center_vertical"
-                    android:src="@drawable/visibility_off"
-                    android:paddingEnd="20dp"
-                    android:contentDescription="@string/app_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
-            </FrameLayout>
-
-            <Button
-                android:textColor="@color/white"
-                android:id="@+id/btn_login"
-                android:layout_width="250dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="40dp"
-                android:background="@drawable/rounded_button_bg"
-                android:text="@string/sign"
-                android:textAllCaps="false" />
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/rounded_button_bg"
+            android:text="@string/sign"
+            android:textAllCaps="false"
+            android:textColor="@color/white" />
 
 
-        </LinearLayout>
+    </LinearLayout>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="25dp"
+        android:gravity="center_horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/txt_new"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:gravity="center_horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linear_container">
+            android:text="@string/create_new_account"
+            android:textSize="16sp" />
 
-            <TextView
-                android:id="@+id/txt_new"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:text="@string/create_new_account" />
-
-            <TextView
-                android:id="@+id/txt_SingUp"
-                android:layout_marginStart="20dp"
-                android:textStyle="bold"
-                android:textSize="18sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toEndOf="@id/txt_new"
-                android:text="@string/sign_up" />
-        </RelativeLayout>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/txt_SingUp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_toEndOf="@id/txt_new"
+            android:text="@string/sign_up"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
 
 
     <ProgressBar
-        android:visibility="gone"
         android:id="@+id/progressBar"
-        android:indeterminateTint="#007AFF"
-        android:layout_centerInParent="true"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:indeterminateTint="#007AFF"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

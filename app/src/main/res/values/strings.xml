@@ -32,12 +32,10 @@
     <string name="connecting_people_bridging_worlds">Connecting People, Bridging Worlds</string>
     <string name="unbelievable_ux">Unbelievable  UX</string>
     <string name="the_world_is_your_neighbourhood_now">The world is your neighbourhood now</string>
-<<<<<<< HEAD
     <string name="message">Message...</string>
-=======
+
     <string name="search_result">Search results</string>
     <string name="resend_otp">Resend OTP code</string>
     <string name="ok">OK</string>
->>>>>>> 99Chat/master
 
 </resources>

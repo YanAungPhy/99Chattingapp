@@ -12,8 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.chatapp.nineninechatapp.Activity.ChatActivity;
+import com.chatapp.nineninechatapp.Model.ChatModel;
 import com.chatapp.nineninechatapp.R;
-import com.chatapp.nineninechatapp.model.ChatModel;
 
 import java.util.ArrayList;
 
