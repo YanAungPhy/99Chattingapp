@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -29,6 +30,7 @@ import retrofit2.Response;
 
 public class RegisterActivity extends AppCompatActivity {
 
+    ImageView back;
     Button btnOTP;
     TextView txtSingIn;
     EditText edtPhone;
@@ -52,6 +54,7 @@ public class RegisterActivity extends AppCompatActivity {
         btnOTP=findViewById(R.id.btn_getOTP);
         progressBar=findViewById(R.id.progressBar);
         countryCodePicker=findViewById(R.id.ccp);
+        back=findViewById(R.id.img_back);
     }
 
     private void initEvent() {
@@ -74,6 +77,13 @@ public class RegisterActivity extends AppCompatActivity {
 
                // startActivity(new Intent(RegisterActivity.this,OTP_Activity.class));
 
+            }
+        });
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
             }
         });
     }

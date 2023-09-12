@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -29,6 +30,7 @@ import retrofit2.Response;
 
 public class OTP_Activity extends AppCompatActivity {
 
+    ImageView back;
     TextView timer,resend_otp;
     NetworkServiceProvider serviceProvider;
     ProgressBar progressBar;
@@ -55,6 +57,7 @@ public class OTP_Activity extends AppCompatActivity {
         ed_otp=findViewById(R.id.edt_otp);
         btnOTP=findViewById(R.id.btn_getOTP);
         resend_otp=findViewById(R.id.resend_otp);
+        back=findViewById(R.id.img_back);
         startTimer();
 
         btnOTP.setOnClickListener(new View.OnClickListener() {
@@ -78,6 +81,13 @@ public class OTP_Activity extends AppCompatActivity {
             public void onClick(View view) {
                 CallOTP(otpObj);
                 countDownTimer.start();
+            }
+        });
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
             }
         });
     }

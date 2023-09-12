@@ -43,6 +43,12 @@
         <activity android:name=".Activity.SettingActivity"/>
         <activity android:name=".Activity.AdSliderActivity"/>
         <activity android:name=".Activity.OTP_Activity"/>
+        <activity android:name=".Activity.RegisterUserActivity"/>
+
+        <activity
+            android:name="com.yalantis.ucrop.UCropActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Design.NoActionBar" />
 
     </application>
 
