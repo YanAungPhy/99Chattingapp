@@ -52,13 +52,11 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         btnOTP=findViewById(R.id.btn_getOTP);
         progressBar=findViewById(R.id.progressBar);
         countryCodePicker=findViewById(R.id.ccp);
-<<<<<<< HEAD
         back=findViewById(R.id.img_back);
-=======
 
         txtSingIn.setOnClickListener(this);
         btnOTP.setOnClickListener(this);
->>>>>>> origin/master
+        back.setOnClickListener(this);
     }
 
 
@@ -70,22 +68,16 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 break;
             case R.id.btn_getOTP:
                 getOtpCode();
+                break;
+            case R.id.back:
+                finish();
+                break;
 
 
         }
-    }
+    };
 
-<<<<<<< HEAD
-            }
-        });
 
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
-=======
     private void getOtpCode() {
         String ph=edtPhone.getText().toString();
         if (ph.equalsIgnoreCase("")){
@@ -96,7 +88,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             otpObj.setTelephone(edtPhone.getText().toString());
             CallOTP(otpObj);
         }
->>>>>>> origin/master
     }
 
     private void CallOTP(OTP_Obj otpObj) {

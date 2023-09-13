@@ -137,16 +137,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-<<<<<<< HEAD
     <ImageView
         android:id="@+id/img_back"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
         android:src="@drawable/baseline_keyboard_arrow_left_24"
         android:layout_width="50dp"
-        android:layout_height="50dp"/>
+        android:layout_height="50dp"
+        tools:ignore="MissingConstraints" />
 
-</RelativeLayout>
-=======
 </androidx.constraintlayout.widget.ConstraintLayout>
->>>>>>> origin/master

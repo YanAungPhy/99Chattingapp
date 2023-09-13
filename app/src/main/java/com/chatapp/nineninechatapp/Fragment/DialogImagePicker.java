@@ -10,8 +10,6 @@ import androidx.annotation.NonNull;
 import com.chatapp.nineninechatapp.EventBusModel.StringBus;
 import com.chatapp.nineninechatapp.R;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
-
-
 import org.greenrobot.eventbus.EventBus;
 import org.jetbrains.annotations.NotNull;
 
