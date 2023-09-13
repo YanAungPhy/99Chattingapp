@@ -21,6 +21,10 @@ import android.widget.TextView;
 import com.chatapp.nineninechatapp.Adapter.OnboardingAdapter;
 import com.chatapp.nineninechatapp.Model.OnboardingItem;
 import com.chatapp.nineninechatapp.R;
+<<<<<<< HEAD
+=======
+import com.chatapp.nineninechatapp.Utils.AppStorePreferences;
+>>>>>>> origin/Nyi-Yel-Htet
 import com.chatapp.nineninechatapp.Utils.Utility;
 
 import java.util.ArrayList;
@@ -36,7 +40,12 @@ public class AdSliderActivity extends AppCompatActivity implements View.OnClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ad_slider);
+<<<<<<< HEAD
         Utility.FullScreen(this);
+=======
+        FullScreen();
+        Utility.loadLocale(AdSliderActivity.this);
+>>>>>>> origin/Nyi-Yel-Htet
 
         layoutOnboardingIndicator = findViewById(R.id.layoutOnboardingIndicators);
         tvNext=findViewById(R.id.txtNext);
@@ -65,6 +74,7 @@ public class AdSliderActivity extends AppCompatActivity implements View.OnClickL
                 startActivity(new Intent(AdSliderActivity.this,LoginActivity.class));
         }
     }
+
 
     private  void setUpOnBoardingItems(){
         List<OnboardingItem> onboardingItem = new ArrayList<>();
