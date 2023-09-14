@@ -19,6 +19,7 @@ import com.chatapp.nineninechatapp.Activity.SettingActivity;
 import com.chatapp.nineninechatapp.R;
 import com.chatapp.nineninechatapp.Utils.AppStorePreferences;
 import com.chatapp.nineninechatapp.Utils.Utility;
+import com.squareup.picasso.Picasso;
 
 public class AccountFrag extends Fragment implements View.OnClickListener {
 

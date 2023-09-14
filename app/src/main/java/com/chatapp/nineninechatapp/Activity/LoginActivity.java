@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.chatapp.nineninechatapp.Model.Login.LoginModel;
 import com.chatapp.nineninechatapp.Model.Login.LoginObj;
+import com.chatapp.nineninechatapp.Model.Post;
 import com.chatapp.nineninechatapp.R;
 import com.chatapp.nineninechatapp.Utils.APIURL;
 import com.chatapp.nineninechatapp.Utils.AppENUM;
@@ -42,12 +44,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         initView();
         Utility.FullScreen(this);
+
+        String name = getIntent().getStringExtra("Name");
+        Log.d("SelectedModel",name+"");
     }
 
     public void initView() {
         serviceProvider = new NetworkServiceProvider(this);
         btnLogin = findViewById(R.id.btn_login);
-        edtphone = findViewById(R.id.edt_phone);
+        edtphone = findViewById(R.id.edtPhone);
         btnShowImageHide = findViewById(R.id.btn_showImageHide);
         btnShowImageHide.setImageResource(R.drawable.visibility_off);
         edtPassword = findViewById(R.id.edt_password);

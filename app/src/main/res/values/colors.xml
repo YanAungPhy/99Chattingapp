@@ -13,6 +13,7 @@
     <color name="manager_back">#a080cb</color>
 
     <color name="action_bar_tittle_color">#ffcfcfcf</color>
+    <color name="ripple">#ffcfcfcf</color>
     <color name="hint_text_color">#ff999999</color>
     <color name="white">#FFFFFF</color>
     <color name="emotion_event_color">#7B57F5</color>
