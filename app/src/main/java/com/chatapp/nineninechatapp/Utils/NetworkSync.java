@@ -4,12 +4,20 @@ import com.chatapp.nineninechatapp.Model.Login.LoginModel;
 import com.chatapp.nineninechatapp.Model.Login.LoginObj;
 import com.chatapp.nineninechatapp.Model.Register.OTP_Model;
 import com.chatapp.nineninechatapp.Model.Register.OTP_Obj;
+import com.chatapp.nineninechatapp.Model.Register.RegisterObj;
+import com.chatapp.nineninechatapp.Model.Register.UserImg.UserImgModel;
 import com.chatapp.nineninechatapp.Model.Register.VerifyOTP.VerifyModel;
 import com.chatapp.nineninechatapp.Model.Register.VerifyOTP.VerifyObj;
 
+import java.util.List;
+
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Url;
 
 public class NetworkSync {
@@ -28,6 +36,22 @@ public class NetworkSync {
     public interface VerifyOTPSync {
         @POST
         Call<VerifyModel> getSync(@Url String url, @Body VerifyObj obj);
+    }
+
+    public interface RegisterSync {
+        @POST
+        Call<LoginModel> getSync(@Url String url, @Body RegisterObj obj);
+    }
+
+
+    public interface UserImgSync {
+        @Multipart
+        @POST
+        Call<UserImgModel> UserImg(@Url String url,
+                                   @Part("telephone") RequestBody telephone,
+                                   @Part MultipartBody.Part food_image
+
+        );
     }
 
 }

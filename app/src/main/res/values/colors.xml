@@ -160,4 +160,9 @@
     <color name="show_all_comment_item">#F5F4FF</color>
 
     <color name="primary_color">#007AFF</color>
+
+    <color name="color_background_box">#F5F5F5</color>
+    <color name="color_background_box_stroke">#DEDEDE</color>
+    <color name="color_background_box_stroke_active">#A5A5A5</color>
+
 </resources>

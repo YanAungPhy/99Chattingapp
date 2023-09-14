@@ -1,20 +1,13 @@
 package com.chatapp.nineninechatapp.Utils;
 
-<<<<<<< HEAD
-=======
 
-
->>>>>>> origin/Nyi-Yel-Htet
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-<<<<<<< HEAD
 import android.graphics.Color;
-=======
 import android.content.res.Configuration;
 import android.content.res.Resources;
->>>>>>> origin/Nyi-Yel-Htet
 import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Build;
@@ -109,7 +102,6 @@ public class Utility {
             setLocale(langCode,activity);
         }
     }
-
 
     public static void setWindowFlag(AppCompatActivity activity, final int bits, boolean on) {
         Window win = activity.getWindow();

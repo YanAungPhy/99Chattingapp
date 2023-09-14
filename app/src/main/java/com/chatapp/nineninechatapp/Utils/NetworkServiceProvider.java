@@ -1,12 +1,14 @@
 package com.chatapp.nineninechatapp.Utils;
 
 import android.content.Context;
+import android.util.Log;
 
 
 import com.chatapp.nineninechatapp.Model.Login.LoginModel;
 import com.chatapp.nineninechatapp.Model.Login.LoginObj;
 import com.chatapp.nineninechatapp.Model.Register.OTP_Model;
 import com.chatapp.nineninechatapp.Model.Register.OTP_Obj;
+import com.chatapp.nineninechatapp.Model.Register.RegisterObj;
 import com.chatapp.nineninechatapp.Model.Register.VerifyOTP.VerifyModel;
 import com.chatapp.nineninechatapp.Model.Register.VerifyOTP.VerifyObj;
 
@@ -39,6 +41,11 @@ public class NetworkServiceProvider {
         return sync.getSync(url,obj);
     }
 
+
+    public Call<LoginModel> Register (String url, RegisterObj obj) {
+        NetworkSync.RegisterSync sync=retrofit.create(NetworkSync.RegisterSync.class);
+        return sync.getSync(url,obj);
+    }
 
 
 }

@@ -64,7 +64,7 @@ dependencies {
     implementation 'com.karumi:dexter:6.2.3'
     implementation 'com.github.yalantis:ucrop:2.2.2'
     implementation 'com.android.support:multidex:1.0.3'
-
-
+    implementation 'com.github.appsfeature:otp-view:1.0'
+    implementation 'com.github.OzcanAlasalvar:DatePicker:1.0.4'
 
 }

@@ -101,6 +101,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
                         Intent intent=new Intent(RegisterActivity.this,OTP_Activity.class);
                         intent.putExtra("otp_model",otpObj);
+                        intent.putExtra("otp_code",response.code());
                         startActivity(intent);
                         finish();
 

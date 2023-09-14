@@ -9,9 +9,11 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,7 +21,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.bumptech.glide.Glide;
 import com.chatapp.nineninechatapp.EventBusModel.StringBus;
 import com.chatapp.nineninechatapp.Fragment.DialogImagePicker;
+import com.chatapp.nineninechatapp.Model.Register.UserImg.UserImgModel;
 import com.chatapp.nineninechatapp.R;
+import com.chatapp.nineninechatapp.Utils.APIURL;
+import com.chatapp.nineninechatapp.Utils.NetworkSync;
+import com.chatapp.nineninechatapp.Utils.RetrofitFactory;
+import com.chatapp.nineninechatapp.Utils.Utility;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -31,8 +38,15 @@ import java.io.IOException;
 import java.util.Calendar;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
-public class RegisterUserActivity extends AppCompatActivity implements View.OnClickListener {
+public class RegisterProfileActivity extends AppCompatActivity implements View.OnClickListener {
 
     CircleImageView imageView;
     File file_profile;
@@ -43,19 +57,28 @@ public class RegisterUserActivity extends AppCompatActivity implements View.OnCl
     public static final int REQUEST_COARSE_LOCATION = 200;
     public static final int REQUEST_IMAGE = 100;
     private static final String IMAGE_DIRECTORY = "/nineninechat";
+    RequestBody image;
+    MultipartBody.Part user_image;
+    String phone="";
+    ProgressBar progressBar;
+    TextView tvNext;
 
     @Override
     protected void onCreate (Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.register_user);
+        setContentView(R.layout.register_profile);
 
         initView();
     }
 
     public void initView() {
+        phone=(String)getIntent().getSerializableExtra("telephone");
+        progressBar=findViewById(R.id.progressBar);
         imageView=findViewById(R.id.user_image);
+        tvNext=findViewById(R.id.tv_next);
 
         imageView.setOnClickListener(this);
+        tvNext.setOnClickListener(this);
     }
 
     @Override
@@ -64,6 +87,11 @@ public class RegisterUserActivity extends AppCompatActivity implements View.OnCl
             case R.id.user_image:
 
                 call_DialogImagePicker();
+
+                break;
+            case R.id.tv_next:
+
+                Call_Api();
 
                 break;
         }
@@ -80,7 +108,7 @@ public class RegisterUserActivity extends AppCompatActivity implements View.OnCl
     }
 
     private void launchCameraIntent() {
-        Intent intent = new Intent(RegisterUserActivity.this, ImagePickerActivity.class);
+        Intent intent = new Intent(RegisterProfileActivity.this, ImagePickerActivity.class);
         intent.putExtra(ImagePickerActivity.INTENT_IMAGE_PICKER_OPTION, ImagePickerActivity.REQUEST_IMAGE_CAPTURE);
 
         // setting aspect ratio
@@ -97,7 +125,7 @@ public class RegisterUserActivity extends AppCompatActivity implements View.OnCl
     }
 
     private void launchGalleryIntent() {
-        Intent intent = new Intent(RegisterUserActivity.this, ImagePickerActivity.class);
+        Intent intent = new Intent(RegisterProfileActivity.this, ImagePickerActivity.class);
         intent.putExtra(ImagePickerActivity.INTENT_IMAGE_PICKER_OPTION, ImagePickerActivity.REQUEST_GALLERY_IMAGE);
         // setting aspect ratio
         intent.putExtra(ImagePickerActivity.INTENT_LOCK_ASPECT_RATIO, true);
@@ -142,7 +170,7 @@ public class RegisterUserActivity extends AppCompatActivity implements View.OnCl
                     // loading profile image from local cache
                     uri_img=uri.toString();
 
-                    Glide.with(RegisterUserActivity.this)
+                    Glide.with(RegisterProfileActivity.this)
                             .load(uri.toString())
                             .into(imageView);
 
@@ -173,7 +201,7 @@ public class RegisterUserActivity extends AppCompatActivity implements View.OnCl
             file_profile.createNewFile();
             FileOutputStream fo = new FileOutputStream(file_profile);
             fo.write(bytes.toByteArray());
-            MediaScannerConnection.scanFile(RegisterUserActivity.this,
+            MediaScannerConnection.scanFile(RegisterProfileActivity.this,
                     new String[]{file_profile.getPath()},
                     new String[]{"image/jpeg"}, null);
             fo.close();
@@ -184,5 +212,51 @@ public class RegisterUserActivity extends AppCompatActivity implements View.OnCl
         }
         return "";
     }
+
+
+    public void Call_Api(){
+
+        if (Utility.isOnline(this)){
+            progressBar.setVisibility(View.VISIBLE);
+            if (file_profile!=null){
+                image = RequestBody.create(MediaType.parse("image/*"), file_profile);
+                user_image= MultipartBody.Part.createFormData("file", file_profile.getName(), image);
+
+            }
+
+            RequestBody telephone = RequestBody.create(MediaType.parse("text/plain"), phone);
+
+            RetrofitFactory factory=new RetrofitFactory();
+            Retrofit retrofit=factory.connector();
+            NetworkSync.UserImgSync sync =retrofit.create(NetworkSync.UserImgSync.class);
+            Call<UserImgModel> call=sync.UserImg(APIURL.DomainName+APIURL.uploadImageUrl,telephone,user_image);
+            call.enqueue(new Callback<UserImgModel>() {
+                @Override
+                public void onResponse(Call<UserImgModel> call, Response<UserImgModel> response) {
+
+                    progressBar.setVisibility(View.GONE);
+
+                    if (response.body().getCode()==1){
+
+                        Utility.showToast(RegisterProfileActivity.this,response.body().getMsg());
+                        finish();
+                        startActivity(new Intent(RegisterProfileActivity.this,MainActivity.class));
+
+                    }else if (response.body().getCode()==0){
+                        Utility.showToast(RegisterProfileActivity.this,response.body().getMsg());
+                    }
+
+                }
+                @Override
+                public void onFailure(Call<UserImgModel> call, Throwable t) {
+                    progressBar.setVisibility(View.GONE);
+                }
+            });
+
+        }else {
+           // Toast.makeText(RegisterShopActivity.this, R.string.please_check_internet, Toast.LENGTH_SHORT).show();
+        }
+    }
+
 
 }

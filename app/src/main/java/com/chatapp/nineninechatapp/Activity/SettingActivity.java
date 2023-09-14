@@ -1,14 +1,9 @@
 package com.chatapp.nineninechatapp.Activity;
 
-
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -18,8 +13,6 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
@@ -27,9 +20,6 @@ import com.chatapp.nineninechatapp.R;
 import com.chatapp.nineninechatapp.Utils.AppENUM;
 import com.chatapp.nineninechatapp.Utils.AppStorePreferences;
 import com.chatapp.nineninechatapp.Utils.Utility;
-import com.chatapp.nineninechatapp.Utils.AppStorePreferences;
-
-import java.util.Locale;
 
 public class SettingActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -44,13 +34,8 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.setting);
         btnLogout=findViewById(R.id.btn_logout);
-        back=findViewById(R.id.back);
-        toolbar=findViewById(R.id.toolbar_com);
         aSwitch=findViewById(R.id.btn_switch);
-        toolbar.setText(R.string.setting);
-        Utility.FullScreen(this);
-
-
+        mtoolbar();
 
         if (AppStorePreferences.getBoolean(SettingActivity.this,"dark_mode")){
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
@@ -73,7 +58,6 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
             }
         });
 
-        back.setOnClickListener(this);
         btnLogout.setOnClickListener(this);
 
         spinner=findViewById(R.id.spinner_b);
@@ -161,4 +145,19 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
                 break;
         }
     }
+
+    public void mtoolbar(){
+        toolbar=findViewById(R.id.toolbar_com);
+        back=findViewById(R.id.back);
+        toolbar.setText(R.string.setting);
+        back.setOnClickListener(this);
+        if (AppStorePreferences.getBoolean(getApplicationContext(),"dark_mode")){
+            back.setImageResource(R.drawable.back_white);
+            toolbar.setTextColor(getResources().getColor(R.color.white));
+        }else {
+            back.setImageResource(R.drawable.back_black);
+            toolbar.setTextColor(getResources().getColor(R.color.black));
+        }
+    }
+
 }

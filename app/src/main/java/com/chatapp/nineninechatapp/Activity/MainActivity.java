@@ -1,7 +1,6 @@
 package com.chatapp.nineninechatapp.Activity;
 
-<<<<<<< HEAD
-=======
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -10,7 +9,6 @@ import androidx.viewpager.widget.ViewPager;
 import android.app.Activity;
 import android.content.res.Configuration;
 import android.content.res.Resources;
->>>>>>> origin/Nyi-Yel-Htet
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -31,11 +29,9 @@ import com.chatapp.nineninechatapp.Fragment.DiscoveryFrag;
 import com.chatapp.nineninechatapp.Fragment.FeedFrag;
 import com.chatapp.nineninechatapp.Fragment.HomeFrag;
 import com.chatapp.nineninechatapp.Fragment.SearchFrag;
-<<<<<<< HEAD
-=======
+
 
 import com.chatapp.nineninechatapp.Model.Login.UserObj;
->>>>>>> origin/Nyi-Yel-Htet
 import com.chatapp.nineninechatapp.R;
 import com.chatapp.nineninechatapp.Utils.AppStorePreferences;
 import com.chatapp.nineninechatapp.Utils.CustomViewPager;
@@ -64,11 +60,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Utility.darkMode(this);
 
         intiUI();
-<<<<<<< HEAD
         Utility.FullScreen(this);
-=======
 
->>>>>>> origin/Nyi-Yel-Htet
     }
 
 

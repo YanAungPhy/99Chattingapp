@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -103,6 +104,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         startActivity(new Intent(getApplicationContext(), MainActivity.class));
         finish();
     }
+
     private void CallLogin(LoginObj authObj) {
         if (Utility.isOnline(this)){
             progressBar.setVisibility(View.VISIBLE);
@@ -117,15 +119,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         AppStorePreferences.putInt(LoginActivity.this, AppENUM.LOGIN_CON,1);
                         startActivity(new Intent(LoginActivity.this,MainActivity.class));
                         finish();
-                        if (response.body().getCode()==1){
 
-                            startActivity(new Intent(getApplicationContext(),MainActivity.class));
-
-                        }else if (response.body().getCode()==0){
-
-                            Utility.showToast(LoginActivity.this,response.body().getMsg());
-
-                        }
+                    }else if (response.body().getCode()==0){
+                        Utility.showToast(LoginActivity.this,response.body().getMsg());
                     }
                 }
 
@@ -138,7 +134,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             Utility.showToast(this,getString(R.string.check_internet));
         }
     }
-
 
 }
 

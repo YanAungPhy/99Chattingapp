@@ -3,7 +3,9 @@ package com.chatapp.nineninechatapp.Model.Register.VerifyOTP;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class VerifyObj {
+import java.io.Serializable;
+
+public class VerifyObj implements Serializable {
     @SerializedName("telephone")
     @Expose
     private String telephone;

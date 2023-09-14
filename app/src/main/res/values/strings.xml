@@ -44,5 +44,15 @@
     <string name="set_image">Set image</string>
     <string name="lbl_take_camera_picture">Take a picture</string>
     <string name="lbl_choose_from_gallery">Choose from gallery</string>
+    <string name="enter_otp">Enter OTP</string>
+    <string name="add_profile_photo">Add Profile Photo</string>
+    <string name="nickname">Nickname</string>
+    <string name="gender">Gender</string>
+    <string name="birth_date">Birth Date</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="other">Other</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="gps_str">GPS is not enabled.Go to settings</string>
 
 </resources>
