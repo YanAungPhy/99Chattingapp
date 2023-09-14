@@ -11,4 +11,8 @@
     <string name="unbelievable_ux">Unbelievable  UX</string>
     <string name="the_world_is_your_neighbourhood_now">The world is your neighbourhood now</string>
     <string name="message">Message...</string>
+
+    <string name="sample_status">Design beautiful and modern Android apps that meet your user where they are, whether browsing their phone, reading on their tablet, glancing at their wrist, or watching TV.</string>
+    <string name="likes">. Likes</string>
+    <string name="comments">. Comments</string>
 </resources>

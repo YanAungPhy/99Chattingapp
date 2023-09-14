@@ -46,5 +46,11 @@
     </style>
 
 
+    <!-- styles.xml -->
+    <style name="AppBottomSheetDialogTheme" parent="Theme.Design.BottomSheetDialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
 
 </resources>

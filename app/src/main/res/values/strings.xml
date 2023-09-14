@@ -54,5 +54,10 @@
     <string name="other">Other</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="gps_str">GPS is not enabled.Go to settings</string>
+    <string name="sample_status">Design beautiful and modern Android apps that meet your user where they are, whether browsing their phone, reading on their tablet, glancing at their wrist, or watching TV.</string>
+    <string name="likes">. Likes</string>
+    <string name="comments">. Comments</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
