@@ -8,6 +8,7 @@ import com.chatapp.nineninechatapp.Model.Login.LoginModel;
 import com.chatapp.nineninechatapp.Model.Login.LoginObj;
 import com.chatapp.nineninechatapp.Model.Register.OTP_Model;
 import com.chatapp.nineninechatapp.Model.Register.OTP_Obj;
+import com.chatapp.nineninechatapp.Model.Register.RegisterModel;
 import com.chatapp.nineninechatapp.Model.Register.RegisterObj;
 import com.chatapp.nineninechatapp.Model.Register.VerifyOTP.VerifyModel;
 import com.chatapp.nineninechatapp.Model.Register.VerifyOTP.VerifyObj;
@@ -42,7 +43,7 @@ public class NetworkServiceProvider {
     }
 
 
-    public Call<LoginModel> Register (String url, RegisterObj obj) {
+    public Call<RegisterModel> Register (String url, RegisterObj obj) {
         NetworkSync.RegisterSync sync=retrofit.create(NetworkSync.RegisterSync.class);
         return sync.getSync(url,obj);
     }

@@ -51,21 +51,43 @@
             android:text="@string/phone_number"
             android:textSize="16sp" />
 
-        <EditText
-            android:id="@+id/edtPhone"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="7dp"
-            android:autofillHints="no"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"
             android:background="@drawable/edittext_rounded_bg"
-            android:hint="@string/sample_phone_number"
-            android:inputType="number"
-            android:padding="13dp"
-            android:paddingStart="20dp"
-            android:textColor="@color/black"
-            android:textColorHint="@color/gray"
-            android:textCursorDrawable="@drawable/custom_cursor"
-            tools:ignore="TextFields" />
+            android:orientation="horizontal"
+            android:padding="2dp">
+
+            <com.rilixtech.widget.countrycodepicker.CountryCodePicker
+                android:id="@+id/ccp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                app:ccp_hideNameCode="true"
+                app:ccp_hidePhoneCode="false"
+                app:ccp_keyboardAutoPopOnSearch="false"
+                app:ccp_showFullName="false" />
+
+            <EditText
+                android:id="@+id/edt_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:autofillHints="no"
+                android:background="@color/grey_two"
+                android:hint="@string/sample_phone_number"
+                android:inputType="number"
+                android:padding="13dp"
+                android:paddingStart="20dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/gray"
+                android:textCursorDrawable="@drawable/custom_cursor" />
+
+        </LinearLayout>
+
 
         <TextView
             android:layout_width="wrap_content"

@@ -16,12 +16,15 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.CycleInterpolator;
 import android.view.animation.TranslateAnimation;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
 import com.chatapp.nineninechatapp.Model.Login.UserObj;
+import com.chatapp.nineninechatapp.R;
 import com.google.gson.Gson;
 
 import java.util.Locale;

@@ -17,6 +17,7 @@
         android:maxSdkVersion="29" />
 
     <application
+        android:usesCleartextTraffic="true"
         android:name=".Utils.AppApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -63,18 +64,24 @@
         <activity android:name=".Activity.LoginActivity"/>
         <activity android:name=".Activity.SettingActivity"/>
         <activity android:name=".Activity.AdSliderActivity"/>
-        <activity android:name=".Activity.ChatActivity"
-            android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".Activity.OTP_Activity"/>
         <activity android:name=".Activity.ImagePickerActivity"/>
-        <activity android:name=".Activity.RegisterProfileActivity"/>
         <activity android:name=".Activity.RegisterDetailsActivity"/>
+        <activity android:name=".Activity.ChatActivity" />
+        <activity android:name=".Activity.RegisterProfileActivity"/>
 
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Design.NoActionBar" />
 
+        <service
+            android:name=".Services.MyFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
 
     </application>
 

@@ -60,10 +60,10 @@ public class UserObj implements Serializable {
     private Location location;
     @SerializedName("imagePath")
     @Expose
-    private Object imagePath;
+    private String imagePath;
     @SerializedName("imageType")
     @Expose
-    private Object imageType;
+    private String imageType;
     @SerializedName("registerDateAt")
     @Expose
     private Integer registerDateAt;
@@ -85,27 +85,30 @@ public class UserObj implements Serializable {
     @SerializedName("enabled")
     @Expose
     private Boolean enabled;
+    @SerializedName("disable")
+    @Expose
+    private Boolean disable;
+    @SerializedName("deleted")
+    @Expose
+    private Boolean deleted;
     @SerializedName("register")
     @Expose
     private Boolean register;
     @SerializedName("authorities")
     @Expose
     private List<Authority> authorities;
-    @SerializedName("deleted")
-    @Expose
-    private Boolean deleted;
     @SerializedName("username")
     @Expose
     private String username;
-    @SerializedName("accountNonLocked")
-    @Expose
-    private Boolean accountNonLocked;
     @SerializedName("credentialsNonExpired")
     @Expose
     private Boolean credentialsNonExpired;
     @SerializedName("accountNonExpired")
     @Expose
     private Boolean accountNonExpired;
+    @SerializedName("accountNonLocked")
+    @Expose
+    private Boolean accountNonLocked;
 
     public String getId() {
         return id;
@@ -243,19 +246,19 @@ public class UserObj implements Serializable {
         this.location = location;
     }
 
-    public Object getImagePath() {
+    public String getImagePath() {
         return imagePath;
     }
 
-    public void setImagePath(Object imagePath) {
+    public void setImagePath(String imagePath) {
         this.imagePath = imagePath;
     }
 
-    public Object getImageType() {
+    public String getImageType() {
         return imageType;
     }
 
-    public void setImageType(Object imageType) {
+    public void setImageType(String imageType) {
         this.imageType = imageType;
     }
 
@@ -315,6 +318,22 @@ public class UserObj implements Serializable {
         this.enabled = enabled;
     }
 
+    public Boolean getDisable() {
+        return disable;
+    }
+
+    public void setDisable(Boolean disable) {
+        this.disable = disable;
+    }
+
+    public Boolean getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        this.deleted = deleted;
+    }
+
     public Boolean getRegister() {
         return register;
     }
@@ -331,28 +350,12 @@ public class UserObj implements Serializable {
         this.authorities = authorities;
     }
 
-    public Boolean getDeleted() {
-        return deleted;
-    }
-
-    public void setDeleted(Boolean deleted) {
-        this.deleted = deleted;
-    }
-
     public String getUsername() {
         return username;
     }
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public Boolean getAccountNonLocked() {
-        return accountNonLocked;
-    }
-
-    public void setAccountNonLocked(Boolean accountNonLocked) {
-        this.accountNonLocked = accountNonLocked;
     }
 
     public Boolean getCredentialsNonExpired() {
@@ -369,5 +372,13 @@ public class UserObj implements Serializable {
 
     public void setAccountNonExpired(Boolean accountNonExpired) {
         this.accountNonExpired = accountNonExpired;
+    }
+
+    public Boolean getAccountNonLocked() {
+        return accountNonLocked;
+    }
+
+    public void setAccountNonLocked(Boolean accountNonLocked) {
+        this.accountNonLocked = accountNonLocked;
     }
 }

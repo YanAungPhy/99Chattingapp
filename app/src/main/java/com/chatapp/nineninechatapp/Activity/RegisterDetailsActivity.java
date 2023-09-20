@@ -16,13 +16,11 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-
 import com.chatapp.nineninechatapp.Model.Login.LoginModel;
 import com.chatapp.nineninechatapp.Model.Register.LocationRegister;
+import com.chatapp.nineninechatapp.Model.Register.RegisterModel;
 import com.chatapp.nineninechatapp.Model.Register.RegisterObj;
 import com.chatapp.nineninechatapp.Model.Register.VerifyOTP.VerifyObj;
 import com.chatapp.nineninechatapp.R;
@@ -30,7 +28,6 @@ import com.chatapp.nineninechatapp.Utils.APIURL;
 import com.chatapp.nineninechatapp.Utils.AppStorePreferences;
 import com.chatapp.nineninechatapp.Utils.GpsTracker;
 import com.chatapp.nineninechatapp.Utils.NetworkServiceProvider;
-import com.chatapp.nineninechatapp.Utils.RetrofitFactory;
 import com.chatapp.nineninechatapp.Utils.Utility;
 import com.ozcanalasalvar.library.utils.DateUtils;
 import com.ozcanalasalvar.library.view.datePicker.DatePicker;
@@ -61,7 +58,7 @@ public class RegisterDetailsActivity extends AppCompatActivity implements View.O
     ProgressBar progressBar;
     Button btnNext;
     VerifyObj verifyObj;
-    String sexName="";
+    int sexName=1;
     private static int MY_FINE_LOCATION_REQUEST = 99;
     GpsTracker gpsTracker;
 
@@ -96,7 +93,7 @@ public class RegisterDetailsActivity extends AppCompatActivity implements View.O
                 .listener(new DatePickerPopup.OnDateSelectListener() {
                     @Override
                     public void onDateSelected(DatePicker dp, long date, int day, int month, int year) {
-                        birth_date.setText(day + "-" + (month + 1) + "-" + year);
+                        birth_date.setText(year + "-" + (month + 1) + "-" + day);
                     }
                 }).build();
         String[] sexInfo = {getResources().getString(R.string.male),getResources().getString(R.string.female),getResources().getString(R.string.other)};
@@ -106,6 +103,8 @@ public class RegisterDetailsActivity extends AppCompatActivity implements View.O
         name=findViewById(R.id.userName);
         password=findViewById(R.id.edt_password);
         con_password=findViewById(R.id.edt_confirmPassword);
+        password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+        con_password.setTransformationMethod(PasswordTransformationMethod.getInstance());
         imgSH=findViewById(R.id.btn_showImageHide);
         imgSHC=findViewById(R.id.btn_showImageHideC);
         dateLayout=findViewById(R.id.date_layout);
@@ -120,7 +119,13 @@ public class RegisterDetailsActivity extends AppCompatActivity implements View.O
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long l) {
-                sexName=String.valueOf(spinner.getSelectedItem());
+                if (spinner.getSelectedItem()=="Male"){
+                    sexName=1;
+                }else if (spinner.getSelectedItem()=="Female"){
+                    sexName=0;
+                }else if (spinner.getSelectedItem()=="Other"){
+                    sexName=2;
+                }
             }
 
             @Override
@@ -189,26 +194,40 @@ public class RegisterDetailsActivity extends AppCompatActivity implements View.O
                 break;
             case R.id.btn_next:
 
-                List<Double> cList=new ArrayList<>();
-                cList.add(gpsTracker.getLatitude());
-                cList.add(gpsTracker.getLongitude());
-                LocationRegister location=new LocationRegister();
-                location.setType("Point");
-                location.setCoordinates(cList);
-                RegisterObj registerObj=new RegisterObj();
-                registerObj.setAreaCode(verifyObj.getAreaCode());
-                registerObj.setSex(sexName);
-                registerObj.setTelephone(verifyObj.getTelephone());
-                registerObj.setUserName(name.getText().toString());
-                registerObj.setBirthday(birth_date.getText().toString());
-                registerObj.setCityId("11");
-                registerObj.setCountryId("11");
-                registerObj.setProvinceId("11");
-                registerObj.setAreaId("11");
-                registerObj.setPassword(password.getText().toString());
-                registerObj.setLocation(location);
-                CallRegister(registerObj);
+                String pass=password.getText().toString();
+                String con_pass=con_password.getText().toString();
+                if (pass.length()<6){
+                    password.startAnimation(Utility.shakeError());
+                    Utility.showToast(RegisterDetailsActivity.this,getString(R.string.six_number));
+                }else if (con_pass.length()<6){
+                    Utility.showToast(RegisterDetailsActivity.this,getString(R.string.six_number));
+                    con_password.startAnimation(Utility.shakeError());
+                }else if (!pass.equalsIgnoreCase(con_pass)){
+                    Utility.showToast(RegisterDetailsActivity.this,getString(R.string.not_equal));
+                    password.startAnimation(Utility.shakeError());
+                    con_password.startAnimation(Utility.shakeError());
+                }else {
 
+                    RegisterObj registerObj=new RegisterObj();
+                    registerObj.setAreaCode(String.valueOf(verifyObj.getAreaCode()));
+                    registerObj.setTelephone(String.valueOf(verifyObj.getTelephone()));
+                    registerObj.setUserName(name.getText().toString());
+                    registerObj.setPassword(password.getText().toString());
+                    registerObj.setBirthday(birth_date.getText().toString());
+                    registerObj.setSex(sexName);
+                    registerObj.setCountryId("11");
+                    registerObj.setProvinceId("11");
+                    registerObj.setCityId("11");
+                    registerObj.setAreaId("11");
+                    List<Double> cList=new ArrayList<>();
+                    cList.add(gpsTracker.getLatitude());
+                    cList.add(gpsTracker.getLongitude());
+                    LocationRegister location=new LocationRegister();
+                    location.setType("Point");
+                    location.setCoordinates(cList);
+                    registerObj.setLocation(location);
+                    CallRegister(registerObj);
+                }
 
                 break;
 
@@ -223,9 +242,9 @@ public class RegisterDetailsActivity extends AppCompatActivity implements View.O
     private void CallRegister(RegisterObj authObj) {
         if (Utility.isOnline(this)){
             progressBar.setVisibility(View.VISIBLE);
-            serviceProvider.Register(APIURL.DomainName+APIURL.login,authObj).enqueue(new Callback<LoginModel>() {
+            serviceProvider.Register(APIURL.DomainName+APIURL.register,authObj).enqueue(new Callback<RegisterModel>() {
                 @Override
-                public void onResponse(Call<LoginModel> call, Response<LoginModel> response) {
+                public void onResponse(Call<RegisterModel> call, Response<RegisterModel> response) {
                     progressBar.setVisibility(View.GONE);
 
                     if (response.body().getCode()==1){
@@ -240,7 +259,8 @@ public class RegisterDetailsActivity extends AppCompatActivity implements View.O
                     }
                 }
                 @Override
-                public void onFailure(Call<LoginModel> call, Throwable t) {
+                public void onFailure(Call<RegisterModel> call, Throwable t) {
+                    Log.e("mtt>>",t.getLocalizedMessage());
                     progressBar.setVisibility(View.GONE);
                 }
             });

@@ -11,6 +11,7 @@ import com.chatapp.nineninechatapp.Utils.AppENUM;
 import com.chatapp.nineninechatapp.Utils.AppStorePreferences;
 import com.chatapp.nineninechatapp.Utils.NetworkServiceProvider;
 import com.chatapp.nineninechatapp.Utils.Utility;
+import com.google.firebase.FirebaseApp;
 
 public class SplashActivity extends AppCompatActivity {
     Handler handler = new Handler();
@@ -26,15 +27,6 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void run() {
 
-                if (AppStorePreferences.getInt(SplashActivity.this, AppENUM.LOGIN_CON) == 1) {
-
-                    startActivity(new Intent(SplashActivity.this, MainActivity.class));
-
-                } else {
-
-                    startActivity(new Intent(SplashActivity.this, LoginActivity.class));
-
-                }
                 finish();
                 startActivity(new Intent(SplashActivity.this, AdSliderActivity.class));
 

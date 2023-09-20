@@ -16,6 +16,7 @@ import com.chatapp.nineninechatapp.Model.Register.OTP_Model;
 import com.chatapp.nineninechatapp.Model.Register.OTP_Obj;
 import com.chatapp.nineninechatapp.R;
 import com.chatapp.nineninechatapp.Utils.APIURL;
+import com.chatapp.nineninechatapp.Utils.AppStorePreferences;
 import com.chatapp.nineninechatapp.Utils.NetworkServiceProvider;
 import com.chatapp.nineninechatapp.Utils.Utility;
 import com.rilixtech.widget.countrycodepicker.CountryCodePicker;
@@ -26,7 +27,6 @@ import retrofit2.Response;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
-    ImageView back;
     Button btnOTP;
     TextView txtSingIn;
     EditText edtPhone;
@@ -39,7 +39,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         Utility.darkMode(this);
-        Utility.FullScreen(this);
         initView();
     }
 
@@ -52,11 +51,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         btnOTP=findViewById(R.id.btn_getOTP);
         progressBar=findViewById(R.id.progressBar);
         countryCodePicker=findViewById(R.id.ccp);
-        back=findViewById(R.id.img_back);
 
         txtSingIn.setOnClickListener(this);
         btnOTP.setOnClickListener(this);
-        back.setOnClickListener(this);
     }
 
 
@@ -101,7 +98,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
                         Intent intent=new Intent(RegisterActivity.this,OTP_Activity.class);
                         intent.putExtra("otp_model",otpObj);
-                        intent.putExtra("otp_code",response.code());
+                        intent.putExtra("otp_code",response.body().getData());
                         startActivity(intent);
                         finish();
 
@@ -122,5 +119,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             Utility.showToast(this,getString(R.string.check_internet));
         }
     }
+
+
 
 }

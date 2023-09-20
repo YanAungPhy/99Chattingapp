@@ -10,6 +10,7 @@ import android.app.Activity;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -50,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     LinearLayout home,search,disc,account;
     RelativeLayout video;
     ImageView imgVideo,imgHome,imgSearch,imgDisc,imgAccount;
-
+    UserObj userObj;
 
 
     @Override
@@ -67,6 +68,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     private void intiUI() {
+        userObj=Utility.query_UserProfile(this);
+
         viewPager=findViewById(R.id.viewpager_container);
         home=findViewById(R.id.home);
         search=findViewById(R.id.search);

@@ -1,15 +1,15 @@
-package com.chatapp.nineninechatapp.Model.Register.UserImg;
+package com.chatapp.nineninechatapp.Model.Register;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class UserImgModel {
+public class RegisterModel {
     @SerializedName("msg")
     @Expose
     private String msg;
     @SerializedName("data")
     @Expose
-    private String data;
+    private RegisterDataModel data;
     @SerializedName("code")
     @Expose
     private Integer code;
@@ -25,11 +25,11 @@ public class UserImgModel {
         this.msg = msg;
     }
 
-    public String getData() {
+    public RegisterDataModel getData() {
         return data;
     }
 
-    public void setData(String data) {
+    public void setData(RegisterDataModel data) {
         this.data = data;
     }
 

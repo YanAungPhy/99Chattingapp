@@ -1,13 +1,13 @@
-package com.chatapp.nineninechatapp.Model.Login;
+package com.chatapp.nineninechatapp.Model.Register;
 
+import com.chatapp.nineninechatapp.Model.Login.UserObj;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import java.io.Serializable;
 
-public class LoginDataModel implements Serializable {
+public class RegisterDataModel {
     @SerializedName("userData")
     @Expose
-    private UserObj data;
+    private Object userData;
     @SerializedName("access_token")
     @Expose
     private String accessToken;
@@ -15,12 +15,12 @@ public class LoginDataModel implements Serializable {
     @Expose
     private String refreshToken;
 
-    public UserObj getData() {
-        return data;
+    public Object getUserData() {
+        return userData;
     }
 
-    public void setData(UserObj data) {
-        this.data = data;
+    public void setUserData(String userData) {
+        this.userData = userData;
     }
 
     public String getAccessToken() {
@@ -38,5 +38,4 @@ public class LoginDataModel implements Serializable {
     public void setRefreshToken(String refreshToken) {
         this.refreshToken = refreshToken;
     }
-
 }

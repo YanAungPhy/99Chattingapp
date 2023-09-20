@@ -20,12 +20,11 @@ public class ChatActivity extends AppCompatActivity {
 
         Utility.FullScreen(this);
         initView();
-        checkDartModeView();
+     //   checkDartModeView();
     }
 
     private void initView() {
-        imgPhoto = findViewById(R.id.imgPhoto);
-        imgSend = findViewById(R.id.imgSend);
+
 
     }
 

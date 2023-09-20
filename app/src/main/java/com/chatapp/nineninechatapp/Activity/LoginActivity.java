@@ -23,6 +23,7 @@ import com.chatapp.nineninechatapp.Utils.AppENUM;
 import com.chatapp.nineninechatapp.Utils.AppStorePreferences;
 import com.chatapp.nineninechatapp.Utils.NetworkServiceProvider;
 import com.chatapp.nineninechatapp.Utils.Utility;
+import com.rilixtech.widget.countrycodepicker.CountryCodePicker;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -36,6 +37,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     TextView txtSingUp;
     NetworkServiceProvider serviceProvider;
     ProgressBar progressBar;
+    CountryCodePicker countryCodePicker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,13 +48,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         Utility.FullScreen(this);
 
         String name = getIntent().getStringExtra("Name");
-        Log.d("SelectedModel",name+"");
+
     }
 
     public void initView() {
         serviceProvider = new NetworkServiceProvider(this);
         btnLogin = findViewById(R.id.btn_login);
-        edtphone = findViewById(R.id.edtPhone);
+        edtphone = findViewById(R.id.edt_phone);
+        countryCodePicker=findViewById(R.id.ccp);
         btnShowImageHide = findViewById(R.id.btn_showImageHide);
         btnShowImageHide.setImageResource(R.drawable.visibility_off);
         edtPassword = findViewById(R.id.edt_password);
@@ -64,8 +67,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         btnShowImageHide.setOnClickListener(this);
         txtSingUp.setOnClickListener(this);
 
-        edtphone.setText("095310432");
-        edtPassword.setText("123456");
     }
 
     @Override
@@ -95,18 +96,19 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void login(){
-         /*if (edtphone.getText().toString().equalsIgnoreCase("")){
+         if (edtphone.getText().toString().equalsIgnoreCase("")){
                 edtphone.startAnimation(Utility.shakeError());
             }else if (edtPassword.getText().toString().equalsIgnoreCase("")){
                 edtPassword.startAnimation(Utility.shakeError());
             }else {
                 LoginObj loginObj = new LoginObj();
+                loginObj.setAreaCode(countryCodePicker.getSelectedCountryCodeWithPlus());
                 loginObj.setTelephone(edtphone.getText().toString());
                 loginObj.setPassword(edtPassword.getText().toString());
+                loginObj.setFirebaseToken(AppStorePreferences.getString(LoginActivity.this,AppENUM.TOKEN));
                 CallLogin(loginObj);
-            }*/
-        startActivity(new Intent(getApplicationContext(), MainActivity.class));
-        finish();
+            }
+
     }
 
     private void CallLogin(LoginObj authObj) {
@@ -119,8 +121,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                     if (response.body().getCode()==1){
 
-                        Utility.Save_UserProfile(LoginActivity.this,response.body().getData().getData());
                         AppStorePreferences.putInt(LoginActivity.this, AppENUM.LOGIN_CON,1);
+                        Utility.Save_UserProfile(LoginActivity.this,response.body().getData().getData());
                         startActivity(new Intent(LoginActivity.this,MainActivity.class));
                         finish();
 
