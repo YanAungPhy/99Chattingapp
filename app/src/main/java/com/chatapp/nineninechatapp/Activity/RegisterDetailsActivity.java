@@ -252,6 +252,7 @@ public class RegisterDetailsActivity extends AppCompatActivity implements View.O
                         Intent intent=new Intent(RegisterDetailsActivity.this,RegisterProfileActivity.class);
                         intent.putExtra("telephone",verifyObj.getTelephone());
                         startActivity(intent);
+                        finish();
 
                     }else if (response.body().getCode()==0){
 

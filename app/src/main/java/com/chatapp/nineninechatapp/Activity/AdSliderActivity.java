@@ -78,6 +78,7 @@ public class AdSliderActivity extends AppCompatActivity implements View.OnClickL
                     startActivity(new Intent(AdSliderActivity.this, LoginActivity.class));
 
                 }
+                finish();
         }
     }
 

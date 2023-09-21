@@ -28,6 +28,7 @@ import com.chatapp.nineninechatapp.Adapter.ViewPagerAdapter;
 import com.chatapp.nineninechatapp.Fragment.AccountFrag;
 import com.chatapp.nineninechatapp.Fragment.DiscoveryFrag;
 import com.chatapp.nineninechatapp.Fragment.FeedFrag;
+import com.chatapp.nineninechatapp.Fragment.FriendFrag;
 import com.chatapp.nineninechatapp.Fragment.HomeFrag;
 import com.chatapp.nineninechatapp.Fragment.SearchFrag;
 
@@ -47,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     DiscoveryFrag discoveryFrag;
     FeedFrag feedFrag;
     HomeFrag homeFrag;
-    SearchFrag searchFrag;
+    FriendFrag friendFrag;
     LinearLayout home,search,disc,account;
     RelativeLayout video;
     ImageView imgVideo,imgHome,imgSearch,imgDisc,imgAccount;
@@ -61,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Utility.darkMode(this);
 
         intiUI();
-        Utility.FullScreen(this);
+      //  Utility.FullScreen(this);
 
     }
 
@@ -102,13 +103,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         homeFrag = new HomeFrag();
-        searchFrag = new SearchFrag();
+        friendFrag = new FriendFrag();
         feedFrag = new FeedFrag();
         discoveryFrag = new DiscoveryFrag();
         accountFrag=new AccountFrag();
 
         viewPagerAdapter.addFragment(homeFrag);
-        viewPagerAdapter.addFragment(searchFrag);
+        viewPagerAdapter.addFragment(friendFrag);
         viewPagerAdapter.addFragment(feedFrag);
         viewPagerAdapter.addFragment(discoveryFrag);
         viewPagerAdapter.addFragment(accountFrag);
@@ -154,7 +155,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     imgSearch.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.search_d));
                     imgDisc.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.dis));
                 }
-                replaceFragment(searchFrag);
+                replaceFragment(friendFrag);
 
                 break;
             case R.id.video:

@@ -233,10 +233,11 @@ public class RegisterProfileActivity extends AppCompatActivity implements View.O
 
             }
             RequestBody telephone = RequestBody.create(MediaType.parse("text/plain"), phone);
+            RequestBody firebase_token = RequestBody.create(MediaType.parse("text/plain"), AppStorePreferences.getString(RegisterProfileActivity.this,AppENUM.TOKEN));
             RetrofitFactory factory=new RetrofitFactory();
             Retrofit retrofit=factory.connector();
             NetworkSync.UserImgSync sync =retrofit.create(NetworkSync.UserImgSync.class);
-            Call<UploadImgModel> call=sync.UserImg(APIURL.DomainName+APIURL.uploadImageUrl,telephone,user_image);
+            Call<UploadImgModel> call=sync.UserImg(APIURL.DomainName+APIURL.uploadImageUrl,telephone,firebase_token,user_image);
             call.enqueue(new Callback<UploadImgModel>() {
                 @Override
                 public void onResponse(Call<UploadImgModel> call, Response<UploadImgModel> response) {

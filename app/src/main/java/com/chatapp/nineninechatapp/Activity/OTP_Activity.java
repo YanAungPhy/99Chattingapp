@@ -141,6 +141,7 @@ public class OTP_Activity extends AppCompatActivity {
                         Intent intent=new Intent(OTP_Activity.this,RegisterDetailsActivity.class);
                         intent.putExtra("verify_obj",otpObj);
                         startActivity(intent);
+                        finish();
 
                     }else if (response.body().getCode()==0){
                         Utility.showToast(OTP_Activity.this,response.body().getMsg());

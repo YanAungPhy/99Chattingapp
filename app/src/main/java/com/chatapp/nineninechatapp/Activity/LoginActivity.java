@@ -122,6 +122,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     if (response.body().getCode()==1){
 
                         AppStorePreferences.putInt(LoginActivity.this, AppENUM.LOGIN_CON,1);
+                        AppStorePreferences.putString(LoginActivity.this, AppENUM.TOKEN,response.body().getData().getAccessToken());
                         Utility.Save_UserProfile(LoginActivity.this,response.body().getData().getData());
                         startActivity(new Intent(LoginActivity.this,MainActivity.class));
                         finish();
