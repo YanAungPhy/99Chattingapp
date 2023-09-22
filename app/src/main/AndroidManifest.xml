@@ -8,16 +8,16 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
-    <uses-permission
-        android:name="android.permission.READ_EXTERNAL_STORAGE"
-        android:maxSdkVersion="29"/>
-    <uses-permission
-        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
-        android:maxSdkVersion="29" />
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
 
     <application
-        android:usesCleartextTraffic="true"
         android:name=".Utils.AppApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -28,7 +28,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Nineninechatapp"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <!--<activity
+            android:name=".Activity.PostVideoActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>-->
         <activity
             android:name=".Activity.ImagePreviewActivity"
             android:exported="false">
@@ -37,7 +45,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".Activity.SplashActivity"
+            android:name=".Activity.PostVideoActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -59,17 +67,17 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
-        <activity android:name=".Activity.MainActivity"/>
-        <activity android:name=".Activity.RegisterActivity"/>
-        <activity android:name=".Activity.LoginActivity"/>
-        <activity android:name=".Activity.SettingActivity"/>
-        <activity android:name=".Activity.AdSliderActivity"/>
-        <activity android:name=".Activity.OTP_Activity"/>
-        <activity android:name=".Activity.ImagePickerActivity"/>
-        <activity android:name=".Activity.RegisterDetailsActivity"/>
-        <activity android:name=".Activity.ChatActivity" />
-        <activity android:name=".Activity.RegisterProfileActivity"/>
 
+        <activity android:name=".Activity.MainActivity" />
+        <activity android:name=".Activity.RegisterActivity" />
+        <activity android:name=".Activity.LoginActivity" />
+        <activity android:name=".Activity.SettingActivity" />
+        <activity android:name=".Activity.AdSliderActivity" />
+        <activity android:name=".Activity.OTP_Activity" />
+        <activity android:name=".Activity.ImagePickerActivity" />
+        <activity android:name=".Activity.RegisterDetailsActivity" />
+        <activity android:name=".Activity.ChatActivity" />
+        <activity android:name=".Activity.RegisterProfileActivity" />
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"
             android:screenOrientation="portrait"
@@ -82,11 +90,6 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-
     </application>
-
-    <uses-feature
-        android:name="android.hardware.camera"
-        android:required="false" />
 
 </manifest>
