@@ -1,5 +1,6 @@
 package com.chatapp.nineninechatapp.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.transition.AutoTransition;
 import android.transition.TransitionManager;
@@ -18,6 +19,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.chatapp.nineninechatapp.Activity.PostVideoActivity;
 import com.chatapp.nineninechatapp.Adapter.PostAdapter;
 import com.chatapp.nineninechatapp.Model.Post;
 import com.chatapp.nineninechatapp.R;
@@ -26,7 +28,7 @@ import com.chatapp.nineninechatapp.Utils.Utility;
 
 import java.util.ArrayList;
 
-public class DiscoveryFrag extends Fragment {
+public class DiscoveryFrag extends Fragment implements View.OnClickListener {
 
     private LinearLayout postVisibleState;
     private ImageView btnImg;
@@ -35,6 +37,7 @@ public class DiscoveryFrag extends Fragment {
     private PostAdapter postAdapter;
     private ArrayList<Post> postArrayList;
     private RecyclerView recyclerView;
+    private ImageView btnImgVideo;
 
     @Nullable
     @Override
@@ -47,6 +50,7 @@ public class DiscoveryFrag extends Fragment {
         cardView = view.findViewById(R.id.cardView);
         imgNoti = view.findViewById(R.id.imgNoti);
         recyclerView = view.findViewById(R.id.postRecyclerview);
+        btnImgVideo =  view.findViewById(R.id.btnImgVideo);
 
         initView();
         return view;
@@ -64,6 +68,8 @@ public class DiscoveryFrag extends Fragment {
         postAdapter = new PostAdapter(postArrayList,getContext());
         recyclerView.setAdapter(postAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        btnImgVideo.setOnClickListener(this);
 
     }
 
@@ -103,6 +109,15 @@ public class DiscoveryFrag extends Fragment {
             });
         }
     }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.btnImgVideo:
+                startActivity(new Intent(getActivity(), PostVideoActivity.class));
+                break;
+        }
     }
+}
 
 
