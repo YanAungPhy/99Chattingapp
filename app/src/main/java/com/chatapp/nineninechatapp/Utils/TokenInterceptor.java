@@ -14,7 +14,7 @@ public class TokenInterceptor implements Interceptor {
     public Response intercept(Chain chain) throws IOException {
 
         Request newRequest = chain.request().newBuilder()
-                .header("Authorization", "Bearer"+AppStorePreferences.getString(AppApplication.getAppContext(),AppENUM.TOKEN))
+                .header("Authorization", "Bearer "+AppStorePreferences.getString(AppApplication.getAppContext(),AppENUM.TOKEN))
                 .build();
 
       //  Log.e("mtt_retrofit_token>>>",AppStorePreferences.getString(AppApplication.context,AppENUM.TOKEN));
