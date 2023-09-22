@@ -14,10 +14,10 @@ public class TokenInterceptor implements Interceptor {
     public Response intercept(Chain chain) throws IOException {
 
         Request newRequest = chain.request().newBuilder()
-                .header("Authorization",AppStorePreferences.getString(AppApplication.getAppContext(),AppENUM.TOKEN))
+                .header("Authorization", "Bearer "+AppStorePreferences.getString(AppApplication.getAppContext(),AppENUM.TOKEN))
                 .build();
 
-        Log.e("mtt_retrofit_token>>>",AppStorePreferences.getString(AppApplication.context,AppENUM.TOKEN));
+      //  Log.e("mtt_retrofit_token>>>",AppStorePreferences.getString(AppApplication.context,AppENUM.TOKEN));
        /* Response response =  chain.proceed(newRequest);
         Log.d("MyApp", "Code : "+response.code());
         if (response.code() == 401){

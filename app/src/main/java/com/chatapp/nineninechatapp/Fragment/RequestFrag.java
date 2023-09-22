@@ -6,13 +6,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
-
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
 import com.chatapp.nineninechatapp.Adapter.FriAcceptAdapter;
 import com.chatapp.nineninechatapp.Model.AcceptFriend.AcceptModel;
 import com.chatapp.nineninechatapp.Model.AcceptFriend.AcceptObj;
@@ -109,7 +107,6 @@ public class RequestFrag extends Fragment implements FriAcceptAdapter.Click {
 
     @Override
     public void AdapterClick(ReqFriDataModel obj) {
-        Log.e("mtt>>>",obj.getRequestFriendId());
         AcceptObj acceptObj=new AcceptObj();
         acceptObj.setRequestFriendId(obj.getRequestFriendId());
         CallAccept(acceptObj);

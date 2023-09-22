@@ -138,8 +138,8 @@ public class SearchFrag extends Fragment implements View.OnClickListener,SearchA
     @Override
     public void AdapterClick(UserObj obj) {
         AddFriendObj friendObj=new AddFriendObj();
-        friendObj.setRequestFriendId(obj.getId());
-        friendObj.setFriendId(userObj.getId());
+        friendObj.setRequestFriendId(userObj.getId());
+        friendObj.setFriendId(obj.getId());
         CallAddFriend(friendObj,obj);
     }
 
