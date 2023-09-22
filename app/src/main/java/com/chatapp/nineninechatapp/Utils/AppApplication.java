@@ -31,7 +31,6 @@ public class AppApplication extends Application  {
 
     }
 
-
     public static Context getAppContext() {
         return context;
     }
@@ -46,7 +45,7 @@ public class AppApplication extends Application  {
                         }
                         // Get new FCM registration token
                         String token = task.getResult();
-                        Log.e("mtt>>>",token);
+                        Log.e("mtt_fcmToken>>>",token);
                         AppStorePreferences.putString(getApplicationContext(), AppENUM.FCM_TOKEN, token);
                     }
                 });

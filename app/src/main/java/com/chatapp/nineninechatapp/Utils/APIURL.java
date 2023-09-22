@@ -15,6 +15,7 @@ public class APIURL {
     public static final String add_friend="v1/user/addFriend";
     public static final String requestFriendList="v1/user/requestFriendList";
     public static final String acceptFriend="v1/user/acceptFriend";
+    public static final String logout="v1/user/logout";
 
 }
 

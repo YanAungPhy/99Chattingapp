@@ -1,5 +1,7 @@
 package com.chatapp.nineninechatapp.Fragment;
 
+import android.content.Context;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -7,11 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import com.chatapp.nineninechatapp.Adapter.PagerTwoAdapter;
 import com.chatapp.nineninechatapp.R;
+import com.chatapp.nineninechatapp.Utils.AppStorePreferences;
 import com.chatapp.nineninechatapp.Utils.Utility;
 import com.google.android.material.tabs.TabLayout;
 
@@ -40,6 +44,11 @@ public class FriendFrag extends Fragment {
     }
 
     public void mPager(){
+        if (AppStorePreferences.getBoolean(getActivity(),"dark_mode")){
+            tabLayout.setTabTextColors(ColorStateList.valueOf(getResources().getColor(R.color.white)));
+        }else {
+            tabLayout.setTabTextColors(ColorStateList.valueOf(getResources().getColor(R.color.black)));
+        }
         PagerTwoAdapter adapter = new PagerTwoAdapter(getFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));

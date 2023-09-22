@@ -11,6 +11,7 @@ import com.chatapp.nineninechatapp.Model.FindNickName.NickNameModel;
 import com.chatapp.nineninechatapp.Model.FindNickName.NickNameObj;
 import com.chatapp.nineninechatapp.Model.Login.LoginModel;
 import com.chatapp.nineninechatapp.Model.Login.LoginObj;
+import com.chatapp.nineninechatapp.Model.Login.LogoutModel;
 import com.chatapp.nineninechatapp.Model.Register.OTP_Model;
 import com.chatapp.nineninechatapp.Model.Register.OTP_Obj;
 import com.chatapp.nineninechatapp.Model.Register.RegisterModel;
@@ -66,6 +67,11 @@ public class NetworkServiceProvider {
     public Call<ReqFriModel> ReqFriend (String url, ReqFriendListObj obj) {
         NetworkSync.ReqFriendSync sync=retrofit.create(NetworkSync.ReqFriendSync.class);
         return sync.getSync(url,obj);
+    }
+
+    public Call<LogoutModel> Logout (String url) {
+        NetworkSync.LogoutSync sync=retrofit.create(NetworkSync.LogoutSync.class);
+        return sync.getSync(url);
     }
 
     public Call<AcceptModel> AcceptFriend (String url, AcceptObj obj) {

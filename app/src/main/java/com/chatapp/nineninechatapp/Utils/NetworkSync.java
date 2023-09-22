@@ -10,6 +10,7 @@ import com.chatapp.nineninechatapp.Model.FindNickName.Noti_Obj;
 import com.chatapp.nineninechatapp.Model.FindNickName.ResponNoti;
 import com.chatapp.nineninechatapp.Model.Login.LoginModel;
 import com.chatapp.nineninechatapp.Model.Login.LoginObj;
+import com.chatapp.nineninechatapp.Model.Login.LogoutModel;
 import com.chatapp.nineninechatapp.Model.Register.OTP_Model;
 import com.chatapp.nineninechatapp.Model.Register.OTP_Obj;
 import com.chatapp.nineninechatapp.Model.Register.RegisterModel;
@@ -91,6 +92,11 @@ public class NetworkSync {
     public interface ReqFriendSync {
         @POST
         Call<ReqFriModel> getSync(@Url String url, @Body ReqFriendListObj obj);
+    }
+
+    public interface LogoutSync {
+        @POST
+        Call<LogoutModel> getSync(@Url String url);
     }
 
     public interface AcceptFriendSync {
