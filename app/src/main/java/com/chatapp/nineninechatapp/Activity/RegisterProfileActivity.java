@@ -233,7 +233,7 @@ public class RegisterProfileActivity extends AppCompatActivity implements View.O
 
             }
             RequestBody telephone = RequestBody.create(MediaType.parse("text/plain"), phone);
-            RequestBody firebase_token = RequestBody.create(MediaType.parse("text/plain"), AppStorePreferences.getString(RegisterProfileActivity.this,AppENUM.TOKEN));
+            RequestBody firebase_token = RequestBody.create(MediaType.parse("text/plain"), AppStorePreferences.getString(RegisterProfileActivity.this,AppENUM.FCM_TOKEN));
             RetrofitFactory factory=new RetrofitFactory();
             Retrofit retrofit=factory.connector();
             NetworkSync.UserImgSync sync =retrofit.create(NetworkSync.UserImgSync.class);

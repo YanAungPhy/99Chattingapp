@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.TextView;
+
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -36,6 +38,7 @@ public class RequestFrag extends Fragment implements FriAcceptAdapter.Click {
     RecyclerView.LayoutManager layoutManager;
     RecyclerView recyclerView;
     SwipeRefreshLayout refreshLayout;
+    TextView noData;
 
     @Nullable
     @Override
@@ -47,7 +50,7 @@ public class RequestFrag extends Fragment implements FriAcceptAdapter.Click {
         progressBar=view.findViewById(R.id.progressBar);
         recyclerView=view.findViewById(R.id.recycler);
         refreshLayout=view.findViewById(R.id.swipeLayout);
-
+        noData=view.findViewById(R.id.no_data);
 
         adapter= new FriAcceptAdapter(getActivity(),arrayList);
         layoutManager=new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL,false);
@@ -55,7 +58,6 @@ public class RequestFrag extends Fragment implements FriAcceptAdapter.Click {
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
         adapter.setClick(this);
-
 
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -76,6 +78,11 @@ public class RequestFrag extends Fragment implements FriAcceptAdapter.Click {
                     refreshLayout.setRefreshing(false);
 
                     if (response.body().getCode()==1){
+                        if (response.body().getData().size()!=0){
+                            noData.setVisibility(View.GONE);
+                        }else {
+                            noData.setVisibility(View.VISIBLE);
+                        }
                        arrayList.clear();
                        arrayList.addAll(response.body().getData());
                        adapter.notifyDataSetChanged();

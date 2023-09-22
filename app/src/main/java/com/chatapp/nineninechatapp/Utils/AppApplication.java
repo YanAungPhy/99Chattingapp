@@ -47,7 +47,7 @@ public class AppApplication extends Application  {
                         // Get new FCM registration token
                         String token = task.getResult();
                         Log.e("mtt>>>",token);
-                        AppStorePreferences.putString(getApplicationContext(), AppENUM.TOKEN, token);
+                        AppStorePreferences.putString(getApplicationContext(), AppENUM.FCM_TOKEN, token);
                     }
                 });
 

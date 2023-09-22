@@ -67,5 +67,6 @@
     <string name="request_friend">Request Friends</string>
     <string name="already_add">Already Addded</string>
     <string name="accept">Accept</string>
+    <string name="empty_data">No Data</string>
 
 </resources>

@@ -12,6 +12,8 @@
 
         <include layout="@layout/content_loading"/>
 
+        <include layout="@layout/empty_data"/>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler"
             android:layout_width="match_parent"
