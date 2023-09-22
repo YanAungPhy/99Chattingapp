@@ -18,13 +18,7 @@ public class TokenInterceptor implements Interceptor {
                 .build();
 
       //  Log.e("mtt_retrofit_token>>>",AppStorePreferences.getString(AppApplication.context,AppENUM.TOKEN));
-       /* Response response =  chain.proceed(newRequest);
-        Log.d("MyApp", "Code : "+response.code());
-        if (response.code() == 401){
 
-            AppApplication.getAppContext().startActivity(new Intent(AppApplication.getAppContext(),SignInActivity.class));
-
-        }*/
         return chain.proceed(newRequest);
     }
 

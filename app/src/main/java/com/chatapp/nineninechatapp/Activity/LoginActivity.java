@@ -105,7 +105,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 loginObj.setAreaCode(countryCodePicker.getSelectedCountryCodeWithPlus());
                 loginObj.setTelephone(edtphone.getText().toString());
                 loginObj.setPassword(edtPassword.getText().toString());
-                loginObj.setFirebaseToken(AppStorePreferences.getString(LoginActivity.this,AppENUM.TOKEN));
+                loginObj.setFirebaseToken(AppStorePreferences.getString(LoginActivity.this,AppENUM.FCM_TOKEN));
                 CallLogin(loginObj);
             }
 

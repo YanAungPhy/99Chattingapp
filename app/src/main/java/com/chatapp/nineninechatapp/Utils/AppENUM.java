@@ -6,6 +6,7 @@ public class AppENUM {
     public static final String LANG_WEL = "lang_wel";
     public static final String LOGIN_CON = "login_con";
     public static final String TOKEN = "token";
+    public static final String FCM_TOKEN = "fcm_token";
     public static final String MORNING = "morning";
     public static final String MORNING_SET = "morning_set";
     public static final String MORNING_VALUE = "morning_value";
