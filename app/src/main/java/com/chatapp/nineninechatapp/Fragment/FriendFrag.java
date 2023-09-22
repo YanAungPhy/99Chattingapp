@@ -59,6 +59,7 @@ public class FriendFrag extends Fragment {
 
             }
         });
+
     }
 
 

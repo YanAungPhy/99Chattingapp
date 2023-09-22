@@ -1,6 +1,7 @@
 package com.chatapp.nineninechatapp.Fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import com.chatapp.nineninechatapp.Adapter.FriAcceptAdapter;
 import com.chatapp.nineninechatapp.Model.AcceptFriend.AcceptModel;
 import com.chatapp.nineninechatapp.Model.AcceptFriend.AcceptObj;
@@ -34,6 +37,7 @@ public class RequestFrag extends Fragment implements FriAcceptAdapter.Click {
     ArrayList<ReqFriDataModel> arrayList=new ArrayList<>();
     RecyclerView.LayoutManager layoutManager;
     RecyclerView recyclerView;
+    SwipeRefreshLayout refreshLayout;
 
     @Nullable
     @Override
@@ -44,6 +48,7 @@ public class RequestFrag extends Fragment implements FriAcceptAdapter.Click {
         serviceProvider=new NetworkServiceProvider(getActivity());
         progressBar=view.findViewById(R.id.progressBar);
         recyclerView=view.findViewById(R.id.recycler);
+        refreshLayout=view.findViewById(R.id.swipeLayout);
 
 
         adapter= new FriAcceptAdapter(getActivity(),arrayList);
@@ -53,16 +58,24 @@ public class RequestFrag extends Fragment implements FriAcceptAdapter.Click {
         adapter.notifyDataSetChanged();
         adapter.setClick(this);
 
+
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                requestFriend();
+            }
+        });
+
         return view;
     }
 
     private void CallReqFriend(ReqFriendListObj authObj) {
         if (Utility.isOnline(getActivity())){
-            progressBar.setVisibility(View.VISIBLE);
+            refreshLayout.setRefreshing(true);
             serviceProvider.ReqFriend(APIURL.DomainName+APIURL.requestFriendList,authObj).enqueue(new Callback<ReqFriModel>() {
                 @Override
                 public void onResponse(Call<ReqFriModel> call, Response<ReqFriModel> response) {
-                    progressBar.setVisibility(View.GONE);
+                    refreshLayout.setRefreshing(false);
 
                     if (response.body().getCode()==1){
                        arrayList.clear();
@@ -81,22 +94,27 @@ public class RequestFrag extends Fragment implements FriAcceptAdapter.Click {
             Utility.showToast(getActivity(),getString(R.string.check_internet));
         }
     }
+
     @Override
     public void onResume() {
         requestFriend();
         super.onResume();
     }
+
     public void requestFriend(){
         ReqFriendListObj friendListObj=new ReqFriendListObj();
         friendListObj.setFriendId(userObj.getId());
         CallReqFriend(friendListObj);
     }
+
     @Override
     public void AdapterClick(ReqFriDataModel obj) {
+        Log.e("mtt>>>",obj.getRequestFriendId());
         AcceptObj acceptObj=new AcceptObj();
         acceptObj.setRequestFriendId(obj.getRequestFriendId());
         CallAccept(acceptObj);
     }
+
     private void CallAccept(AcceptObj authObj) {
         if (Utility.isOnline(getActivity())){
             progressBar.setVisibility(View.VISIBLE);

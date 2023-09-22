@@ -41,7 +41,7 @@ public class RetrofitFCM {
 
             Retrofit.Builder builder = new Retrofit.Builder();
             builder.client(client);
-            builder.baseUrl("https://paukanan-e1eb0-default-rtdb.firebaseio.com/");
+            builder.baseUrl("https://fcm.googleapis.com/");
             builder.addConverterFactory(GsonConverterFactory.create());
 
           //  builder.addConverterFactory(JacksonConverterFactory.create());

@@ -139,6 +139,7 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
 
                 Utility.delete_UserProfile(this);
                 AppStorePreferences.putInt(SettingActivity.this, AppENUM.LOGIN_CON,0);
+                AppStorePreferences.putString(SettingActivity.this,AppENUM.TOKEN,"");
                 startActivity(new Intent(SettingActivity.this,LoginActivity.class));
                 finishAffinity();
 

@@ -112,6 +112,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void CallLogin(LoginObj authObj) {
+        AppStorePreferences.putString(LoginActivity.this,AppENUM.TOKEN,"");
         if (Utility.isOnline(this)){
             progressBar.setVisibility(View.VISIBLE);
             serviceProvider.Login(APIURL.DomainName+APIURL.login,authObj).enqueue(new Callback<LoginModel>() {
