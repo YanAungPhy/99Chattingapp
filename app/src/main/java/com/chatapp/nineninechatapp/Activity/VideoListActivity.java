@@ -7,10 +7,12 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.CancellationSignal;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.widget.VideoView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -23,6 +25,7 @@ import com.chatapp.nineninechatapp.R;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 public class PostVideoActivity extends AppCompatActivity {
 
@@ -37,7 +40,7 @@ public class PostVideoActivity extends AppCompatActivity {
         new VideoRetrievalTask(this, videoList -> {
 
             VideoAdapter adapter = new VideoAdapter(videoList);
-            recyclerView.setLayoutManager(new GridLayoutManager(this,2));
+            recyclerView.setLayoutManager(new GridLayoutManager(this,1));
             recyclerView.setAdapter(adapter);
         }).execute(offset, limit);
         offset += limit;
@@ -51,6 +54,8 @@ public class PostVideoActivity extends AppCompatActivity {
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_PERMISSIONS);
+        }else {
+            retrieveVideosInBackground();
         }
 
 
@@ -59,8 +64,6 @@ public class PostVideoActivity extends AppCompatActivity {
         findViewById(R.id.btnGetVideo).setOnClickListener(v -> {
             pickVideo();
         });
-
-        retrieveVideosInBackground();
 
     }
 
@@ -71,6 +74,15 @@ public class PostVideoActivity extends AppCompatActivity {
         intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true); // Allow multiple selections
 
         startActivityForResult(intent, REQUEST_PICK_VIDEO);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if (requestCode == REQUEST_PERMISSIONS){
+            retrieveVideosInBackground();
+        }
     }
 
     public List<VideoModel> getAllVideos(Context context) {
