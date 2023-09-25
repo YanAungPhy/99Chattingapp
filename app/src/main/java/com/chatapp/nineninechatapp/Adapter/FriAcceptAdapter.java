@@ -16,6 +16,7 @@ import com.chatapp.nineninechatapp.Fragment.SearchFrag;
 import com.chatapp.nineninechatapp.Model.Login.UserObj;
 import com.chatapp.nineninechatapp.Model.ReqFriendList.ReqFriDataModel;
 import com.chatapp.nineninechatapp.R;
+import com.chatapp.nineninechatapp.Utils.APIURL;
 import com.chatapp.nineninechatapp.Utils.Utility;
 
 import java.util.ArrayList;
@@ -71,7 +72,7 @@ public class FriAcceptAdapter extends RecyclerView.Adapter<FriAcceptAdapter.MyVi
         RequestOptions requestOptions = new RequestOptions();
         requestOptions.placeholder(R.drawable.profile_default);
         requestOptions.error(R.drawable.profile_default);
-        Glide.with(context).load(obj.getRequestFriendImagePath()).apply(requestOptions).into(holder.imageView);
+        Glide.with(context).load(APIURL.ImageUrl+obj.getRequestFriendImagePath()).apply(requestOptions).into(holder.imageView);
         holder.name.setText(String.valueOf(obj.getRequestFriendName()));
 
         holder.accept.setOnClickListener(new View.OnClickListener() {

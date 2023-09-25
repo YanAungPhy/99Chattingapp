@@ -3,15 +3,9 @@ package com.chatapp.nineninechatapp.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.chatapp.nineninechatapp.R;
-import com.chatapp.nineninechatapp.Utils.AppENUM;
-import com.chatapp.nineninechatapp.Utils.AppStorePreferences;
-import com.chatapp.nineninechatapp.Utils.NetworkServiceProvider;
 import com.chatapp.nineninechatapp.Utils.Utility;
-import com.google.firebase.FirebaseApp;
 
 public class SplashActivity extends AppCompatActivity {
     Handler handler = new Handler();

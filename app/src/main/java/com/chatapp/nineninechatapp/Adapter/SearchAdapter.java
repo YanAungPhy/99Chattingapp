@@ -13,6 +13,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.chatapp.nineninechatapp.Fragment.SearchFrag;
 import com.chatapp.nineninechatapp.Model.Login.UserObj;
 import com.chatapp.nineninechatapp.R;
+import com.chatapp.nineninechatapp.Utils.APIURL;
 import com.chatapp.nineninechatapp.Utils.Utility;
 import java.util.ArrayList;
 import java.util.List;
@@ -67,7 +68,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHold
         RequestOptions requestOptions = new RequestOptions();
         requestOptions.placeholder(R.drawable.profile_default);
         requestOptions.error(R.drawable.profile_default);
-        Glide.with(context).load(obj.getImagePath()).apply(requestOptions).into(holder.imageView);
+        Glide.with(context).load(APIURL.ImageUrl+obj.getImagePath()).apply(requestOptions).into(holder.imageView);
         holder.name.setText(String.valueOf(obj.getNickname()));
 
         if (userObj.getId().equalsIgnoreCase(obj.getId())){
