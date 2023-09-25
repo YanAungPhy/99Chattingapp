@@ -9,29 +9,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
->>>>>>> 99Chat/master
-=======
->>>>>>> 99Chat/master
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 import com.chatapp.nineninechatapp.Activity.VideoUploadActivity;
-=======
-=======
->>>>>>> 99Chat/master
+
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.chatapp.nineninechatapp.Activity.PostVideoActivity;
->>>>>>> 99Chat/master
 import com.chatapp.nineninechatapp.Adapter.PostAdapter;
 import com.chatapp.nineninechatapp.Model.Login.UserObj;
 import com.chatapp.nineninechatapp.Model.Post;

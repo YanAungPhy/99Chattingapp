@@ -2,23 +2,12 @@ package com.chatapp.nineninechatapp.Utils;
 
 public class APIURL {
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-    public static final String DomainName="http://64.227.156.101:8080/secret-code-chat-0.0.1-SNAPSHOT/api/";
-  //  public static final String DomainName="https://a772-69-160-2-204.ngrok-free.app/";
-    public static final String ImageUrl="https://88ba-69-160-2-220.ngrok-free.app/api/";
 
-=======
-=======
->>>>>>> 99Chat/master
     public static final String main_url="https://a772-69-160-2-204.ngrok-free.app";
     //public static final String main_url="http://64.227.156.101:8080/secret-code-chat-0.0.1-SNAPSHOT";
     public static final String DomainName=main_url+"/api/";
     public static final String ImageUrl=main_url;
-<<<<<<< HEAD
->>>>>>> 99Chat/master
-=======
->>>>>>> 99Chat/master
+
     public static final String login="v1/auth/authenticate";
     public static final String get_otp="v1/auth/get-0pt";
     public static final String verify_telephone="v1/auth/verify-telephone";
