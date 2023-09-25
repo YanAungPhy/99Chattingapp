@@ -17,7 +17,7 @@ public class TokenInterceptor implements Interceptor {
                 .header("Authorization", "Bearer "+AppStorePreferences.getString(AppApplication.getAppContext(),AppENUM.TOKEN))
                 .build();
 
-      //  Log.e("mtt_retrofit_token>>>",AppStorePreferences.getString(AppApplication.context,AppENUM.TOKEN));
+       // Log.e("mtt_retrofit_token>>>",AppStorePreferences.getString(AppApplication.context,AppENUM.TOKEN));
 
         return chain.proceed(newRequest);
     }

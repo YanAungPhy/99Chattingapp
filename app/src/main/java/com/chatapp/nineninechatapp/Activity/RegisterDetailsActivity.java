@@ -25,6 +25,7 @@ import com.chatapp.nineninechatapp.Model.Register.RegisterObj;
 import com.chatapp.nineninechatapp.Model.Register.VerifyOTP.VerifyObj;
 import com.chatapp.nineninechatapp.R;
 import com.chatapp.nineninechatapp.Utils.APIURL;
+import com.chatapp.nineninechatapp.Utils.AppENUM;
 import com.chatapp.nineninechatapp.Utils.AppStorePreferences;
 import com.chatapp.nineninechatapp.Utils.GpsTracker;
 import com.chatapp.nineninechatapp.Utils.NetworkServiceProvider;
@@ -89,7 +90,7 @@ public class RegisterDetailsActivity extends AppCompatActivity implements View.O
                 .textSize(19)
                 .endDate(DateUtils.getTimeMiles(2050, 10, 25))
                 .currentDate(DateUtils.getCurrentTime())
-                .startDate(DateUtils.getTimeMiles(1995, 0, 1))
+                .startDate(DateUtils.getTimeMiles(1888, 0, 1))
                 .listener(new DatePickerPopup.OnDateSelectListener() {
                     @Override
                     public void onDateSelected(DatePicker dp, long date, int day, int month, int year) {
@@ -249,6 +250,7 @@ public class RegisterDetailsActivity extends AppCompatActivity implements View.O
 
                     if (response.body().getCode()==1){
 
+                        AppStorePreferences.putString(RegisterDetailsActivity.this, AppENUM.TOKEN,response.body().getData().getAccessToken());
                         Intent intent=new Intent(RegisterDetailsActivity.this,RegisterProfileActivity.class);
                         intent.putExtra("telephone",verifyObj.getTelephone());
                         startActivity(intent);

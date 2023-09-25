@@ -75,7 +75,7 @@ public class AccountFrag extends Fragment implements View.OnClickListener {
         RequestOptions requestOptions = new RequestOptions();
         requestOptions.placeholder(R.drawable.profile_default);
         requestOptions.error(R.drawable.profile_default);
-        Glide.with(getActivity()).load(userObj.getImagePath()).apply(requestOptions).into(imageView);
+        Glide.with(getActivity()).load(APIURL.ImageUrl+userObj.getImagePath()).apply(requestOptions).into(imageView);
 
         name.setText(userObj.getName());
     }
