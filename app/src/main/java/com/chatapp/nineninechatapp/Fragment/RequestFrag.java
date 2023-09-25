@@ -1,5 +1,6 @@
 package com.chatapp.nineninechatapp.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,15 +13,24 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
+import com.chatapp.nineninechatapp.Activity.LoginActivity;
+import com.chatapp.nineninechatapp.Activity.SettingActivity;
 import com.chatapp.nineninechatapp.Adapter.FriAcceptAdapter;
+import com.chatapp.nineninechatapp.Adapter.FriListAdapter;
 import com.chatapp.nineninechatapp.Model.AcceptFriend.AcceptModel;
 import com.chatapp.nineninechatapp.Model.AcceptFriend.AcceptObj;
+import com.chatapp.nineninechatapp.Model.FriendList.FriendListDataModel;
+import com.chatapp.nineninechatapp.Model.FriendList.FriendListModel;
+import com.chatapp.nineninechatapp.Model.Login.LogoutModel;
 import com.chatapp.nineninechatapp.Model.Login.UserObj;
 import com.chatapp.nineninechatapp.Model.ReqFriendList.ReqFriDataModel;
 import com.chatapp.nineninechatapp.Model.ReqFriendList.ReqFriModel;
 import com.chatapp.nineninechatapp.Model.ReqFriendList.ReqFriendListObj;
 import com.chatapp.nineninechatapp.R;
 import com.chatapp.nineninechatapp.Utils.APIURL;
+import com.chatapp.nineninechatapp.Utils.AppENUM;
+import com.chatapp.nineninechatapp.Utils.AppStorePreferences;
 import com.chatapp.nineninechatapp.Utils.NetworkServiceProvider;
 import com.chatapp.nineninechatapp.Utils.Utility;
 import java.util.ArrayList;
@@ -33,11 +43,13 @@ public class RequestFrag extends Fragment implements FriAcceptAdapter.Click {
     ProgressBar progressBar;
     UserObj userObj;
     FriAcceptAdapter adapter;
+    FriListAdapter friListAdapter;
     ArrayList<ReqFriDataModel> arrayList=new ArrayList<>();
-    RecyclerView.LayoutManager layoutManager;
-    RecyclerView recyclerView;
+    ArrayList<FriendListDataModel> friList=new ArrayList<>();
+    RecyclerView.LayoutManager layoutManager,layoutManagerFri;
+    RecyclerView recyclerView,recyclerViewFri;
     SwipeRefreshLayout refreshLayout;
-    TextView noData;
+    TextView reqFri;
 
     @Nullable
     @Override
@@ -48,8 +60,9 @@ public class RequestFrag extends Fragment implements FriAcceptAdapter.Click {
         serviceProvider=new NetworkServiceProvider(getActivity());
         progressBar=view.findViewById(R.id.progressBar);
         recyclerView=view.findViewById(R.id.recycler);
+        recyclerViewFri=view.findViewById(R.id.recycler_friend);
         refreshLayout=view.findViewById(R.id.swipeLayout);
-        noData=view.findViewById(R.id.no_data);
+        reqFri=view.findViewById(R.id.tv_reqFri);
 
         adapter= new FriAcceptAdapter(getActivity(),arrayList);
         layoutManager=new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL,false);
@@ -57,6 +70,14 @@ public class RequestFrag extends Fragment implements FriAcceptAdapter.Click {
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
         adapter.setClick(this);
+
+
+        friListAdapter= new FriListAdapter(getActivity(),friList);
+        layoutManagerFri=new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL,false);
+        recyclerViewFri.setLayoutManager(layoutManagerFri);
+        recyclerViewFri.setAdapter(friListAdapter);
+        friListAdapter.notifyDataSetChanged();
+        friListAdapter.setClick(this);
 
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -78,9 +99,9 @@ public class RequestFrag extends Fragment implements FriAcceptAdapter.Click {
 
                     if (response.body().getCode()==1){
                         if (response.body().getData().size()!=0){
-                            noData.setVisibility(View.GONE);
+                            reqFri.setVisibility(View.VISIBLE);
                         }else {
-                            noData.setVisibility(View.VISIBLE);
+                            reqFri.setVisibility(View.GONE);
                         }
                        arrayList.clear();
                        arrayList.addAll(response.body().getData());
@@ -109,6 +130,7 @@ public class RequestFrag extends Fragment implements FriAcceptAdapter.Click {
         ReqFriendListObj friendListObj=new ReqFriendListObj();
         friendListObj.setFriendId(userObj.getId());
         CallReqFriend(friendListObj);
+        CallFriList();
     }
 
     @Override
@@ -135,6 +157,29 @@ public class RequestFrag extends Fragment implements FriAcceptAdapter.Click {
                 }
                 @Override
                 public void onFailure(Call<AcceptModel> call, Throwable t) {
+                    progressBar.setVisibility(View.GONE);
+                }
+            });
+        }else {
+            Utility.showToast(getActivity(),getString(R.string.check_internet));
+        }
+    }
+
+    private void CallFriList() {
+        if (Utility.isOnline(getActivity())){
+            progressBar.setVisibility(View.VISIBLE);
+            serviceProvider.FriendList(APIURL.DomainName+APIURL.friendList).enqueue(new Callback<FriendListModel>() {
+                @Override
+                public void onResponse(Call<FriendListModel> call, Response<FriendListModel> response) {
+                    progressBar.setVisibility(View.GONE);
+                    friList.clear();
+                    friList.addAll(response.body().getData());
+
+                    friListAdapter.notifyDataSetChanged();
+
+                }
+                @Override
+                public void onFailure(Call<FriendListModel> call, Throwable t) {
                     progressBar.setVisibility(View.GONE);
                 }
             });

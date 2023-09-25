@@ -8,6 +8,7 @@ import com.chatapp.nineninechatapp.Model.FindNickName.NickNameModel;
 import com.chatapp.nineninechatapp.Model.FindNickName.NickNameObj;
 import com.chatapp.nineninechatapp.Model.FindNickName.Noti_Obj;
 import com.chatapp.nineninechatapp.Model.FindNickName.ResponNoti;
+import com.chatapp.nineninechatapp.Model.FriendList.FriendListModel;
 import com.chatapp.nineninechatapp.Model.Login.LoginModel;
 import com.chatapp.nineninechatapp.Model.Login.LoginObj;
 import com.chatapp.nineninechatapp.Model.Login.LogoutModel;
@@ -98,6 +99,11 @@ public class NetworkSync {
     public interface LogoutSync {
         @POST
         Call<LogoutModel> getSync(@Url String url);
+    }
+
+    public interface FriendListSync {
+        @POST
+        Call<FriendListModel> getSync(@Url String url);
     }
 
     public interface AcceptFriendSync {
