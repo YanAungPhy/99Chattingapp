@@ -7,10 +7,8 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.CancellationSignal;
 import android.provider.MediaStore;
 import android.util.Log;
-import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,9 +23,8 @@ import com.chatapp.nineninechatapp.R;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Consumer;
 
-public class PostVideoActivity extends AppCompatActivity {
+public class VideoListActivity extends AppCompatActivity {
 
     private static final int REQUEST_PICK_VIDEO = 456;
     private static final int REQUEST_PERMISSIONS = 345;
@@ -39,7 +36,7 @@ public class PostVideoActivity extends AppCompatActivity {
     private void retrieveVideosInBackground() {
         new VideoRetrievalTask(this, videoList -> {
 
-            VideoAdapter adapter = new VideoAdapter(videoList);
+            VideoAdapter adapter = new VideoAdapter(videoList, getApplicationContext());
             recyclerView.setLayoutManager(new GridLayoutManager(this,1));
             recyclerView.setAdapter(adapter);
         }).execute(offset, limit);

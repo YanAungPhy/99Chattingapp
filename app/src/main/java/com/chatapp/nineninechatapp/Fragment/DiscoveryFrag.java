@@ -9,17 +9,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.chatapp.nineninechatapp.Activity.PostVideoActivity;
+import com.chatapp.nineninechatapp.Activity.VideoUploadActivity;
 import com.chatapp.nineninechatapp.Adapter.PostAdapter;
 import com.chatapp.nineninechatapp.Model.Post;
 import com.chatapp.nineninechatapp.R;
@@ -114,7 +111,7 @@ public class DiscoveryFrag extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btnImgVideo:
-                startActivity(new Intent(getActivity(), PostVideoActivity.class));
+                startActivity(new Intent(getActivity(), VideoUploadActivity.class));
                 break;
         }
     }

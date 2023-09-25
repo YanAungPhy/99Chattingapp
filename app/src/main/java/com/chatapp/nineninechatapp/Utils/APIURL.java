@@ -2,8 +2,8 @@ package com.chatapp.nineninechatapp.Utils;
 
 public class APIURL {
 
-    //public static final String DomainName="http://64.227.156.101:8080/secret-code-chat-0.0.1-SNAPSHOT/api/";
-    public static final String DomainName="https://a721-69-160-8-42.ngrok-free.app/api/";
+    public static final String DomainName="http://64.227.156.101:8080/secret-code-chat-0.0.1-SNAPSHOT/api/";
+  //  public static final String DomainName="https://a772-69-160-2-204.ngrok-free.app/";
     public static final String ImageUrl="https://88ba-69-160-2-220.ngrok-free.app/api/";
 
     public static final String login="v1/auth/authenticate";
@@ -16,6 +16,7 @@ public class APIURL {
     public static final String requestFriendList="v1/user/requestFriendList";
     public static final String acceptFriend="v1/user/acceptFriend";
     public static final String logout="v1/user/logout";
+ public static final String postVideoUploadUrl ="v2/user/post-video";
 
 }
 

@@ -20,11 +20,13 @@ import com.chatapp.nineninechatapp.Model.Register.VerifyOTP.VerifyModel;
 import com.chatapp.nineninechatapp.Model.Register.VerifyOTP.VerifyObj;
 import com.chatapp.nineninechatapp.Model.ReqFriendList.ReqFriModel;
 import com.chatapp.nineninechatapp.Model.ReqFriendList.ReqFriendListObj;
+import com.chatapp.nineninechatapp.Model.VideoUploadResponse;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
@@ -57,7 +59,6 @@ public class NetworkSync {
                                      @Part("telephone") RequestBody telephone,
                                      @Part("firebase_token") RequestBody firebase_token,
                                      @Part MultipartBody.Part food_image
-
         );
     }
 
@@ -102,6 +103,17 @@ public class NetworkSync {
     public interface AcceptFriendSync {
         @POST
         Call<AcceptModel> getSync(@Url String url, @Body AcceptObj obj);
+    }
+
+    public interface  VideoUploadSync{
+        @POST
+        Call<VideoUploadResponse> videoUpload(
+                @Url String url,
+                @Header("Authorization") String authToken,
+                @Part MultipartBody.Part videoFilePath
+
+        );
+
     }
 
 }
