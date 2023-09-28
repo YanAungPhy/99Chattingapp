@@ -106,6 +106,7 @@ public class NetworkSync {
     }
 
     public interface  VideoUploadSync{
+        @Multipart
         @POST
         Call<VideoUploadResponse> videoUpload(
                 @Url String url,

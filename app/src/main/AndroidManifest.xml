@@ -36,13 +36,13 @@
                 android:value="" />
         </activity>
 
-        <activity
+       <!-- <activity
             android:name=".Activity.VideoUploadActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
-        </activity>
+        </activity>-->
 
         <activity
             android:name=".Activity.ImagePreviewActivity"
@@ -52,7 +52,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".Activity.SplashActivity"
+            android:name=".Activity.VideoUploadActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

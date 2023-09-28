@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.chatapp.nineninechatapp.Adapter.VideoAdapter;
 import com.chatapp.nineninechatapp.Model.ReqFriendList.VideoModel;
 import com.chatapp.nineninechatapp.R;
+import com.chatapp.nineninechatapp.Utils.Utility;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,9 +36,8 @@ public class VideoListActivity extends AppCompatActivity {
 
     private void retrieveVideosInBackground() {
         new VideoRetrievalTask(this, videoList -> {
-
             VideoAdapter adapter = new VideoAdapter(videoList, getApplicationContext());
-            recyclerView.setLayoutManager(new GridLayoutManager(this,1));
+            recyclerView.setLayoutManager(new GridLayoutManager(this,2));
             recyclerView.setAdapter(adapter);
         }).execute(offset, limit);
         offset += limit;
@@ -47,21 +47,23 @@ public class VideoListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_video);
-        Log.d("CheckingVideoList",vdList+"");
 
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_PERMISSIONS);
-        }else {
-            retrieveVideosInBackground();
-        }
-
-
+        checkStoragePermission();
+        Utility.FullScreen(this);
         recyclerView = findViewById(R.id.recyclerView);
 
         findViewById(R.id.btnGetVideo).setOnClickListener(v -> {
             pickVideo();
         });
 
+    }
+
+    private void checkStoragePermission() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_PERMISSIONS);
+        }else {
+            retrieveVideosInBackground();
+        }
     }
 
     public void pickVideo() {
@@ -82,48 +84,8 @@ public class VideoListActivity extends AppCompatActivity {
         }
     }
 
-    public List<VideoModel> getAllVideos(Context context) {
-        List<VideoModel> videoList = new ArrayList<>();
-        String[] projection = {
-                MediaStore.Video.Media.TITLE,
-                MediaStore.Video.Media.DATA,
-                MediaStore.Video.Media.DURATION
-        };
-
-        Cursor cursor = context.getContentResolver().query(
-                MediaStore.Video.Media.EXTERNAL_CONTENT_URI,
-                projection,
-                null,
-                null,
-                null
-        );
-
-        if (cursor != null) {
-            while (cursor.moveToNext()) {
-                int titleIndex = cursor.getColumnIndex(MediaStore.Video.Media.TITLE);
-                int fileIndex = cursor.getColumnIndex(MediaStore.Video.Media.DATA);
-                long durationIndex = cursor.getColumnIndex(MediaStore.Video.Media.DURATION);
-
-                String title = cursor.getString(titleIndex);
-                String filePath = cursor.getString(fileIndex);
-                long duration = cursor.getLong((int) durationIndex);
-
-                VideoModel video = new VideoModel();
-                video.setTitle(title);
-                video.setFilePath(filePath);
-                video.setDuration(duration);
-
-                videoList.add(video);
-            }
-            cursor.close();
-        }
-
-        return videoList;
-    }
 
 }
-
-
 
  class VideoRetrievalTask extends AsyncTask<Integer, Void, List<VideoModel>> {
      private Context context;

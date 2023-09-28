@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ProgressBar;
 
 import com.chatapp.nineninechatapp.Model.Register.UploadImgModel;
 import com.chatapp.nineninechatapp.Model.VideoUploadResponse;
@@ -30,6 +31,7 @@ public class VideoUploadActivity extends AppCompatActivity {
 
     private String accessToken;
     private String videoFilePath;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,7 @@ public class VideoUploadActivity extends AppCompatActivity {
 
         accessToken = AppStorePreferences.getString(this, AppENUM.TOKEN);
         videoFilePath = getIntent().getStringExtra("filePath");
+        progressBar = findViewById(R.id.btnProgress);
 
         Log.d("CheckingSystemToken", accessToken+"CheckToken");
         Log.d("CheckingVideoFilePath", videoFilePath+"CheckToken");
@@ -54,10 +57,13 @@ public class VideoUploadActivity extends AppCompatActivity {
 
 
     private void uploadVideoFile(){
+        progressBar.setVisibility(View.VISIBLE);
 
-        File videoFileToUpload = new File(videoFilePath);
-        RequestBody requestVideoFile = RequestBody.create(MediaType.parse("multipart/form-data"), videoFileToUpload);
-        MultipartBody.Part videoPart = MultipartBody.Part.createFormData("video", videoFileToUpload.getName(), requestVideoFile);
+        File videoFile = new File(videoFilePath);
+        RequestBody requestBody = RequestBody.create(MediaType.parse("video/*"), videoFile);
+        MultipartBody.Part videoPart = MultipartBody.Part.createFormData("file", videoFile.getName(), requestBody);
+        Log.d("CheckingPostVideoFile",videoPart+"");
+        Log.d("CheckingPostVideoFile",videoFilePath+"");
 
         RetrofitFactory factory=new RetrofitFactory();
         Retrofit retrofit=factory.connector();
@@ -67,12 +73,14 @@ public class VideoUploadActivity extends AppCompatActivity {
         call.enqueue(new Callback<VideoUploadResponse>() {
             @Override
             public void onResponse(Call<VideoUploadResponse> call, Response<VideoUploadResponse> response) {
-
+                progressBar.setVisibility(View.GONE);
+              //  Log.d("CheckingPostVideo",response.body().toString()+"Response Error");
             }
 
             @Override
             public void onFailure(Call<VideoUploadResponse> call, Throwable t) {
-
+                progressBar.setVisibility(View.GONE);
+                Log.d("CheckingPostVideo",t.toString());
             }
         });
 

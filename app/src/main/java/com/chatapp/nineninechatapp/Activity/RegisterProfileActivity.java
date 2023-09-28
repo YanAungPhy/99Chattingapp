@@ -9,13 +9,11 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,8 +21,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.bumptech.glide.Glide;
 import com.chatapp.nineninechatapp.EventBusModel.StringBus;
 import com.chatapp.nineninechatapp.Fragment.DialogImagePicker;
-import com.chatapp.nineninechatapp.Model.Login.LoginModel;
-
 import com.chatapp.nineninechatapp.Model.Register.UploadImgModel;
 import com.chatapp.nineninechatapp.R;
 import com.chatapp.nineninechatapp.Utils.APIURL;
