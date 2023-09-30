@@ -5,21 +5,56 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-    <RelativeLayout
+    
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <include layout="@layout/content_loading"/>
-
-        <include layout="@layout/empty_data"/>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="match_parent">
 
-    </RelativeLayout>
+            <include layout="@layout/content_loading"/>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:visibility="visible"
+                    android:id="@+id/tv_reqFri"
+                    android:padding="10dp"
+                    android:textStyle="bold"
+                    android:textSize="18dp"
+                    android:text="@string/request_friend"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:padding="10dp"
+                    android:textStyle="bold"
+                    android:textSize="18dp"
+                    android:text="@string/friend"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_friend"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
 
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
