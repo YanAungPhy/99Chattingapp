@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.chatapp.nineninechatapp.Fragment.RequestFrag;
-import com.chatapp.nineninechatapp.Fragment.SearchFrag;
+import com.chatapp.nineninechatapp.Model.FriendList.FriendListDataModel;
 import com.chatapp.nineninechatapp.Model.Login.UserObj;
 import com.chatapp.nineninechatapp.Model.ReqFriendList.ReqFriDataModel;
 import com.chatapp.nineninechatapp.R;
@@ -24,17 +24,16 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class FriAcceptAdapter extends RecyclerView.Adapter<FriAcceptAdapter.MyViewHolder> {
-
+public class FriListAdapter extends RecyclerView.Adapter<FriListAdapter.MyViewHolder> {
     Context context;
-    List<ReqFriDataModel> list;
+    List<FriendListDataModel> list;
     UserObj userObj=new UserObj();
-
     public RequestFrag click;
 
-    public FriAcceptAdapter(FragmentActivity activity, ArrayList<ReqFriDataModel> arrayList) {
+    public FriListAdapter(FragmentActivity activity, ArrayList<FriendListDataModel> friList) {
         this.context=activity;
-        this.list=arrayList;
+        this.list=friList;
+
     }
 
     public void setClick(RequestFrag requestFrag) {
@@ -67,19 +66,14 @@ public class FriAcceptAdapter extends RecyclerView.Adapter<FriAcceptAdapter.MyVi
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
 
-        ReqFriDataModel obj=list.get(position);
+        FriendListDataModel obj=list.get(position);
         RequestOptions requestOptions = new RequestOptions();
         requestOptions.placeholder(R.drawable.profile_default);
         requestOptions.error(R.drawable.profile_default);
-        Glide.with(context).load(APIURL.ImageUrl+obj.getRequestFriendImagePath()).apply(requestOptions).into(holder.imageView);
-        holder.name.setText(String.valueOf(obj.getRequestFriendName()));
+        Glide.with(context).load(APIURL.ImageUrl+obj.getRequestFriend().getImagePath()).apply(requestOptions).into(holder.imageView);
+        holder.name.setText(String.valueOf(obj.getRequestFriend().getName()));
 
-        holder.accept.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                click.AdapterClick(obj);
-            }
-        });
+        holder.accept.setVisibility(View.GONE);
 
     }
 
@@ -99,6 +93,6 @@ public class FriAcceptAdapter extends RecyclerView.Adapter<FriAcceptAdapter.MyVi
     }
 
     public interface Click{
-        public void AdapterClick(ReqFriDataModel obj);
+        public void AdapterClick(FriendListDataModel obj);
     }
 }

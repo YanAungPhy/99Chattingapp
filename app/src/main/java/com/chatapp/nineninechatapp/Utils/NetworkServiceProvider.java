@@ -9,6 +9,7 @@ import com.chatapp.nineninechatapp.Model.FindNickName.AddFriend.AddFriendModel;
 import com.chatapp.nineninechatapp.Model.FindNickName.AddFriend.AddFriendObj;
 import com.chatapp.nineninechatapp.Model.FindNickName.NickNameModel;
 import com.chatapp.nineninechatapp.Model.FindNickName.NickNameObj;
+import com.chatapp.nineninechatapp.Model.FriendList.FriendListModel;
 import com.chatapp.nineninechatapp.Model.Login.LoginModel;
 import com.chatapp.nineninechatapp.Model.Login.LoginObj;
 import com.chatapp.nineninechatapp.Model.Login.LogoutModel;
@@ -77,6 +78,11 @@ public class NetworkServiceProvider {
     public Call<AcceptModel> AcceptFriend (String url, AcceptObj obj) {
         NetworkSync.AcceptFriendSync sync=retrofit.create(NetworkSync.AcceptFriendSync.class);
         return sync.getSync(url,obj);
+    }
+
+    public Call<FriendListModel> FriendList (String url) {
+        NetworkSync.FriendListSync sync=retrofit.create(NetworkSync.FriendListSync.class);
+        return sync.getSync(url);
     }
 
 }
