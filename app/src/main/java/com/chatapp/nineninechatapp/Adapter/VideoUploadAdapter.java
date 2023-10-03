@@ -16,17 +16,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.chatapp.nineninechatapp.Activity.VideoUploadActivity;
-import com.chatapp.nineninechatapp.Model.ReqFriendList.VideoModel;
+
+import com.chatapp.nineninechatapp.Model.UploadPost.VideoModel;
 import com.chatapp.nineninechatapp.R;
 
 import java.io.File;
 import java.util.List;
 
-public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> {
+public class VideoUploadAdapter extends RecyclerView.Adapter<VideoUploadAdapter.ViewHolder> {
     private List<VideoModel> videoList;
     private Context context;
 
-    public VideoAdapter(List<VideoModel> videoList,Context context) {
+    public VideoUploadAdapter(List<VideoModel> videoList, Context context) {
         this.videoList = videoList;
         this.context = context;
     }

@@ -8,7 +8,6 @@ import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,8 +16,9 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.chatapp.nineninechatapp.Adapter.VideoAdapter;
-import com.chatapp.nineninechatapp.Model.ReqFriendList.VideoModel;
+import com.chatapp.nineninechatapp.Adapter.VideoUploadAdapter;
+
+import com.chatapp.nineninechatapp.Model.UploadPost.VideoModel;
 import com.chatapp.nineninechatapp.R;
 import com.chatapp.nineninechatapp.Utils.Utility;
 
@@ -36,7 +36,7 @@ public class VideoListActivity extends AppCompatActivity {
 
     private void retrieveVideosInBackground() {
         new VideoRetrievalTask(this, videoList -> {
-            VideoAdapter adapter = new VideoAdapter(videoList, getApplicationContext());
+            VideoUploadAdapter adapter = new VideoUploadAdapter(videoList, getApplicationContext());
             recyclerView.setLayoutManager(new GridLayoutManager(this,2));
             recyclerView.setAdapter(adapter);
         }).execute(offset, limit);

@@ -62,8 +62,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
         });
 
         holder.imgComment.setOnClickListener(v -> {
-            CommentFragment fullBottomDialogFragment = new CommentFragment();
-            fullBottomDialogFragment.show(((AppCompatActivity) context).getSupportFragmentManager(), fullBottomDialogFragment.getTag());
+           /* CommentFragment fullBottomDialogFragment = new CommentFragment();
+            fullBottomDialogFragment.show(((AppCompatActivity) context).getSupportFragmentManager(), fullBottomDialogFragment.getTag());*/
             //fullBottomDialogFragment.show(fullBottomDialogFragment.getActivity().getSupportFragmentManager(), fullBottomDialogFragment.getTag());
 
             CommentFragment commentFragment = new CommentFragment();

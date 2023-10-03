@@ -133,16 +133,7 @@ public class Utility {
 
 
 
-   /* public static void setWindowFlag(AppCompatActivity activity, final int bits, boolean on) {
-        Window win = activity.getWindow();
-        WindowManager.LayoutParams winParams = win.getAttributes();
-        if (on) {
-            winParams.flags |= bits;
-        } else {
-            winParams.flags &= ~bits;
-        }
-        win.setAttributes(winParams);
-    }*/
+
 
 }
 

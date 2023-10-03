@@ -1,7 +1,6 @@
-package com.chatapp.nineninechatapp.Model.ReqFriendList;
+package com.chatapp.nineninechatapp.Model.UploadPost;
 
 public class VideoModel {
-
     private String title;
     private String filePath;
     private long duration;

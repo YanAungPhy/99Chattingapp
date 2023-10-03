@@ -68,5 +68,8 @@
     <string name="already_add">Already Addded</string>
     <string name="accept">Accept</string>
     <string name="empty_data">No Data</string>
+    <string name="new_post">New Post</string>
+    <string name="what_is_on_you_mind">What\'s on you mind?</string>
+    <string name="create_post">Create Post</string>
 
 </resources>
