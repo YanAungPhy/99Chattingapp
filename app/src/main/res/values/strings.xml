@@ -69,5 +69,6 @@
     <string name="accept">Accept</string>
     <string name="empty_data">No Data</string>
     <string name="friend">Friends</string>
+    <string name="map">Map</string>
 
 </resources>

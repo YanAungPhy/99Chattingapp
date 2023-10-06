@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Switch;
@@ -33,6 +34,7 @@ import retrofit2.Response;
 
 public class SettingActivity extends AppCompatActivity implements View.OnClickListener {
 
+    LinearLayout map;
     TextView toolbar;
     ImageView back;
     Switch aSwitch;
@@ -49,6 +51,7 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
         btnLogout=findViewById(R.id.btn_logout);
         aSwitch=findViewById(R.id.btn_switch);
         progressBar=findViewById(R.id.progressBar);
+        map=findViewById(R.id.map);
         mtoolbar();
 
         if (AppStorePreferences.getBoolean(SettingActivity.this,"dark_mode")){
@@ -72,8 +75,8 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
             }
         });
 
-        btnLogout.setOnClickListener(this);
 
+        map=findViewById(R.id.layout_map);
         spinner=findViewById(R.id.spinner_b);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.spinner_item, languages);
         adapter.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
@@ -99,6 +102,9 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
                 // Handle the case where nothing is selected
             }
         });
+
+        map.setOnClickListener(this);
+        btnLogout.setOnClickListener(this);
 
     }
     private void showLanguageChangeConfirmDialogBox() {
@@ -134,6 +140,11 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
             case R.id.btn_logout:
 
                 CallLogout();
+
+                break;
+            case R.id.layout_map:
+
+                startActivity(new Intent(SettingActivity.this,MapActivity.class));
 
                 break;
         }

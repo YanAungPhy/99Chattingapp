@@ -85,10 +85,16 @@
         <activity android:name=".Activity.RegisterDetailsActivity" />
         <activity android:name=".Activity.ChatActivity" />
         <activity android:name=".Activity.RegisterProfileActivity" />
+        <activity android:name=".Activity.MapActivity"/>
+
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Design.NoActionBar" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyA_zrwVLl5D4RxsK0RlgunpngM5IJaQ-Mo" />
 
         <service
             android:name=".Services.MyFirebaseMessagingService"
