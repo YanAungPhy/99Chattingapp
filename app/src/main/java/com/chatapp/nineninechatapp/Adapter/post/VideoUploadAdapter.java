@@ -1,4 +1,4 @@
-package com.chatapp.nineninechatapp.Adapter;
+package com.chatapp.nineninechatapp.Adapter.post;
 
 import android.content.Context;
 import android.content.Intent;
@@ -45,7 +45,6 @@ public class VideoUploadAdapter extends RecyclerView.Adapter<VideoUploadAdapter.
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         VideoModel video = videoList.get(position);
         holder.titleTextView.setText(video.getTitle());
-        Log.d("GetDuration",video.getDuration()+"");
         Glide.with(context)
                 .load(Uri.fromFile(new File(video.getFilePath())))
                 .thumbnail(0.5f)

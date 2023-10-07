@@ -1,4 +1,4 @@
-package com.chatapp.nineninechatapp.Adapter;
+package com.chatapp.nineninechatapp.Adapter.post;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,7 +14,7 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.chatapp.nineninechatapp.Activity.ImagePreviewActivity;
-import com.chatapp.nineninechatapp.Fragment.CommentFragment;
+import com.chatapp.nineninechatapp.BottomSheetDialog.CommentDialog;
 import com.chatapp.nineninechatapp.Model.Post;
 import com.chatapp.nineninechatapp.R;
 import com.squareup.picasso.Picasso;
@@ -62,12 +62,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
         });
 
         holder.imgComment.setOnClickListener(v -> {
-           /* CommentFragment fullBottomDialogFragment = new CommentFragment();
-            fullBottomDialogFragment.show(((AppCompatActivity) context).getSupportFragmentManager(), fullBottomDialogFragment.getTag());*/
-            //fullBottomDialogFragment.show(fullBottomDialogFragment.getActivity().getSupportFragmentManager(), fullBottomDialogFragment.getTag());
-
-            CommentFragment commentFragment = new CommentFragment();
-            commentFragment.show(((AppCompatActivity) context).getSupportFragmentManager(), commentFragment.getTag());
+            CommentDialog commentDialog = new CommentDialog();
+            commentDialog.show(((AppCompatActivity) context).getSupportFragmentManager(), commentDialog.getTag());
 
         });
     }

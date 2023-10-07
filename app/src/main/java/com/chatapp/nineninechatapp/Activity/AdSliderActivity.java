@@ -140,4 +140,5 @@ public class AdSliderActivity extends AppCompatActivity implements View.OnClickL
 
     }
 
+
 }

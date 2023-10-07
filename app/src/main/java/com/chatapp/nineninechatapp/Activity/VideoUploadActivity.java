@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ProgressBar;
 
 import com.chatapp.nineninechatapp.Model.Register.UploadImgModel;
@@ -27,11 +28,13 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class VideoUploadActivity extends AppCompatActivity {
+public class VideoUploadActivity extends AppCompatActivity implements View.OnClickListener {
 
     private String accessToken;
     private String videoFilePath;
     private ProgressBar progressBar;
+    private Button btnUpload;
+    private Button postVideo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,20 +44,25 @@ public class VideoUploadActivity extends AppCompatActivity {
         accessToken = AppStorePreferences.getString(this, AppENUM.TOKEN);
         videoFilePath = getIntent().getStringExtra("filePath");
         progressBar = findViewById(R.id.btnProgress);
-
-        Log.d("CheckingSystemToken", accessToken+"CheckToken");
-        Log.d("CheckingVideoFilePath", videoFilePath+"CheckToken");
+        btnUpload = findViewById(R.id.btnUpload);
 
 
-        findViewById(R.id.btnUpload).setOnClickListener(v -> {
-            startActivity(new Intent(VideoUploadActivity.this,VideoListActivity.class));
-        });
-
-        findViewById(R.id.postVideo).setOnClickListener(v -> {
-           uploadVideoFile();
-        });
+        btnUpload.setOnClickListener(this);
+        postVideo.setOnClickListener(this);
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.btnUpload:
+                startActivity(new Intent(VideoUploadActivity.this,VideoListActivity.class));
+                break;
+            case R.id.postVideo:
+                uploadVideoFile();
+                break;
+
+        }
+    }
 
     private void uploadVideoFile(){
         progressBar.setVisibility(View.VISIBLE);
@@ -74,7 +82,7 @@ public class VideoUploadActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<VideoUploadResponse> call, Response<VideoUploadResponse> response) {
                 progressBar.setVisibility(View.GONE);
-              //  Log.d("CheckingPostVideo",response.body().toString()+"Response Error");
+                //  Log.d("CheckingPostVideo",response.body().toString()+"Response Error");
             }
 
             @Override
@@ -86,7 +94,6 @@ public class VideoUploadActivity extends AppCompatActivity {
 
 
     }
-
 }
 
 

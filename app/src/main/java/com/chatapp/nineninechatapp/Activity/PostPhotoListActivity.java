@@ -1,32 +1,36 @@
 package com.chatapp.nineninechatapp.Activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
-import com.chatapp.nineninechatapp.Adapter.PhotoUploadAdapter;
-import com.chatapp.nineninechatapp.Adapter.VideoUploadAdapter;
-import com.chatapp.nineninechatapp.Model.Post;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.chatapp.nineninechatapp.Adapter.post.PhotoListAdapter;
 import com.chatapp.nineninechatapp.Model.UploadPost.PostPhoto;
 import com.chatapp.nineninechatapp.R;
+import com.chatapp.nineninechatapp.Utils.Constant;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PostPhotoListActivity extends AppCompatActivity {
+public class PostPhotoListActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private Button btnNext;
     private RecyclerView recyclerView;
     private List<PostPhoto > photoList;
-    private PhotoUploadAdapter photoUploadAdapter;
+    private PhotoListAdapter photoUploadAdapter;
+    private  ArrayList<PostPhoto> selectedPhotosResult;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,11 +38,14 @@ public class PostPhotoListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_post_photo_list);
 
         recyclerView = findViewById(R.id.photoListRecyclerView);
+        btnNext = findViewById(R.id.btnNext);
         photoList = getAllImages(this);
-        photoUploadAdapter = new PhotoUploadAdapter(photoList, getApplicationContext());
+
+        photoUploadAdapter = new PhotoListAdapter(photoList, getApplicationContext());
         recyclerView.setLayoutManager(new GridLayoutManager(this,3));
         recyclerView.setAdapter(photoUploadAdapter);
 
+        btnNext.setOnClickListener(this);
     }
 
     private List<PostPhoto> getAllImages(Context context) {
@@ -116,5 +123,20 @@ public class PostPhotoListActivity extends AppCompatActivity {
         }
 
         return imagePaths;
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.btnNext:
+                selectedPhotosResult = photoUploadAdapter.getSelectedPhotos();
+                Log.d("CheckingPohoto==>>",selectedPhotosResult+"");
+                Intent intent = new Intent(PostPhotoListActivity.this,PhotoUploadActivity.class);
+                intent.putExtra(Constant.SELECTED_PHOTOLIST,selectedPhotosResult);
+                startActivity(intent);
+                finish();
+                break;
+
+        }
     }
 }

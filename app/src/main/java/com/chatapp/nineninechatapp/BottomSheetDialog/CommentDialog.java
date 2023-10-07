@@ -1,4 +1,4 @@
-package com.chatapp.nineninechatapp.Fragment;
+package com.chatapp.nineninechatapp.BottomSheetDialog;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,7 +14,7 @@ import androidx.fragment.app.DialogFragment;
 import com.chatapp.nineninechatapp.R;
 
 
-public class CommentFragment extends DialogFragment {
+public class CommentDialog extends DialogFragment {
 
     @Nullable
     @Override

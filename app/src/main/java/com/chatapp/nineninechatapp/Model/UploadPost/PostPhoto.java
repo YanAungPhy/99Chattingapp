@@ -1,6 +1,8 @@
 package com.chatapp.nineninechatapp.Model.UploadPost;
 
-public class PostPhoto {
+import java.io.Serializable;
+
+public class PostPhoto implements Serializable {
     private String imageFilePath;
     private boolean isSelected;
 

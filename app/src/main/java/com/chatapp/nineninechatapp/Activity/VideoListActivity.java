@@ -16,7 +16,7 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.chatapp.nineninechatapp.Adapter.VideoUploadAdapter;
+import com.chatapp.nineninechatapp.Adapter.post.VideoUploadAdapter;
 
 import com.chatapp.nineninechatapp.Model.UploadPost.VideoModel;
 import com.chatapp.nineninechatapp.R;

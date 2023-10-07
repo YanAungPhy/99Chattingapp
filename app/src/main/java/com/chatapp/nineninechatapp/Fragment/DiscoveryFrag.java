@@ -21,7 +21,7 @@ import com.chatapp.nineninechatapp.Activity.VideoUploadActivity;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.chatapp.nineninechatapp.Adapter.PostAdapter;
+import com.chatapp.nineninechatapp.Adapter.post.PostAdapter;
 import com.chatapp.nineninechatapp.Model.Login.UserObj;
 import com.chatapp.nineninechatapp.Model.Post;
 import com.chatapp.nineninechatapp.R;
