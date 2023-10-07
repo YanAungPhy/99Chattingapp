@@ -7,7 +7,6 @@ public class APIURL {
 
     public static final String DomainName=main_url+"/api/";
     public static final String ImageUrl=main_url;
-
     public static final String login="v1/auth/authenticate";
     public static final String get_otp="v1/auth/get-0pt";
     public static final String verify_telephone="v1/auth/verify-telephone";
@@ -20,7 +19,7 @@ public class APIURL {
     public static final String friendList="v1/user/acceptFriendList";
     public static final String logout="v1/user/logout";
     public static final String postVideoUploadUrl ="api/v1/user/post-video";
-
+    public static final String postVideoUploadUrl ="v1/user/post-video";
 }
 
 

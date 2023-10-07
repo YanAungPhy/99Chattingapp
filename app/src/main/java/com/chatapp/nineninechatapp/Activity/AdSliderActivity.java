@@ -6,6 +6,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,8 +16,10 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.MediaController;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.VideoView;
 
 import com.chatapp.nineninechatapp.Adapter.OnboardingAdapter;
 import com.chatapp.nineninechatapp.Model.OnboardingItem;
@@ -36,6 +39,7 @@ public class AdSliderActivity extends AppCompatActivity implements View.OnClickL
     LinearLayout layoutOnboardingIndicator;
     TextView tvNext;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +48,7 @@ public class AdSliderActivity extends AppCompatActivity implements View.OnClickL
         Utility.FullScreen(this);
 
         Utility.loadLocale(AdSliderActivity.this);
+
 
         layoutOnboardingIndicator = findViewById(R.id.layoutOnboardingIndicators);
         tvNext=findViewById(R.id.txtNext);
