@@ -1,5 +1,7 @@
 package com.chatapp.nineninechatapp.Utils;
 
+import android.util.Log;
+
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
@@ -21,37 +23,24 @@ public class RetrofitFactory {
     public static Retrofit connector(){
         if(retrofit==null) {
 
-            HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-            interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-            OkHttpClient.Builder okClientBuilder = new OkHttpClient.Builder().connectTimeout(100, TimeUnit.SECONDS)
-                    .readTimeout(100, TimeUnit.SECONDS).addInterceptor(interceptor);
-            OkHttpClient okHttpClient = okClientBuilder.addInterceptor(new Interceptor() {
-                @Override
-                public okhttp3.Response intercept(Chain chain) throws IOException {
-                    okhttp3.Response response = chain.proceed(chain.request());
-
-                    return response;
-                }
-            }).build();
+            TokenInterceptor interceptor=new TokenInterceptor();
 
             OkHttpClient client = new OkHttpClient.Builder()
                     .addInterceptor(interceptor)
                     .build();
 
-
             Retrofit.Builder builder = new Retrofit.Builder();
             builder.client(client);
-            builder.baseUrl("http://167.99.77.54:8080/secret-code-chat-0.0.1-SNAPSHOT/");
+            builder.baseUrl("https://9f4f-69-160-8-39.ngrok-free.app/");
             builder.addConverterFactory(GsonConverterFactory.create());
 
-          //  builder.addConverterFactory(JacksonConverterFactory.create());
+            //  builder.addConverterFactory(JacksonConverterFactory.create());
 
             retrofit = builder.build();
         }
         return retrofit;
 
     }
-
 
 }
 

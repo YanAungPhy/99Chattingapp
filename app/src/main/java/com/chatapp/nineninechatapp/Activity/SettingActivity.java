@@ -10,31 +10,48 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
+import com.chatapp.nineninechatapp.Model.FindNickName.NickNameModel;
+import com.chatapp.nineninechatapp.Model.FindNickName.NickNameObj;
+import com.chatapp.nineninechatapp.Model.Login.LogoutModel;
 import com.chatapp.nineninechatapp.R;
+import com.chatapp.nineninechatapp.Utils.APIURL;
 import com.chatapp.nineninechatapp.Utils.AppENUM;
 import com.chatapp.nineninechatapp.Utils.AppStorePreferences;
+import com.chatapp.nineninechatapp.Utils.NetworkServiceProvider;
 import com.chatapp.nineninechatapp.Utils.Utility;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SettingActivity extends AppCompatActivity implements View.OnClickListener {
 
+    LinearLayout map;
     TextView toolbar;
     ImageView back;
     Switch aSwitch;
     Button btnLogout;
     Spinner spinner;
     public static final String[]languages={"Select labguage","English","Burmese"};
+    NetworkServiceProvider serviceProvider;
+    ProgressBar progressBar;
     @Override
     protected void onCreate (Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.setting);
+        serviceProvider=new NetworkServiceProvider(this);
         btnLogout=findViewById(R.id.btn_logout);
         aSwitch=findViewById(R.id.btn_switch);
+        progressBar=findViewById(R.id.progressBar);
+        map=findViewById(R.id.map);
         mtoolbar();
 
         if (AppStorePreferences.getBoolean(SettingActivity.this,"dark_mode")){
@@ -58,8 +75,8 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
             }
         });
 
-        btnLogout.setOnClickListener(this);
 
+        map=findViewById(R.id.layout_map);
         spinner=findViewById(R.id.spinner_b);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.spinner_item, languages);
         adapter.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
@@ -86,6 +103,9 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
             }
         });
 
+        map.setOnClickListener(this);
+        btnLogout.setOnClickListener(this);
+
     }
     private void showLanguageChangeConfirmDialogBox() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -109,24 +129,6 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
 
     }
 
-
-//    public void setLocale(String langCode) {
-//        Locale locale = new Locale(langCode);
-//        Locale.setDefault(locale);
-//        Resources resources = getResources();
-//        Configuration config = new Configuration(resources.getConfiguration());
-//        config.setLocale(locale);
-//        resources.updateConfiguration(config, resources.getDisplayMetrics());
-//
-//        // Save the selected language in SharedPreferences
-//        AppStorePreferences.putString(this, "selected_language", langCode);
-//    }
-//    public void loadLocale(){
-//        String langCode = AppStorePreferences.getString(this, "selected_language", "");
-//        if (!langCode.isEmpty()){
-//            setLocale(langCode);
-//        }
-//    }
     @Override
     public void onClick(View view) {
         switch (view.getId()){
@@ -137,10 +139,12 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
                 break;
             case R.id.btn_logout:
 
-                Utility.delete_UserProfile(this);
-                AppStorePreferences.putInt(SettingActivity.this, AppENUM.LOGIN_CON,0);
-                startActivity(new Intent(SettingActivity.this,LoginActivity.class));
-                finishAffinity();
+                CallLogout();
+
+                break;
+            case R.id.layout_map:
+
+                startActivity(new Intent(SettingActivity.this,MapActivity.class));
 
                 break;
         }
@@ -157,6 +161,31 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
         }else {
             back.setImageResource(R.drawable.back_black);
             toolbar.setTextColor(getResources().getColor(R.color.black));
+        }
+    }
+
+    private void CallLogout() {
+        if (Utility.isOnline(this)){
+            progressBar.setVisibility(View.VISIBLE);
+            serviceProvider.Logout(APIURL.DomainName+APIURL.logout).enqueue(new Callback<LogoutModel>() {
+                @Override
+                public void onResponse(Call<LogoutModel> call, Response<LogoutModel> response) {
+                    progressBar.setVisibility(View.GONE);
+
+                    Utility.delete_UserProfile(SettingActivity.this);
+                    AppStorePreferences.putInt(SettingActivity.this, AppENUM.LOGIN_CON,0);
+                    AppStorePreferences.putString(SettingActivity.this,AppENUM.TOKEN,"");
+                    AppStorePreferences.putString(SettingActivity.this,AppENUM.FCM_TOKEN,"");
+                    startActivity(new Intent(SettingActivity.this,LoginActivity.class));
+                    finishAffinity();
+                }
+                @Override
+                public void onFailure(Call<LogoutModel> call, Throwable t) {
+                    progressBar.setVisibility(View.GONE);
+                }
+            });
+        }else {
+            Utility.showToast(this,getString(R.string.check_internet));
         }
     }
 

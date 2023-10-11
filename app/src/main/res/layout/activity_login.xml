@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -9,11 +9,12 @@
     android:orientation="vertical">
 
     <com.google.android.material.imageview.ShapeableImageView
+        android:layout_centerHorizontal="true"
         android:id="@+id/img_launcher"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="100dp"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
         android:src="@drawable/world"
@@ -22,6 +23,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:layout_above="@id/linear_container"
         android:id="@+id/txt_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -33,17 +35,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/img_launcher" />
 
+
     <LinearLayout
+        android:layout_above="@id/layout"
         android:id="@+id/linear_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
+        android:layout_marginBottom="50dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="20dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_login">
+        app:layout_constraintStart_toStartOf="parent">
 
         <TextView
             android:layout_width="wrap_content"
@@ -51,21 +55,42 @@
             android:text="@string/phone_number"
             android:textSize="16sp" />
 
-        <EditText
-            android:id="@+id/edtPhone"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="7dp"
-            android:autofillHints="no"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"
             android:background="@drawable/edittext_rounded_bg"
-            android:hint="@string/sample_phone_number"
-            android:inputType="number"
-            android:padding="13dp"
-            android:paddingStart="20dp"
-            android:textColor="@color/black"
-            android:textColorHint="@color/gray"
-            android:textCursorDrawable="@drawable/custom_cursor"
-            tools:ignore="TextFields" />
+            android:orientation="horizontal"
+            android:padding="2dp">
+
+            <com.rilixtech.widget.countrycodepicker.CountryCodePicker
+                android:id="@+id/ccp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                app:ccp_hideNameCode="true"
+                app:ccp_hidePhoneCode="false"
+                app:ccp_keyboardAutoPopOnSearch="false"
+                app:ccp_showFullName="false" />
+
+            <EditText
+                android:id="@+id/edt_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:autofillHints="no"
+                android:background="@color/grey_two"
+                android:hint="@string/sample_phone_number"
+                android:inputType="number"
+                android:padding="13dp"
+                android:paddingStart="20dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/gray"
+                android:textCursorDrawable="@drawable/custom_cursor" />
+
+        </LinearLayout>
 
         <TextView
             android:layout_width="wrap_content"
@@ -115,10 +140,11 @@
             android:textAllCaps="false"
             android:textColor="@color/white" />
 
-
     </LinearLayout>
 
     <RelativeLayout
+        android:id="@+id/layout"
+        android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="25dp"
@@ -145,16 +171,6 @@
             android:textStyle="bold" />
     </RelativeLayout>
 
+    <include layout="@layout/content_loading"/>
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:indeterminateTint="#007AFF"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

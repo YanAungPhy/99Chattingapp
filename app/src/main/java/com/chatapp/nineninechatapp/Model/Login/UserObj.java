@@ -82,18 +82,24 @@ public class UserObj implements Serializable {
     @SerializedName("starPoint")
     @Expose
     private Integer starPoint;
+    @SerializedName("firebaseToken")
+    @Expose
+    private String firebaseToken;
     @SerializedName("enabled")
     @Expose
     private Boolean enabled;
     @SerializedName("register")
     @Expose
     private Boolean register;
-    @SerializedName("authorities")
+    @SerializedName("disable")
     @Expose
-    private List<Authority> authorities;
+    private Boolean disable;
     @SerializedName("deleted")
     @Expose
     private Boolean deleted;
+    @SerializedName("authorities")
+    @Expose
+    private List<Authority> authorities;
     @SerializedName("username")
     @Expose
     private String username;
@@ -307,6 +313,14 @@ public class UserObj implements Serializable {
         this.starPoint = starPoint;
     }
 
+    public String getFirebaseToken() {
+        return firebaseToken;
+    }
+
+    public void setFirebaseToken(String firebaseToken) {
+        this.firebaseToken = firebaseToken;
+    }
+
     public Boolean getEnabled() {
         return enabled;
     }
@@ -323,12 +337,12 @@ public class UserObj implements Serializable {
         this.register = register;
     }
 
-    public List<Authority> getAuthorities() {
-        return authorities;
+    public Boolean getDisable() {
+        return disable;
     }
 
-    public void setAuthorities(List<Authority> authorities) {
-        this.authorities = authorities;
+    public void setDisable(Boolean disable) {
+        this.disable = disable;
     }
 
     public Boolean getDeleted() {
@@ -337,6 +351,14 @@ public class UserObj implements Serializable {
 
     public void setDeleted(Boolean deleted) {
         this.deleted = deleted;
+    }
+
+    public List<Authority> getAuthorities() {
+        return authorities;
+    }
+
+    public void setAuthorities(List<Authority> authorities) {
+        this.authorities = authorities;
     }
 
     public String getUsername() {

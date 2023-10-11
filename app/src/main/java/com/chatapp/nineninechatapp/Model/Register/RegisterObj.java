@@ -21,7 +21,7 @@ public class RegisterObj {
     private String birthday;
     @SerializedName("sex")
     @Expose
-    private String sex;
+    private int sex;
     @SerializedName("countryId")
     @Expose
     private String countryId;
@@ -78,11 +78,11 @@ public class RegisterObj {
         this.birthday = birthday;
     }
 
-    public String getSex() {
+    public int getSex() {
         return sex;
     }
 
-    public void setSex(String sex) {
+    public void setSex(int sex) {
         this.sex = sex;
     }
 

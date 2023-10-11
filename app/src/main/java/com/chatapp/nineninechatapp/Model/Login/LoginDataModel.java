@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 
 public class LoginDataModel implements Serializable {
-    @SerializedName("data")
+    @SerializedName("userData")
     @Expose
     private UserObj data;
     @SerializedName("access_token")

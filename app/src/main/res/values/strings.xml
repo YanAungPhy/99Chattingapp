@@ -12,7 +12,7 @@
     <string name="what_on_your_mine">What is on your minds?</string>
     <string name="profile">Profile</string>
     <string name="sample_phone_number"> 09 ***</string>
-    <string name="sign">Sign</string>
+    <string name="sign">Sign In</string>
     <string name="create_new_account">Create new account</string>
     <string name="sign_up">Sign up</string>
     <string name="register">Register</string>
@@ -59,5 +59,19 @@
     <string name="comments">. Comments</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="not_equal">Not Equal</string>
+    <string name="six_number">At least 6 digits number</string>
+    <string name="sent_otp">We sent OTP to : </string>
+    <string name="add_friend">Add Friend</string>
+    <string name="you">You</string>
+    <string name="request_friend">Request Friends</string>
+    <string name="already_add">Already Addded</string>
+    <string name="accept">Accept</string>
+    <string name="empty_data">No Data</string>
+    <string name="new_post"> Post</string>
+    <string name="what_is_on_you_mind">What\'s on you mind?</string>
+    <string name="create_post">Create Post</string>
+    <string name="friend">Friends</string>
+    <string name="map">Map</string>
 
 </resources>

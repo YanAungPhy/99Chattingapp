@@ -36,5 +36,8 @@
     <string name="search_result">ရှာဖွေမှုရလဒ်များ</string>
     <string name="resend_otp">OTP ကုဒ်ကို ပြန်ပို့ပါ။</string>
     <string name="ok">အိုကေ</string>
+    <string name="new_post">New Post</string>
+    <string name="what_is_on_you_mind">What\'s on you mind?</string>
+    <string name="create_post">Create Post</string>
 
 </resources>

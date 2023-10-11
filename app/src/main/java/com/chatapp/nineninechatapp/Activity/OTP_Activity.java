@@ -20,6 +20,7 @@ import com.chatapp.nineninechatapp.Model.Register.VerifyOTP.VerifyModel;
 import com.chatapp.nineninechatapp.Model.Register.VerifyOTP.VerifyObj;
 import com.chatapp.nineninechatapp.R;
 import com.chatapp.nineninechatapp.Utils.APIURL;
+import com.chatapp.nineninechatapp.Utils.AppStorePreferences;
 import com.chatapp.nineninechatapp.Utils.NetworkServiceProvider;
 import com.chatapp.nineninechatapp.Utils.Utility;
 import com.otpview.OTPListener;
@@ -31,8 +32,7 @@ import retrofit2.Response;
 
 public class OTP_Activity extends AppCompatActivity {
 
-    ImageView back;
-    TextView timer,resend_otp;
+    TextView timer,resend_otp,otpPhone;
     NetworkServiceProvider serviceProvider;
     ProgressBar progressBar;
     RelativeLayout btnOTP;
@@ -48,23 +48,23 @@ public class OTP_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.otp);
         Utility.darkMode(this);
-        Utility.FullScreen(this);
-
         initView();
     }
 
     private void initView() {
+        mtoolbar();
         otp_code=(String)getIntent().getSerializableExtra("otp_code");
         otpObj=(OTP_Obj) getIntent().getSerializableExtra("otp_model");
         serviceProvider=new NetworkServiceProvider(this);
         timer=findViewById(R.id.timer);
         progressBar=findViewById(R.id.progressBar);
         otpTextView=findViewById(R.id.otp_view);
+        otpPhone=findViewById(R.id.otp_phone);
+        otpPhone.setText(otpObj.getTelephone());
         otpTextView.requestFocusOTP();
        // ed_otp=findViewById(R.id.edt_otp);
         btnOTP=findViewById(R.id.btn_getOTP);
         resend_otp=findViewById(R.id.resend_otp);
-        back=findViewById(R.id.img_back);
         startTimer();
 
         otpTextView.setOtpListener(new OTPListener() {
@@ -93,12 +93,6 @@ public class OTP_Activity extends AppCompatActivity {
             }
         });
 
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
     }
 
     public void doing_otp(){
@@ -147,6 +141,7 @@ public class OTP_Activity extends AppCompatActivity {
                         Intent intent=new Intent(OTP_Activity.this,RegisterDetailsActivity.class);
                         intent.putExtra("verify_obj",otpObj);
                         startActivity(intent);
+                        finish();
 
                     }else if (response.body().getCode()==0){
                         Utility.showToast(OTP_Activity.this,response.body().getMsg());
@@ -188,6 +183,26 @@ public class OTP_Activity extends AppCompatActivity {
             });
         }else {
             Utility.showToast(this,getString(R.string.check_internet));
+        }
+    }
+
+
+    public void mtoolbar(){
+        TextView toolbar=findViewById(R.id.toolbar_com);
+        ImageView back=findViewById(R.id.back);
+        toolbar.setText(R.string.register);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+        if (AppStorePreferences.getBoolean(getApplicationContext(),"dark_mode")){
+            back.setImageResource(R.drawable.back_white);
+            toolbar.setTextColor(getResources().getColor(R.color.white));
+        }else {
+            back.setImageResource(R.drawable.back_black);
+            toolbar.setTextColor(getResources().getColor(R.color.black));
         }
     }
 }

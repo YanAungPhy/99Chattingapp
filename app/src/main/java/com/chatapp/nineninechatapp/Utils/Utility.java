@@ -16,12 +16,15 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.CycleInterpolator;
 import android.view.animation.TranslateAnimation;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
 import com.chatapp.nineninechatapp.Model.Login.UserObj;
+import com.chatapp.nineninechatapp.R;
 import com.google.gson.Gson;
 
 import java.util.Locale;
@@ -130,16 +133,7 @@ public class Utility {
 
 
 
-   /* public static void setWindowFlag(AppCompatActivity activity, final int bits, boolean on) {
-        Window win = activity.getWindow();
-        WindowManager.LayoutParams winParams = win.getAttributes();
-        if (on) {
-            winParams.flags |= bits;
-        } else {
-            winParams.flags &= ~bits;
-        }
-        win.setAttributes(winParams);
-    }*/
+
 
 }
 

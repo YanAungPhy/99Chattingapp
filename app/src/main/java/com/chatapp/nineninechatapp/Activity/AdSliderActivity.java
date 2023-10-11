@@ -6,6 +6,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,14 +16,19 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.MediaController;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.VideoView;
 
 import com.chatapp.nineninechatapp.Adapter.OnboardingAdapter;
 import com.chatapp.nineninechatapp.Model.OnboardingItem;
 import com.chatapp.nineninechatapp.R;
 
+import com.chatapp.nineninechatapp.Utils.AppENUM;
+import com.chatapp.nineninechatapp.Utils.AppStorePreferences;
 import com.chatapp.nineninechatapp.Utils.Utility;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,13 +39,16 @@ public class AdSliderActivity extends AppCompatActivity implements View.OnClickL
     LinearLayout layoutOnboardingIndicator;
     TextView tvNext;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ad_slider);
+
         Utility.FullScreen(this);
 
         Utility.loadLocale(AdSliderActivity.this);
+
 
         layoutOnboardingIndicator = findViewById(R.id.layoutOnboardingIndicators);
         tvNext=findViewById(R.id.txtNext);
@@ -65,7 +74,16 @@ public class AdSliderActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View v) {
         switch(v.getId()){
             case R.id.txtNext:
-                startActivity(new Intent(AdSliderActivity.this,LoginActivity.class));
+                if (AppStorePreferences.getInt(AdSliderActivity.this, AppENUM.LOGIN_CON) == 1) {
+
+                    startActivity(new Intent(AdSliderActivity.this, MainActivity.class));
+
+                } else {
+
+                    startActivity(new Intent(AdSliderActivity.this, LoginActivity.class));
+
+                }
+                finish();
         }
     }
 
@@ -126,5 +144,6 @@ public class AdSliderActivity extends AppCompatActivity implements View.OnClickL
         }
 
     }
+
 
 }

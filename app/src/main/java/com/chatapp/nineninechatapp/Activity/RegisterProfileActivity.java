@@ -11,9 +11,9 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,9 +21,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.bumptech.glide.Glide;
 import com.chatapp.nineninechatapp.EventBusModel.StringBus;
 import com.chatapp.nineninechatapp.Fragment.DialogImagePicker;
-import com.chatapp.nineninechatapp.Model.Register.UserImg.UserImgModel;
+import com.chatapp.nineninechatapp.Model.Register.UploadImgModel;
 import com.chatapp.nineninechatapp.R;
 import com.chatapp.nineninechatapp.Utils.APIURL;
+import com.chatapp.nineninechatapp.Utils.AppENUM;
+import com.chatapp.nineninechatapp.Utils.AppStorePreferences;
 import com.chatapp.nineninechatapp.Utils.NetworkSync;
 import com.chatapp.nineninechatapp.Utils.RetrofitFactory;
 import com.chatapp.nineninechatapp.Utils.Utility;
@@ -72,6 +74,7 @@ public class RegisterProfileActivity extends AppCompatActivity implements View.O
     }
 
     public void initView() {
+        mtoolbar();
         phone=(String)getIntent().getSerializableExtra("telephone");
         progressBar=findViewById(R.id.progressBar);
         imageView=findViewById(R.id.user_image);
@@ -92,6 +95,11 @@ public class RegisterProfileActivity extends AppCompatActivity implements View.O
             case R.id.tv_next:
 
                 Call_Api();
+
+                break;
+            case R.id.back:
+
+                finish();
 
                 break;
         }
@@ -155,7 +163,6 @@ public class RegisterProfileActivity extends AppCompatActivity implements View.O
         }
     }
 
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -180,7 +187,6 @@ public class RegisterProfileActivity extends AppCompatActivity implements View.O
             }
         }
     }
-
 
     public String SaveProfile(Bitmap myBitmap) {
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
@@ -213,7 +219,6 @@ public class RegisterProfileActivity extends AppCompatActivity implements View.O
         return "";
     }
 
-
     public void Call_Api(){
 
         if (Utility.isOnline(this)){
@@ -223,40 +228,54 @@ public class RegisterProfileActivity extends AppCompatActivity implements View.O
                 user_image= MultipartBody.Part.createFormData("file", file_profile.getName(), image);
 
             }
-
             RequestBody telephone = RequestBody.create(MediaType.parse("text/plain"), phone);
-
+            RequestBody firebase_token = RequestBody.create(MediaType.parse("text/plain"), AppStorePreferences.getString(RegisterProfileActivity.this,AppENUM.FCM_TOKEN));
             RetrofitFactory factory=new RetrofitFactory();
             Retrofit retrofit=factory.connector();
             NetworkSync.UserImgSync sync =retrofit.create(NetworkSync.UserImgSync.class);
-            Call<UserImgModel> call=sync.UserImg(APIURL.DomainName+APIURL.uploadImageUrl,telephone,user_image);
-            call.enqueue(new Callback<UserImgModel>() {
+            Call<UploadImgModel> call=sync.UserImg(APIURL.DomainName+APIURL.uploadImageUrl,telephone,firebase_token,user_image);
+            call.enqueue(new Callback<UploadImgModel>() {
                 @Override
-                public void onResponse(Call<UserImgModel> call, Response<UserImgModel> response) {
+                public void onResponse(Call<UploadImgModel> call, Response<UploadImgModel> response) {
 
                     progressBar.setVisibility(View.GONE);
 
                     if (response.body().getCode()==1){
 
                         Utility.showToast(RegisterProfileActivity.this,response.body().getMsg());
+                        AppStorePreferences.putInt(RegisterProfileActivity.this, AppENUM.LOGIN_CON,1);
+                        Utility.Save_UserProfile(RegisterProfileActivity.this,response.body().getData());
                         finish();
                         startActivity(new Intent(RegisterProfileActivity.this,MainActivity.class));
 
                     }else if (response.body().getCode()==0){
                         Utility.showToast(RegisterProfileActivity.this,response.body().getMsg());
                     }
-
                 }
                 @Override
-                public void onFailure(Call<UserImgModel> call, Throwable t) {
+                public void onFailure(Call<UploadImgModel> call, Throwable t) {
                     progressBar.setVisibility(View.GONE);
                 }
             });
 
         }else {
-           // Toast.makeText(RegisterShopActivity.this, R.string.please_check_internet, Toast.LENGTH_SHORT).show();
+           Utility.showToast(RegisterProfileActivity.this,getString(R.string.check_internet));
         }
+
     }
 
+    public void mtoolbar(){
+        TextView toolbar=findViewById(R.id.toolbar_com);
+        ImageView back=findViewById(R.id.back);
+        toolbar.setText(R.string.register);
+        back.setOnClickListener(this);
+        if (AppStorePreferences.getBoolean(getApplicationContext(),"dark_mode")){
+            back.setImageResource(R.drawable.back_white);
+            toolbar.setTextColor(getResources().getColor(R.color.white));
+        }else {
+            back.setImageResource(R.drawable.back_black);
+            toolbar.setTextColor(getResources().getColor(R.color.black));
+        }
+    }
 
 }

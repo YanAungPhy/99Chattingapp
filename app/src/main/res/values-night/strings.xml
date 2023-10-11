@@ -15,4 +15,7 @@
     <string name="sample_status">Design beautiful and modern Android apps that meet your user where they are, whether browsing their phone, reading on their tablet, glancing at their wrist, or watching TV.</string>
     <string name="likes">. Likes</string>
     <string name="comments">. Comments</string>
+    <string name="new_post">New Post</string>
+    <string name="what_is_on_you_mind">What\'s on you mind?</string>
+    <string name="create_post">Create Post</string>
 </resources>

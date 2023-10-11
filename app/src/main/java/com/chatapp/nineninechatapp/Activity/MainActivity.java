@@ -10,6 +10,7 @@ import android.app.Activity;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -27,6 +28,7 @@ import com.chatapp.nineninechatapp.Adapter.ViewPagerAdapter;
 import com.chatapp.nineninechatapp.Fragment.AccountFrag;
 import com.chatapp.nineninechatapp.Fragment.DiscoveryFrag;
 import com.chatapp.nineninechatapp.Fragment.FeedFrag;
+import com.chatapp.nineninechatapp.Fragment.FriendFrag;
 import com.chatapp.nineninechatapp.Fragment.HomeFrag;
 import com.chatapp.nineninechatapp.Fragment.SearchFrag;
 
@@ -46,11 +48,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     DiscoveryFrag discoveryFrag;
     FeedFrag feedFrag;
     HomeFrag homeFrag;
-    SearchFrag searchFrag;
+    FriendFrag friendFrag;
     LinearLayout home,search,disc,account;
     RelativeLayout video;
     ImageView imgVideo,imgHome,imgSearch,imgDisc,imgAccount;
-
+    UserObj userObj;
 
 
     @Override
@@ -60,13 +62,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Utility.darkMode(this);
 
         intiUI();
-        Utility.FullScreen(this);
+      //  Utility.FullScreen(this);
 
     }
 
 
 
     private void intiUI() {
+        userObj=Utility.query_UserProfile(this);
+
         viewPager=findViewById(R.id.viewpager_container);
         home=findViewById(R.id.home);
         search=findViewById(R.id.search);
@@ -99,13 +103,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         homeFrag = new HomeFrag();
-        searchFrag = new SearchFrag();
+        friendFrag = new FriendFrag();
         feedFrag = new FeedFrag();
         discoveryFrag = new DiscoveryFrag();
         accountFrag=new AccountFrag();
 
         viewPagerAdapter.addFragment(homeFrag);
-        viewPagerAdapter.addFragment(searchFrag);
+        viewPagerAdapter.addFragment(friendFrag);
         viewPagerAdapter.addFragment(feedFrag);
         viewPagerAdapter.addFragment(discoveryFrag);
         viewPagerAdapter.addFragment(accountFrag);
@@ -151,7 +155,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     imgSearch.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.search_d));
                     imgDisc.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.dis));
                 }
-                replaceFragment(searchFrag);
+                replaceFragment(friendFrag);
 
                 break;
             case R.id.video:
