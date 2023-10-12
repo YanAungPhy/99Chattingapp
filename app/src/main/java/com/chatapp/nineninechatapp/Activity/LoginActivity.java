@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -102,8 +103,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 edtPassword.startAnimation(Utility.shakeError());
             }else {
                 LoginObj loginObj = new LoginObj();
-                loginObj.setAreaCode(countryCodePicker.getSelectedCountryCodeWithPlus());
-                loginObj.setTelephone(edtphone.getText().toString());
+                loginObj.setPhone(edtphone.getText().toString());
                 loginObj.setPassword(edtPassword.getText().toString());
                 loginObj.setFirebaseToken(AppStorePreferences.getString(LoginActivity.this,AppENUM.FCM_TOKEN));
                 CallLogin(loginObj);
@@ -120,16 +120,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 public void onResponse(Call<LoginModel> call, Response<LoginModel> response) {
                     progressBar.setVisibility(View.GONE);
 
-                    if (response.body().getCode()==1){
-
+                    Utility.showToast(getApplicationContext(),response.body().getMsg());
+                    if (response.body().isCon()){
+                        Utility.showToast(getApplicationContext(),response.body().getMsg());
                         AppStorePreferences.putInt(LoginActivity.this, AppENUM.LOGIN_CON,1);
-                        AppStorePreferences.putString(LoginActivity.this, AppENUM.TOKEN,response.body().getData().getAccessToken());
-                        Utility.Save_UserProfile(LoginActivity.this,response.body().getData().getData());
+                        AppStorePreferences.putString(LoginActivity.this, AppENUM.TOKEN,response.body().token);
+                       // Utility.Save_UserProfile(LoginActivity.this,response.body().getData().getData());
                         startActivity(new Intent(LoginActivity.this,MainActivity.class));
                         finish();
 
-                    }else if (response.body().getCode()==0){
-                        Utility.showToast(LoginActivity.this,response.body().getMsg());
+                    }else {
+                        Utility.showToast(getApplicationContext(),response.body().getMsg());
                     }
                 }
 

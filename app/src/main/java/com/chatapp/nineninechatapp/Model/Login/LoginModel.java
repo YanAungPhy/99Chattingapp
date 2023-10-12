@@ -4,18 +4,29 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class LoginModel {
+    @SerializedName("con")
+    public boolean con;
     @SerializedName("msg")
-    @Expose
-    private String msg;
+    public String msg;
     @SerializedName("data")
-    @Expose
-    private LoginDataModel data;
-    @SerializedName("code")
-    @Expose
-    private Integer code;
-    @SerializedName("timestamp")
-    @Expose
-    private Integer timestamp;
+    public LoginDataModel data;
+    @SerializedName("token")
+    public String token;
+
+    public LoginModel(boolean con, String msg, LoginDataModel data, String token) {
+        this.con = con;
+        this.msg = msg;
+        this.data = data;
+        this.token = token;
+    }
+
+    public boolean isCon() {
+        return con;
+    }
+
+    public void setCon(boolean con) {
+        this.con = con;
+    }
 
     public String getMsg() {
         return msg;
@@ -33,19 +44,11 @@ public class LoginModel {
         this.data = data;
     }
 
-    public Integer getCode() {
-        return code;
+    public String getToken() {
+        return token;
     }
 
-    public void setCode(Integer code) {
-        this.code = code;
-    }
-
-    public Integer getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(Integer timestamp) {
-        this.timestamp = timestamp;
+    public void setToken(String token) {
+        this.token = token;
     }
 }

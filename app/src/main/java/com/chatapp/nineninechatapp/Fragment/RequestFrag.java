@@ -82,7 +82,7 @@ public class RequestFrag extends Fragment implements FriAcceptAdapter.Click {
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                requestFriend();
+               // requestFriend();
             }
         });
 
@@ -122,7 +122,7 @@ public class RequestFrag extends Fragment implements FriAcceptAdapter.Click {
 
     @Override
     public void onResume() {
-        requestFriend();
+        //requestFriend();
         super.onResume();
     }
 
@@ -137,7 +137,7 @@ public class RequestFrag extends Fragment implements FriAcceptAdapter.Click {
     public void AdapterClick(ReqFriDataModel obj) {
         AcceptObj acceptObj=new AcceptObj();
         acceptObj.setRequestFriendId(obj.getRequestFriendId());
-        CallAccept(acceptObj);
+        //CallAccept(acceptObj);
     }
 
     private void CallAccept(AcceptObj authObj) {

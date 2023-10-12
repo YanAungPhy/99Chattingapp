@@ -46,7 +46,7 @@ public class AccountFrag extends Fragment implements View.OnClickListener {
         imageView=view.findViewById(R.id.circularImageView);
         name=view.findViewById(R.id.txt_status);
 
-        show_User(userObj);
+      //  show_User(userObj);
 
         setting.setOnClickListener(this);
         checkDartView();
