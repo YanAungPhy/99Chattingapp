@@ -19,7 +19,6 @@ public class APIURL {
     public static final String friendList="v1/user/acceptFriendList";
     public static final String logout="v1/user/logout";
     public static final String postVideoUploadUrl ="api/v1/user/post-video";
-    public static final String postVideoUploadUrl ="v1/user/post-video";
 }
 
 

@@ -49,7 +49,8 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <activity android:name=".Activity.SplashActivity"
+        <activity android:name=".Activity.ChatActivity"
+            android:windowSoftInputMode="adjustPan"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -89,7 +90,7 @@
         <activity android:name=".Activity.OTP_Activity" />
         <activity android:name=".Activity.ImagePickerActivity" />
         <activity android:name=".Activity.RegisterDetailsActivity" />
-        <activity android:name=".Activity.ChatActivity" />
+        <!--<activity android:name=".Activity.ChatActivity" />-->
         <activity android:name=".Activity.RegisterProfileActivity" />
         <activity android:name=".Activity.MapActivity"/>
 

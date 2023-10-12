@@ -73,5 +73,10 @@
     <string name="create_post">Create Post</string>
     <string name="friend">Friends</string>
     <string name="map">Map</string>
+    <string name="gallery">Gallery</string>
+    <string name="location">Location</string>
+    <string name="camera">Camera</string>
+    <string name="contact">Contact</string>
+    <string name="file">File</string>
 
 </resources>
