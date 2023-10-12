@@ -31,7 +31,7 @@ public class RetrofitFactory {
 
             Retrofit.Builder builder = new Retrofit.Builder();
             builder.client(client);
-            builder.baseUrl("https://9f4f-69-160-8-39.ngrok-free.app/");
+            builder.baseUrl("https://api.9-9.chat/");
             builder.addConverterFactory(GsonConverterFactory.create());
 
             //  builder.addConverterFactory(JacksonConverterFactory.create());

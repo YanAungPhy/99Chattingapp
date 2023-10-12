@@ -4,18 +4,23 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class RegisterModel {
+    @SerializedName("con")
+    @Expose
+    private Boolean con;
     @SerializedName("msg")
     @Expose
     private String msg;
     @SerializedName("data")
     @Expose
     private RegisterDataModel data;
-    @SerializedName("code")
-    @Expose
-    private Integer code;
-    @SerializedName("timestamp")
-    @Expose
-    private Integer timestamp;
+
+    public Boolean getCon() {
+        return con;
+    }
+
+    public void setCon(Boolean con) {
+        this.con = con;
+    }
 
     public String getMsg() {
         return msg;
@@ -31,21 +36,5 @@ public class RegisterModel {
 
     public void setData(RegisterDataModel data) {
         this.data = data;
-    }
-
-    public Integer getCode() {
-        return code;
-    }
-
-    public void setCode(Integer code) {
-        this.code = code;
-    }
-
-    public Integer getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(Integer timestamp) {
-        this.timestamp = timestamp;
     }
 }

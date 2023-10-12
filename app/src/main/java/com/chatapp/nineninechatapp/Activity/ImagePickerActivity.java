@@ -8,15 +8,12 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.provider.OpenableColumns;
 import android.util.Log;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -35,7 +32,6 @@ import com.yalantis.ucrop.UCrop;
 import java.io.File;
 import java.util.List;
 
-
 public class ImagePickerActivity extends AppCompatActivity {
     private static final String TAG = ImagePickerActivity.class.getSimpleName();
     public static final String INTENT_IMAGE_PICKER_OPTION = "image_picker_option";
@@ -52,7 +48,7 @@ public class ImagePickerActivity extends AppCompatActivity {
     private int ASPECT_RATIO_X = 16, ASPECT_RATIO_Y = 9, bitmapMaxWidth = 1000, bitmapMaxHeight = 1000;
     private int IMAGE_COMPRESSION = 80;
     public static String fileName;
-    private static final String IMAGE_DIRECTORY = "/AungPwal";
+
 
 
     public interface PickerOptionListener {
@@ -64,7 +60,7 @@ public class ImagePickerActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_image_picker);
+        setContentView(com.chatapp.nineninechatapp.R.layout.activity_image_picker);
 
         Intent intent = getIntent();
         if (intent == null) {
@@ -110,6 +106,7 @@ public class ImagePickerActivity extends AppCompatActivity {
         AlertDialog dialog = builder.create();
         dialog.show();
     }
+
 
     private void takeCameraImage() {
         Dexter.withActivity(this)
@@ -214,7 +211,7 @@ public class ImagePickerActivity extends AppCompatActivity {
         options.setCompressionQuality(IMAGE_COMPRESSION);
 
         // applying UI theme
-        options.setToolbarColor(ContextCompat.getColor(this,R.color.primary_color));
+        options.setToolbarColor(ContextCompat.getColor(this, R.color.primary_color));
         options.setStatusBarColor(ContextCompat.getColor(this, R.color.primary_color));
         options.setActiveWidgetColor(ContextCompat.getColor(this, R.color.primary_color));
 
@@ -281,16 +278,6 @@ public class ImagePickerActivity extends AppCompatActivity {
         }
     }
 
-    public static void setStatusBarGradiant(Activity activity) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Window window = activity.getWindow();
-            Drawable background = activity.getResources().getDrawable(R.drawable.gradient_color);
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(activity.getResources().getColor(android.R.color.transparent));
-            window.setNavigationBarColor(activity.getResources().getColor(android.R.color.transparent));
-            window.setBackgroundDrawable(background);
-        }
-    }
 
 }
 

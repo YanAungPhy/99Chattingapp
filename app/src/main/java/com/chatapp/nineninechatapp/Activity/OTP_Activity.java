@@ -3,9 +3,7 @@ package com.chatapp.nineninechatapp.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -15,9 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.chatapp.nineninechatapp.Model.Register.OTP_Model;
-import com.chatapp.nineninechatapp.Model.Register.OTP_Obj;
 import com.chatapp.nineninechatapp.Model.Register.VerifyOTP.VerifyModel;
-import com.chatapp.nineninechatapp.Model.Register.VerifyOTP.VerifyObj;
 import com.chatapp.nineninechatapp.R;
 import com.chatapp.nineninechatapp.Utils.APIURL;
 import com.chatapp.nineninechatapp.Utils.AppStorePreferences;
@@ -36,13 +32,13 @@ public class OTP_Activity extends AppCompatActivity {
     NetworkServiceProvider serviceProvider;
     ProgressBar progressBar;
     RelativeLayout btnOTP;
-    OTP_Obj otpObj;
+    String otp_phone;
     private CountDownTimer countDownTimer;
     private long timerDurationInMillis = 60000; // 60 seconds (adjust as needed)
     private long timerIntervalInMillis = 1000;
     OTPTextView otpTextView;
 
-    String otp_code="";
+    Integer otp_code=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,14 +49,14 @@ public class OTP_Activity extends AppCompatActivity {
 
     private void initView() {
         mtoolbar();
-        otp_code=(String)getIntent().getSerializableExtra("otp_code");
-        otpObj=(OTP_Obj) getIntent().getSerializableExtra("otp_model");
+        otp_phone=(String) getIntent().getSerializableExtra("otp_phone");
+        otp_code=(Integer)getIntent().getSerializableExtra("otp_code");
         serviceProvider=new NetworkServiceProvider(this);
         timer=findViewById(R.id.timer);
         progressBar=findViewById(R.id.progressBar);
         otpTextView=findViewById(R.id.otp_view);
         otpPhone=findViewById(R.id.otp_phone);
-        otpPhone.setText(otpObj.getTelephone());
+        otpPhone.setText(otp_phone);
         otpTextView.requestFocusOTP();
        // ed_otp=findViewById(R.id.edt_otp);
         btnOTP=findViewById(R.id.btn_getOTP);
@@ -88,7 +84,7 @@ public class OTP_Activity extends AppCompatActivity {
         resend_otp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                CallOTP(otpObj);
+                CallOTP(otp_phone);
                 countDownTimer.start();
             }
         });
@@ -96,15 +92,11 @@ public class OTP_Activity extends AppCompatActivity {
     }
 
     public void doing_otp(){
-        if (otpTextView.getOtp().equalsIgnoreCase("") || !otpTextView.getOtp().equalsIgnoreCase(otp_code)){
+        if (otpTextView.getOtp().equalsIgnoreCase("") || !otpTextView.getOtp().equalsIgnoreCase(String.valueOf(otp_code))){
             otpTextView.startAnimation(Utility.shakeError());
             otpTextView.showError();
         }else {
-            VerifyObj verifyObj=new VerifyObj();
-            verifyObj.setTelephone(otpObj.getTelephone());
-            verifyObj.setAreaCode(otpObj.getAreaCode());
-            verifyObj.setOptCode(otpTextView.getOtp());
-            CallVerifyOTP(verifyObj);
+            CallVerifyOTP(otp_phone, String.valueOf(otp_code));
         }
     }
 
@@ -129,21 +121,22 @@ public class OTP_Activity extends AppCompatActivity {
         countDownTimer.start();
     }
 
-    private void CallVerifyOTP(VerifyObj otpObj) {
+    private void CallVerifyOTP(String phone,String otp) {
         if (Utility.isOnline(this)){
             progressBar.setVisibility(View.VISIBLE);
-            serviceProvider.VerifyOTP(APIURL.DomainName+APIURL.verify_telephone,otpObj).enqueue(new Callback<VerifyModel>() {
+            serviceProvider.VerifyOTP(APIURL.DomainName+APIURL.check_otp+phone+"/"+otp).enqueue(new Callback<VerifyModel>() {
                 @Override
                 public void onResponse(Call<VerifyModel> call, Response<VerifyModel> response) {
                     progressBar.setVisibility(View.GONE);
-                    if (response.body().getCode()==1){
+                    if (response.body().getCon()==true){
 
                         Intent intent=new Intent(OTP_Activity.this,RegisterDetailsActivity.class);
-                        intent.putExtra("verify_obj",otpObj);
+                        intent.putExtra("verify_obj",response.body().getData());
                         startActivity(intent);
                         finish();
 
-                    }else if (response.body().getCode()==0){
+
+                    }else if (response.body().getCon()==false){
                         Utility.showToast(OTP_Activity.this,response.body().getMsg());
                     }
                 }
@@ -157,20 +150,19 @@ public class OTP_Activity extends AppCompatActivity {
         }
     }
 
-
-    private void CallOTP(OTP_Obj otpObj) {
+    private void CallOTP(String phone) {
         if (Utility.isOnline(this)){
             progressBar.setVisibility(View.VISIBLE);
-            serviceProvider.GetOTP(APIURL.DomainName+APIURL.get_otp,otpObj).enqueue(new Callback<OTP_Model>() {
+            serviceProvider.GetOTP(APIURL.DomainName+APIURL.check_phone+phone).enqueue(new Callback<OTP_Model>() {
                 @Override
                 public void onResponse(Call<OTP_Model> call, Response<OTP_Model> response) {
                     progressBar.setVisibility(View.GONE);
-                    if (response.body().getCode()==1){
+                    if (response.body().getCon()==true){
 
-                        otp_code= String.valueOf(response.body().getCode());
+                        otp_code= response.body().getDataSMS();
                         Utility.showToast(OTP_Activity.this,response.body().getMsg());
 
-                    }else if (response.body().getCode()==0){
+                    }else if (response.body().getCon()==false){
 
                         Utility.showToast(OTP_Activity.this,response.body().getMsg());
 
@@ -185,7 +177,6 @@ public class OTP_Activity extends AppCompatActivity {
             Utility.showToast(this,getString(R.string.check_internet));
         }
     }
-
 
     public void mtoolbar(){
         TextView toolbar=findViewById(R.id.toolbar_com);
