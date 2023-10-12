@@ -4,33 +4,26 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class LoginObj {
-    @SerializedName("areaCode")
-    @Expose
-    private String areaCode;
-    @SerializedName("telephone")
-    @Expose
-    private String telephone;
-    @SerializedName("password")
-    @Expose
+
+    private String phone;
     private String password;
-    @SerializedName("firebase_token")
-    @Expose
     private String firebaseToken;
 
-    public String getAreaCode() {
-        return areaCode;
+    public LoginObj(String phone, String password, String firebaseToken) {
+        this.phone = phone;
+        this.password = password;
+        this.firebaseToken = firebaseToken;
     }
 
-    public void setAreaCode(String areaCode) {
-        this.areaCode = areaCode;
+    public LoginObj() {
     }
 
-    public String getTelephone() {
-        return telephone;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setTelephone(String telephone) {
-        this.telephone = telephone;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public String getPassword() {
@@ -48,5 +41,4 @@ public class LoginObj {
     public void setFirebaseToken(String firebaseToken) {
         this.firebaseToken = firebaseToken;
     }
-
 }

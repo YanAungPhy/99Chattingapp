@@ -52,7 +52,7 @@ public class DiscoveryFrag extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.discovery, container, false);
-        userObj=Utility.query_UserProfile(getActivity());
+        //userObj=Utility.query_UserProfile(getActivity());
         Utility.darkMode(getActivity());
 
         postVisibleState = view.findViewById(R.id.postVisibleState);
@@ -70,10 +70,10 @@ public class DiscoveryFrag extends Fragment implements View.OnClickListener {
     }
 
     private void initView() {
-        RequestOptions requestOptions = new RequestOptions();
+        /*RequestOptions requestOptions = new RequestOptions();
         requestOptions.placeholder(R.drawable.profile_default);
         requestOptions.error(R.drawable.profile_default);
-        Glide.with(getActivity()).load(APIURL.ImageUrl+userObj.getImagePath()).apply(requestOptions).into(imageView);
+        Glide.with(getActivity()).load(APIURL.ImageUrl+userObj.getImagePath()).apply(requestOptions).into(imageView);*/
 
         checkDartModeView();
         postArrayList = new ArrayList<>();
