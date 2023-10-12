@@ -55,7 +55,7 @@ public class PhotoUploadActivity extends AppCompatActivity implements View.OnCli
         btnPost = findViewById(R.id.btnPost);
 
         userObj = Utility.query_UserProfile(getApplicationContext());
-        show_UserProfile(userObj);
+       // show_UserProfile(userObj);
         uploadAdapter = new PhotoUploadAdapter(postPhotoArrayList,this);
         recyclerView.setLayoutManager(new GridLayoutManager(this,3));
         recyclerView.setAdapter(uploadAdapter);

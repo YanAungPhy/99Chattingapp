@@ -48,7 +48,7 @@ public class VideoUploadActivity extends AppCompatActivity implements View.OnCli
 
 
         btnUpload.setOnClickListener(this);
-        postVideo.setOnClickListener(this);
+       // postVideo.setOnClickListener(this);
     }
 
     @Override
@@ -58,7 +58,7 @@ public class VideoUploadActivity extends AppCompatActivity implements View.OnCli
                 startActivity(new Intent(VideoUploadActivity.this,VideoListActivity.class));
                 break;
             case R.id.postVideo:
-                uploadVideoFile();
+               // uploadVideoFile();
                 break;
 
         }

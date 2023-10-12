@@ -66,13 +66,14 @@
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:contentDescription="@string/app_name"
-                android:src="@drawable/ic_send_photo" />
+                android:src="@drawable/ic_send" />
 
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/bottomViewState"
             android:layout_width="match_parent"
+            android:visibility="gone"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
