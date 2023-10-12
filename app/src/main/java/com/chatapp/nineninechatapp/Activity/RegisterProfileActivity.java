@@ -94,7 +94,7 @@ public class RegisterProfileActivity extends AppCompatActivity implements View.O
                 break;
             case R.id.tv_next:
 
-                Call_Api();
+              //  Call_Api();
 
                 break;
             case R.id.back:
@@ -219,50 +219,7 @@ public class RegisterProfileActivity extends AppCompatActivity implements View.O
         return "";
     }
 
-    public void Call_Api(){
 
-        if (Utility.isOnline(this)){
-            progressBar.setVisibility(View.VISIBLE);
-            if (file_profile!=null){
-                image = RequestBody.create(MediaType.parse("image/*"), file_profile);
-                user_image= MultipartBody.Part.createFormData("file", file_profile.getName(), image);
-
-            }
-            RequestBody telephone = RequestBody.create(MediaType.parse("text/plain"), phone);
-            RequestBody firebase_token = RequestBody.create(MediaType.parse("text/plain"), AppStorePreferences.getString(RegisterProfileActivity.this,AppENUM.FCM_TOKEN));
-            RetrofitFactory factory=new RetrofitFactory();
-            Retrofit retrofit=factory.connector();
-            NetworkSync.UserImgSync sync =retrofit.create(NetworkSync.UserImgSync.class);
-            Call<UploadImgModel> call=sync.UserImg(APIURL.DomainName+APIURL.uploadImageUrl,telephone,firebase_token,user_image);
-            call.enqueue(new Callback<UploadImgModel>() {
-                @Override
-                public void onResponse(Call<UploadImgModel> call, Response<UploadImgModel> response) {
-
-                    progressBar.setVisibility(View.GONE);
-
-                    if (response.body().getCode()==1){
-
-                        Utility.showToast(RegisterProfileActivity.this,response.body().getMsg());
-                        AppStorePreferences.putInt(RegisterProfileActivity.this, AppENUM.LOGIN_CON,1);
-                        Utility.Save_UserProfile(RegisterProfileActivity.this,response.body().getData());
-                        finish();
-                        startActivity(new Intent(RegisterProfileActivity.this,MainActivity.class));
-
-                    }else if (response.body().getCode()==0){
-                        Utility.showToast(RegisterProfileActivity.this,response.body().getMsg());
-                    }
-                }
-                @Override
-                public void onFailure(Call<UploadImgModel> call, Throwable t) {
-                    progressBar.setVisibility(View.GONE);
-                }
-            });
-
-        }else {
-           Utility.showToast(RegisterProfileActivity.this,getString(R.string.check_internet));
-        }
-
-    }
 
     public void mtoolbar(){
         TextView toolbar=findViewById(R.id.toolbar_com);

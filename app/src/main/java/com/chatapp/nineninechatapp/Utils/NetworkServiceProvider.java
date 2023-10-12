@@ -14,11 +14,9 @@ import com.chatapp.nineninechatapp.Model.Login.LoginModel;
 import com.chatapp.nineninechatapp.Model.Login.LoginObj;
 import com.chatapp.nineninechatapp.Model.Login.LogoutModel;
 import com.chatapp.nineninechatapp.Model.Register.OTP_Model;
-import com.chatapp.nineninechatapp.Model.Register.OTP_Obj;
 import com.chatapp.nineninechatapp.Model.Register.RegisterModel;
 import com.chatapp.nineninechatapp.Model.Register.RegisterObj;
 import com.chatapp.nineninechatapp.Model.Register.VerifyOTP.VerifyModel;
-import com.chatapp.nineninechatapp.Model.Register.VerifyOTP.VerifyObj;
 import com.chatapp.nineninechatapp.Model.ReqFriendList.ReqFriModel;
 import com.chatapp.nineninechatapp.Model.ReqFriendList.ReqFriendListObj;
 
@@ -40,20 +38,17 @@ public class NetworkServiceProvider {
         return sync.getSync(url,obj);
     }
 
-    public Call<OTP_Model> GetOTP (String url, OTP_Obj obj) {
+    public Call<OTP_Model> GetOTP (String url) {
         NetworkSync.OTPSync sync=retrofit.create(NetworkSync.OTPSync.class);
-        return sync.getSync(url,obj);
+        return sync.getSync(url);
     }
 
-    public Call<VerifyModel> VerifyOTP (String url, VerifyObj obj) {
+    public Call<VerifyModel> VerifyOTP (String url) {
         NetworkSync.VerifyOTPSync sync=retrofit.create(NetworkSync.VerifyOTPSync.class);
-        return sync.getSync(url,obj);
+        return sync.getSync(url);
     }
 
-    public Call<RegisterModel> Register (String url, RegisterObj obj) {
-        NetworkSync.RegisterSync sync=retrofit.create(NetworkSync.RegisterSync.class);
-        return sync.getSync(url,obj);
-    }
+
 
     public Call<NickNameModel> FindNickName (String url, NickNameObj obj) {
         NetworkSync.FindNickNameSync sync=retrofit.create(NetworkSync.FindNickNameSync.class);

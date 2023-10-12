@@ -78,5 +78,17 @@
     <string name="camera">Camera</string>
     <string name="contact">Contact</string>
     <string name="file">File</string>
+    <string name="select_music">Select Music</string>
+    <string name="video_filter_effect_normal">normal</string>
+    <string name="video_filter_effect_cool">cold</string>
+    <string name="video_filter_effect_warm">warm</string>
+    <string name="video_filter_effect_gray">gray</string>
+    <string name="video_filter_effect_cameo">cameo</string>
+    <string name="video_filter_effect_invert">invert</string>
+    <string name="video_filter_effect_sepia">sepia</string>
+    <string name="video_filter_effect_toon">toon</string>
+    <string name="video_filter_effect_convolution">convolution</string>
+    <string name="video_filter_effect_sobel">sobel</string>
+    <string name="video_filter_effect_sketch">sketch</string>
 
 </resources>

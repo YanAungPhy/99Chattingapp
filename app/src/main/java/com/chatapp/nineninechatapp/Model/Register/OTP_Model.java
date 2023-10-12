@@ -4,18 +4,23 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class OTP_Model {
+    @SerializedName("con")
+    @Expose
+    private Boolean con;
     @SerializedName("msg")
     @Expose
     private String msg;
-    @SerializedName("data")
+    @SerializedName("dataSMS")
     @Expose
-    private String data;
-    @SerializedName("code")
-    @Expose
-    private Integer code;
-    @SerializedName("timestamp")
-    @Expose
-    private Integer timestamp;
+    private Integer dataSMS;
+
+    public Boolean getCon() {
+        return con;
+    }
+
+    public void setCon(Boolean con) {
+        this.con = con;
+    }
 
     public String getMsg() {
         return msg;
@@ -25,28 +30,12 @@ public class OTP_Model {
         this.msg = msg;
     }
 
-    public String getData() {
-        return data;
+    public Integer getDataSMS() {
+        return dataSMS;
     }
 
-    public void setData(String data) {
-        this.data = data;
-    }
-
-    public Integer getCode() {
-        return code;
-    }
-
-    public void setCode(Integer code) {
-        this.code = code;
-    }
-
-    public Integer getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(Integer timestamp) {
-        this.timestamp = timestamp;
+    public void setDataSMS(Integer dataSMS) {
+        this.dataSMS = dataSMS;
     }
 
 }

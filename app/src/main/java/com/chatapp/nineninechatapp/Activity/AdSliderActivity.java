@@ -39,16 +39,13 @@ public class AdSliderActivity extends AppCompatActivity implements View.OnClickL
     LinearLayout layoutOnboardingIndicator;
     TextView tvNext;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ad_slider);
 
         Utility.FullScreen(this);
-
         Utility.loadLocale(AdSliderActivity.this);
-
 
         layoutOnboardingIndicator = findViewById(R.id.layoutOnboardingIndicators);
         tvNext=findViewById(R.id.txtNext);

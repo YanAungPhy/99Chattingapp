@@ -6,19 +6,16 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 
 public class OTP_Obj implements Serializable {
-    @SerializedName("areaCode")
-    @Expose
-    private String areaCode;
-    @SerializedName("telephone")
-    @Expose
+
+    private String otpCode;
     private String telephone;
 
-    public String getAreaCode() {
-        return areaCode;
+    public String getOtpCode() {
+        return otpCode;
     }
 
-    public void setAreaCode(String areaCode) {
-        this.areaCode = areaCode;
+    public void setOtpCode(String otpCode) {
+        this.otpCode = otpCode;
     }
 
     public String getTelephone() {

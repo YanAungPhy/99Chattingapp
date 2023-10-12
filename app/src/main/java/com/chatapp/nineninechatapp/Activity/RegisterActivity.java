@@ -5,22 +5,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.chatapp.nineninechatapp.Model.Register.OTP_Model;
-import com.chatapp.nineninechatapp.Model.Register.OTP_Obj;
 import com.chatapp.nineninechatapp.R;
 import com.chatapp.nineninechatapp.Utils.APIURL;
-import com.chatapp.nineninechatapp.Utils.AppStorePreferences;
 import com.chatapp.nineninechatapp.Utils.NetworkServiceProvider;
 import com.chatapp.nineninechatapp.Utils.Utility;
 import com.rilixtech.widget.countrycodepicker.CountryCodePicker;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -56,7 +50,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         btnOTP.setOnClickListener(this);
     }
 
-
     @Override
     public void onClick(View v) {
         switch (v.getId()){
@@ -74,36 +67,32 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         }
     };
 
-
     private void getOtpCode() {
         String ph=edtPhone.getText().toString();
         if (ph.equalsIgnoreCase("")){
             edtPhone.startAnimation(Utility.shakeError());
         }else {
-            OTP_Obj otpObj=new OTP_Obj();
-            otpObj.setAreaCode(countryCodePicker.getSelectedCountryCodeWithPlus());
-            otpObj.setTelephone(edtPhone.getText().toString());
-            CallOTP(otpObj);
+            CallOTP(edtPhone.getText().toString());
         }
     }
 
-    private void CallOTP(OTP_Obj otpObj) {
+    private void CallOTP(String phone) {
         if (Utility.isOnline(this)){
             progressBar.setVisibility(View.VISIBLE);
-            serviceProvider.GetOTP(APIURL.DomainName+APIURL.get_otp,otpObj).enqueue(new Callback<OTP_Model>() {
+            serviceProvider.GetOTP(APIURL.DomainName+APIURL.check_phone+phone).enqueue(new Callback<OTP_Model>() {
                 @Override
                 public void onResponse(Call<OTP_Model> call, Response<OTP_Model> response) {
                     progressBar.setVisibility(View.GONE);
-                    if (response.body().getCode()==1){
+
+                    if (response.body().getCon()==true){
 
                         Intent intent=new Intent(RegisterActivity.this,OTP_Activity.class);
-                        intent.putExtra("otp_model",otpObj);
-                        intent.putExtra("otp_code",response.body().getData());
+                        intent.putExtra("otp_phone",phone);
+                        intent.putExtra("otp_code",response.body().getDataSMS());
                         startActivity(intent);
                         finish();
 
-
-                    }else if (response.body().getCode()==0){
+                    }else if (response.body().getCon()==false){
 
                         Utility.showToast(RegisterActivity.this,response.body().getMsg());
 

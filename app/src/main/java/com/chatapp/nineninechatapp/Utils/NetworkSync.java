@@ -13,12 +13,10 @@ import com.chatapp.nineninechatapp.Model.Login.LoginModel;
 import com.chatapp.nineninechatapp.Model.Login.LoginObj;
 import com.chatapp.nineninechatapp.Model.Login.LogoutModel;
 import com.chatapp.nineninechatapp.Model.Register.OTP_Model;
-import com.chatapp.nineninechatapp.Model.Register.OTP_Obj;
 import com.chatapp.nineninechatapp.Model.Register.RegisterModel;
 import com.chatapp.nineninechatapp.Model.Register.RegisterObj;
 import com.chatapp.nineninechatapp.Model.Register.UploadImgModel;
 import com.chatapp.nineninechatapp.Model.Register.VerifyOTP.VerifyModel;
-import com.chatapp.nineninechatapp.Model.Register.VerifyOTP.VerifyObj;
 import com.chatapp.nineninechatapp.Model.ReqFriendList.ReqFriModel;
 import com.chatapp.nineninechatapp.Model.ReqFriendList.ReqFriendListObj;
 import com.chatapp.nineninechatapp.Model.VideoUploadResponse;
@@ -27,6 +25,7 @@ import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.Multipart;
@@ -53,32 +52,36 @@ public class NetworkSync {
     }
 
 
-    public interface UserImgSync {
+    public interface RegisterSync {
         @Multipart
         @POST
-        Call<UploadImgModel> UserImg(@Url String url,
-                                     @Part("telephone") RequestBody telephone,
-                                     @Part("firebase_token") RequestBody firebase_token,
-                                     @Part MultipartBody.Part food_image
+        Call<RegisterModel> UserImg(@Url String url,
+                                    @Part("telephone") RequestBody telephone,
+                                    @Part("password") RequestBody password,
+                                    @Part("phone") RequestBody phone,
+                                    @Part("sex") RequestBody sex,
+                                    @Part("countryId") RequestBody countryId,
+                                    @Part("provinceId") RequestBody provinceId,
+                                    @Part("cityId") RequestBody cityId,
+                                    @Part("birthday") RequestBody birthday,
+                                    @Part("firebaseToken") RequestBody firebaseToken,
+                                    @Part MultipartBody.Part food_image,
+                                    @Part("areaCode") RequestBody areaCode
         );
     }
 
 
     public interface OTPSync {
-        @POST
-        Call<OTP_Model> getSync(@Url String url, @Body OTP_Obj obj);
+        @GET
+        Call<OTP_Model> getSync(@Url String url);
     }
 
 
     public interface VerifyOTPSync {
-        @POST
-        Call<VerifyModel> getSync(@Url String url, @Body VerifyObj obj);
+        @GET
+        Call<VerifyModel> getSync(@Url String url);
     }
 
-    public interface RegisterSync {
-        @POST
-        Call<RegisterModel> getSync(@Url String url, @Body RegisterObj obj);
-    }
 
 
     public interface FindNickNameSync {

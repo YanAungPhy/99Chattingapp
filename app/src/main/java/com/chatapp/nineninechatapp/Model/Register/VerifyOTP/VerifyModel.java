@@ -4,18 +4,23 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class VerifyModel {
+    @SerializedName("con")
+    @Expose
+    private Boolean con;
     @SerializedName("msg")
     @Expose
     private String msg;
     @SerializedName("data")
     @Expose
-    private String data;
-    @SerializedName("code")
-    @Expose
-    private Integer code;
-    @SerializedName("timestamp")
-    @Expose
-    private Integer timestamp;
+    private VerifyDataModel data;
+
+    public Boolean getCon() {
+        return con;
+    }
+
+    public void setCon(Boolean con) {
+        this.con = con;
+    }
 
     public String getMsg() {
         return msg;
@@ -25,27 +30,11 @@ public class VerifyModel {
         this.msg = msg;
     }
 
-    public String getData() {
+    public VerifyDataModel getData() {
         return data;
     }
 
-    public void setData(String data) {
+    public void setData(VerifyDataModel data) {
         this.data = data;
-    }
-
-    public Integer getCode() {
-        return code;
-    }
-
-    public void setCode(Integer code) {
-        this.code = code;
-    }
-
-    public Integer getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(Integer timestamp) {
-        this.timestamp = timestamp;
     }
 }

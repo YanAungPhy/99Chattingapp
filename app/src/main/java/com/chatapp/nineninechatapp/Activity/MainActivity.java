@@ -1,12 +1,11 @@
 package com.chatapp.nineninechatapp.Activity;
-
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.viewpager.widget.ViewPager;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -25,6 +24,7 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import com.chatapp.nineninechatapp.Adapter.ViewPagerAdapter;
+import com.chatapp.nineninechatapp.EventBusModel.StringBus;
 import com.chatapp.nineninechatapp.Fragment.AccountFrag;
 import com.chatapp.nineninechatapp.Fragment.DiscoveryFrag;
 import com.chatapp.nineninechatapp.Fragment.FeedFrag;
@@ -38,6 +38,10 @@ import com.chatapp.nineninechatapp.R;
 import com.chatapp.nineninechatapp.Utils.AppStorePreferences;
 import com.chatapp.nineninechatapp.Utils.CustomViewPager;
 import com.chatapp.nineninechatapp.Utils.Utility;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.Locale;
 
@@ -54,6 +58,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ImageView imgVideo,imgHome,imgSearch,imgDisc,imgAccount;
     UserObj userObj;
 
+    public static boolean feed_con=true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,8 +70,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
       //  Utility.FullScreen(this);
 
     }
-
-
 
     private void intiUI() {
         userObj=Utility.query_UserProfile(this);
@@ -86,11 +89,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setupViewPager(viewPager);
         position_0();
 
-        if (AppStorePreferences.getBoolean(MainActivity.this,"dark_mode")){
-            imgVideo.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.res_white));
-        }else {
-            imgVideo.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.res));
-        }
+        feedNormal();
 
         home.setOnClickListener(this);
         search.setOnClickListener(this);
@@ -139,6 +138,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.home:
                 position_0();
                 replaceFragment(homeFrag);
+                feedNormal();
 
                 break;
             case R.id.search:
@@ -156,16 +156,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     imgDisc.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.dis));
                 }
                 replaceFragment(friendFrag);
+                feedNormal();
 
                 break;
             case R.id.video:
 
-                viewPager.setCurrentItem(2);
+                if (feed_con==true){
+                    viewPager.setCurrentItem(2);
+                }else if (feed_con==false){
+                    startActivity(new Intent(MainActivity.this,FeedVideoActivity.class));
+                }
                 imgAccount.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.account));
                 imgHome.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.home));
                 imgSearch.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.search));
                 imgDisc.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.dis));
 
+                if (feed_con==true){
+                    feed_con=false;
+                    if (AppStorePreferences.getBoolean(MainActivity.this,"dark_mode")){
+                        imgVideo.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.plus_one));
+                    }else {
+                        imgVideo.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.plus));
+                    }
+                }else if (feed_con==false){
+                    feedNormal();
+                }
                 replaceFragment(feedFrag);
 
                 break;
@@ -184,6 +199,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     imgDisc.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.dis_d));
                 }
                 replaceFragment(discoveryFrag);
+                feedNormal();
 
                 break;
             case R.id.account:
@@ -201,15 +217,49 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     imgDisc.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.dis));
                 }
                 replaceFragment(accountFrag);
+                feedNormal();
                 break;
         }
 
+    }
+
+    public void feedNormal(){
+        feed_con=true;
+        if (AppStorePreferences.getBoolean(MainActivity.this,"dark_mode")){
+            imgVideo.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.res_white));
+        }else {
+            imgVideo.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.res));
+        }
     }
 
     private void replaceFragment(Fragment fragment) {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.viewpager_container, fragment)
                 .commit();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onStop() {
+        EventBus.getDefault().unregister(this);
+        super.onStop();
+    }
+
+    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
+    public void getStringBus(StringBus stringBus){
+        if (stringBus.getEvent_name().equalsIgnoreCase("feed")){
+            feed_con=false;
+            if (AppStorePreferences.getBoolean(MainActivity.this,"dark_mode")){
+                imgVideo.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.plus_one));
+            }else {
+                imgVideo.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.plus));
+            }
+        }
     }
 
 }
