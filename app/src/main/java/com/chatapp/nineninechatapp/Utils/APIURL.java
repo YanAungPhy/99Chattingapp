@@ -3,7 +3,7 @@ package com.chatapp.nineninechatapp.Utils;
 public class APIURL {
 
    // public static final String main_url="https://a772-69-160-2-204.ngrok-free.app";
-    public static final String login="v1/user/login";
+    public static final String login="v1/api/user/login";
     public static final String get_otp="v1/auth/get-0pt";
     public static final String verify_telephone="v1/auth/verify-telephone";
    // public static final String main_url="https://e05a-69-160-8-61.ngrok-free.app";
